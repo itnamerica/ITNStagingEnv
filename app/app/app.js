@@ -423,7 +423,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
       .done(function (data) {
         console.log('data is ', data);
         $scope.dataPDF = data;
-        $http.post('/sendmail2', {
+        $http.post('/sendmail', {
           from: '"ITNLanier Web User" <donotreply@itnamerica.com>',
           to: 'itnamerica2018@gmail.com',
           subject: $scope.formSubject,

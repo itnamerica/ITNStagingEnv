@@ -19,7 +19,7 @@ app.use(allPages, function(req, res){
 });
 
 
-MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', (err, client) => {
+MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
   if (err) return console.log(err)
 
   app.post('/sendmail', function(req, res){

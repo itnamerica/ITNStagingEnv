@@ -19,8 +19,7 @@ app.use(allPages, function(req, res){
 });
 
 
-MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-  if (err) { console.log(err)};
+
 
   app.post('/sendmail', function(req, res){
     console.log('post req', req.body);
@@ -45,11 +44,15 @@ MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itn
           attachments: [{path: req.body.pdf}]
       };
       
+      MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
+        if (err) { console.log(err)};
+      
       db.collection('memberapp').save(req.body, (err, result) => {
         if (err) return console.log(err)
 
         console.log('member app saved to database')
         res.redirect('/')
+        });
       })
       
     }
@@ -116,4 +119,4 @@ MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itn
   // })
 
   app.listen(process.env.PORT || 13270);
-})
+

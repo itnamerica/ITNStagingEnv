@@ -42,7 +42,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
         templateUrl: viewsPath + 'faq.html'
       })
       .state('member-app', {
-        url: '/member-application',
+        url: '/member-app',
         templateUrl: viewsPath + 'member-app.html'
       })
       .state('member-programs', {

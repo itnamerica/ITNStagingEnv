@@ -70,12 +70,12 @@ app.post('/sendmail', function(req, res){
     MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
       if (err) { console.log(err)};
     
-    db.collection('memberapp').save(req.body, (err, result) => {
-      if (err) return console.log(err)
-    
-      console.log('member app saved to database')
-      res.redirect('/')
-      });
+    // db.collection('memberapp').save(req.body, (err, result) => {
+    //   if (err) return console.log(err)
+    // 
+    //   console.log('member app saved to database')
+    //   res.redirect('/')
+    //   });
     })
     
     // app.get('/*', function(req, res) { 

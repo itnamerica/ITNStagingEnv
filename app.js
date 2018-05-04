@@ -66,17 +66,26 @@ app.post('/sendmail', function(req, res){
         console.log('Message sent: %s', info.messageId);
         // transporter.close();
     });
-    
+    console.log('starting mongo block');
     MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-      if (err) { console.log(err)};
+      if (err) { 
+        console.log('db not connecting, but inside mongo block');
+        console.log(err);
+      };
     
-    // db.collection('memberapp').save(req.body, (err, result) => {
-    //   if (err) return console.log(err)
-    // 
-    //   console.log('member app saved to database')
-    //   res.redirect('/')
-    //   });
-    })
+    db.collection('memberapp').save(req.body, function(err, result){
+      console.log('inside db block');
+      if (err) {
+        console.log('connecting to db, but not saving obj');
+        return console.log(err);
+      }
+    
+      console.log('member app saved to database', result);
+      res.redirect('/')
+      });
+    });
+    
+    console.log('after mongo block');
     
     // app.get('/*', function(req, res) { 
     //   console.log('redirecting index');
@@ -84,7 +93,6 @@ app.post('/sendmail', function(req, res){
     //   res.sendFile(__dirname + '/app/contact.html')
     // });
 
-  
   res.end();
 });
 

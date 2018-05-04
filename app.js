@@ -2,9 +2,11 @@ var express = require('express');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var app = express();
+const MongoClient = require('mongodb').MongoClient
 var env = require(__dirname + '/env-vars.js');
 var gmail_login = env.gmail_login;
 var gmail_pass = env.gmail_pass;
+var db;
 
 app.use(express.json()); //convert req to json
 app.use(express.static(__dirname + '/app'));
@@ -72,7 +74,7 @@ app.post('/sendmail', function(req, res){
         console.log('db not connecting, but inside mongo block');
         console.log(err);
       };
-    
+    db = client.db('itnamerica');
     db.collection('memberapp').save(req.body, function(err, result){
       console.log('inside db block');
       if (err) {

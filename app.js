@@ -68,6 +68,7 @@ app.post('/sendmail', function(req, res){
         console.log('Message sent: %s', info.messageId);
         // transporter.close();
     });
+    
     console.log('starting mongo block');
     MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
       if (err) { 
@@ -75,7 +76,7 @@ app.post('/sendmail', function(req, res){
         console.log(err);
       };
     db = client.db('itnamerica');
-    db.collection('memberapp').save(req.body, function(err, result){
+    db.collection('memberapp').save(req.body.text, function(err, result){
       console.log('inside db block');
       if (err) {
         console.log('connecting to db, but not saving obj');

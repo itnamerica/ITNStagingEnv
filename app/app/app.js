@@ -113,6 +113,14 @@ myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
         url: '/draft',
         templateUrl: viewsPath + 'draft.html'
       })
+      .state('login', {
+        url: '/login',
+        templateUrl: viewsPath + 'login.html'
+      })
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: viewsPath + 'dashboard.html'
+      })
       .state('wildcard', {
         url: '/*',
         templateUrl: viewsPath + 'home.html'

@@ -186,6 +186,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     mismatchDate: "This value does not match the date you entered above"
   };
   $scope.dataPDF = null;
+  $scope.formType = '';
   $scope.formSubject = 'New application received';
   $scope.states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
   $scope.itnSources = ['Family','Friend','Speaker','Doctor','Radio','Television','Flier','Book','Phone','Agency on Aging', 'Social Worker','Internet','Referred by Current Member'];
@@ -360,8 +361,10 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     });
   }
   
+  //for membership, volunteer and non-rider forms
   $scope.submitFormWithPDF = function(formType){
     console.log('submitForm PDF, formData is ', $scope.formData);
+    $scope.formType = formType;
     $scope.loading = true;
     if (formType === 'volunteer') {
         $(document).ready(function(){
@@ -400,7 +403,8 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
           to: 'itnamerica2018@gmail.com',
           subject: $scope.formSubject,
           text: $scope.formData,
-          pdf: $scope.dataPDF
+          pdf: $scope.dataPDF,
+          formType: $scope.formType
         }).then(function(res){
             $scope.loading = false;
             $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
@@ -428,7 +432,8 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
           to: 'itnamerica2018@gmail.com',
           subject: $scope.formSubject,
           text: $scope.formData,
-          pdf: $scope.dataPDF
+          pdf: $scope.dataPDF,
+          formType: $scope.formType
         }).then(function(res){
             $scope.loading = false;
             $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
@@ -479,5 +484,11 @@ myApp.filter('inputSelected', function(){
       return keyArr.toString();
     }
   }
-})
+});
 
+myApp.directive('contactForm', function(){
+  return {
+    restrict: "E",
+    templateUrl: "../views/contact-form.html"
+  }
+})

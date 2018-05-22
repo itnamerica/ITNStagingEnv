@@ -31,7 +31,7 @@ app.post('/sendmail', function(req, res){
   )
   let mailOptions = {};
   if (req.body && req.body.pdf){
-    console.log('sending email with pdf');
+    console.log('sending email with pdf, membership, volunteer or non-rider forms');
     mailOptions = {
         from: req.body.from, // sender address
         to: req.body.to, // list of receivers
@@ -42,7 +42,7 @@ app.post('/sendmail', function(req, res){
 
   }
   else if (req.body && req.body.html){
-    console.log('sending email without pdf');
+    console.log('sending email without pdf, contact form');
     mailOptions = {
         from: req.body.from, // sender address
         to: req.body.to, // list of receivers
@@ -72,32 +72,44 @@ app.post('/sendmail', function(req, res){
     console.log('starting mongo block');
     MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
       if (err) { 
-        console.log('db not connecting, but inside mongo block');
-        console.log(err);
+        console.log('db not connecting, but inside mongo block', err);
       };
-    db = client.db('itnamerica');
-    db.collection('memberapp').save(req.body.text, function(err, result){
-      console.log('inside db block');
-      if (err) {
-        console.log('connecting to db, but not saving obj');
-        return console.log(err);
+      db = client.db('itnamerica');
+      
+      if ((req.body && req.body.pdf) && (req.body.formType === 'membership')) {
+        db.collection('memberapp').save(req.body.text, function(err, result){
+          if (err) { return console.log('connecting to db, but not saving obj', err); }
+          console.log('member app saved to database', result);
+          res.redirect('/');
+        }
       }
-    
-      console.log('member app saved to database', result);
-      res.redirect('/')
-      });
+      else if ((req.body && req.body.pdf) && (req.body.formType === 'volunteer')) {
+        db.collection('volunteerapp').save(req.body.text, function(err, result){
+          if (err) { return console.log('connecting to db, but not saving obj', err);}
+          console.log('volunteer app saved to database', result);
+          res.redirect('/');
+        }
+      }
+      else if ((req.body && req.body.pdf) && (req.body.formType === 'nonrider')) {
+        db.collection('nonriderapp').save(req.body.text, function(err, result){
+          if (err) { return console.log('connecting to db, but not saving obj', err);}
+          console.log('nonrider app saved to database', result);
+          res.redirect('/');
+        }
+      }
+      else if (req.body && req.body.html) {
+        db.collection('contactform').save(req.body.text, function(err, result){
+          if (err) { return console.log('connecting to db, but not saving obj', err);}
+          console.log('contact form saved to database', result);
+          res.redirect('/');
+        }
+      }
+
     });
     
     console.log('after mongo block');
-    
-    // app.get('/*', function(req, res) { 
-    //   console.log('redirecting index');
-    //   // res.sendFile(__dirname + '/index.html')
-    //   res.sendFile(__dirname + '/app/contact.html')
-    // });
-
-  res.end();
-});
+    res.end();
+  });
 
 app.listen(process.env.PORT || 13270);
 

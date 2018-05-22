@@ -367,7 +367,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
       return data;
     })
     console.log('moving to second api call, native');
-    $http.get('/getMemberForms').then(function(data){
+    $http.get('/getMemberApps').then(function(data){
       console.log('data now is ', data);
       $scope.memberFormData = data;
     }) 

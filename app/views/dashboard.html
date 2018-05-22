@@ -14,6 +14,7 @@
             <th>Phone</th>
             <th>Email</th>
             <th>Membership Type</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -23,6 +24,14 @@
             <td>{{rider.primaryPhone}}</td>
             <td>{{rider.email}}</td>
             <td>{{rider.membership}}</td>
+            <td>
+              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteApp('membership')">
+               <span class="glyphicon glyphicon-trash"></span>
+             </button>
+             <button type="button" class="btn btn-info btn-sm" ng-click="viewApp('membership')">
+               <span class="glyphicon glyphicon-eye-open"></span>
+             </button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -37,6 +46,7 @@
             <th>Address</th>
             <th>Phone</th>
             <th>Email</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -45,6 +55,14 @@
             <td>{{driver.streetAddress}}, {{driver.city}}, {{driver.state}} {{driver.zip}}</td>
             <td>{{driver.primaryPhone}}</td>
             <td>{{driver.email}}</td>
+            <td>
+              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteApp('volunteer')">
+               <span class="glyphicon glyphicon-trash"></span>
+             </button>
+             <button type="button" class="btn btn-info btn-sm" ng-click="viewApp('volunteer')">
+               <span class="glyphicon glyphicon-eye-open"></span>
+             </button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -63,6 +81,7 @@
             <th>Address</th>
             <th>Phone</th>
             <th>Email</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -71,6 +90,14 @@
             <td>{{nonrider.address1}}, {{nonrider.city}}, {{nonrider.state}} {{nonrider.zip}}</td>
             <td>{{nonrider.phone}}</td>
             <td>{{nonrider.email}}</td>
+            <td>
+              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteApp('nonrider')">
+               <span class="glyphicon glyphicon-trash"></span>
+             </button>
+             <button type="button" class="btn btn-info btn-sm" ng-click="viewApp('nonrider')">
+               <span class="glyphicon glyphicon-eye-open"></span>
+             </button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -86,6 +113,7 @@
             <th>Email</th>
             <th>Subject</th>
             <th>Message</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -95,6 +123,14 @@
             <td>{{person.email}}</td>
             <td>{{person.subject}}</td>
             <td>{{person.messageBody}}</td>
+            <td>
+              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteApp('contact')">
+               <span class="glyphicon glyphicon-trash"></span>
+             </button>
+             <button type="button" class="btn btn-info btn-sm" ng-click="viewApp('contact')">
+               <span class="glyphicon glyphicon-eye-open"></span>
+             </button>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -360,10 +360,17 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   }
 
   $scope.getMemberApps = function(){
+    console.log('inside get member apps')
     FormService.getMemberForms().then(function(data){
-            $scope.memberFormData = data;
-            return data;
-          })
+      console.log('inside then block FormServive.getMemberApps')
+      $scope.memberFormData = data;
+      return data;
+    })
+    console.log('moving to second api call, native');
+    $http.get('/getMemberForms').then(function(data){
+      console.log('data now is ', data);
+      $scope.memberFormData = data;
+    }) 
   };
 
   $scope.submitForm = function(formType){
@@ -515,6 +522,7 @@ myApp.filter('inputSelected', function(){
 
 myApp.service('FormService', function($http){
   this.getMemberForms = function(){
+    console.log('inside getMemberforms func in service')
     return $http.get('/getMemberForms').then(function(data){
       console.log('data is ', data);
       return data;

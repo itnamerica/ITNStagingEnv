@@ -364,12 +364,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
             $scope.memberFormData = data;
             return data;
           })
-  }
-  FormService.getMemberForms().then(function(data){
-  //         $scope.memberFormData = data;
-  //         return data;
-  //       })
-  //     }
+  };
 
   $scope.submitForm = function(formType){
     console.log('submitForm, formData is', $scope.formData);

@@ -109,10 +109,6 @@ myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
         url: '/keyword-pages',
         templateUrl: viewsPath + 'keyword-pages.html'
       })
-      .state('draft', {
-        url: '/draft',
-        templateUrl: viewsPath + 'draft.html'
-      })
       .state('login', {
         url: '/login',
         templateUrl: viewsPath + 'login.html'
@@ -136,6 +132,10 @@ myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
       .state('wildcard', {
         url: '/*',
         templateUrl: viewsPath + 'home.html'
+      })
+      .state('draft', {
+        url: '/draft',
+        templateUrl: viewsPath + 'draft.html'
       })
 
   // default fall back route

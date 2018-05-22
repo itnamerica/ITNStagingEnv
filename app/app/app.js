@@ -364,16 +364,16 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
 
   $scope.getApps = function(){
     FormService.getMemberForms().then(function(data){
-      $scope.memberFormData = data.data;
+      $scope.memberFormData = data;
     });
     FormService.getVolunteerForms().then(function(data){
-      $scope.volunteerFormData = data.data;
+      $scope.volunteerFormData = data;
     });
     FormService.getNonRiderForms().then(function(data){
-      $scope.nonRiderFormData = data.data;
+      $scope.nonRiderFormData = data;
     });
     FormService.getContactForms().then(function(data){
-      $scope.contactFormData = data.data;
+      $scope.contactFormData = data;
     });
   };
 

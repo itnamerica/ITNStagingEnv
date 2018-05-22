@@ -119,7 +119,15 @@ myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
       })
       .state('dashboard', {
         url: '/dashboard',
-        templateUrl: viewsPath + 'dashboard.html'
+        templateUrl: viewsPath + 'dashboard.html',
+        resolve: {
+          memberapps : function($http, FormService, $scope){
+            return FormService.getMemberForms().then(function(data){
+              $scope.memberFormData = data;
+              return data;
+            })
+          }
+        }
       })
       .state('wildcard', {
         url: '/*',
@@ -151,7 +159,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
     }
   ]);
 
-myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorScroll', '$location', '$stateParams', '$timeout', '$state', '$rootScope', '$window', function ($scope, $transitions, $http, $anchorScroll, $location, $stateParams, $timeout, $state, $rootScope, $window)  {
+myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorScroll', '$location', '$stateParams', '$timeout', '$state', '$rootScope', '$window', 'FormService', function ($scope, $transitions, $http, $anchorScroll, $location, $stateParams, $timeout, $state, $rootScope, $window, FormService)  {
   console.log('inside main controller');
 
   $scope.assetsPath = "assets";
@@ -491,6 +499,24 @@ myApp.filter('inputSelected', function(){
       })
       return keyArr.toString();
     }
+  }
+});
+
+myApp.service('FormService', function($http){
+  this.getMemberForms = function(){
+    return $http.get('/getMemberForms').then(function(data){
+      console.log('data is ', data);
+      return data;
+    }) 
+  };
+  this.getVolunteerForms = function(){
+    
+  }
+  this.getNonRiderForms = function(){
+    
+  }
+  this.getContactForms = function(){
+    
   }
 });
 

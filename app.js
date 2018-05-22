@@ -7,6 +7,7 @@ var env = require(__dirname + '/env-vars.js');
 var gmail_login = env.gmail_login;
 var gmail_pass = env.gmail_pass;
 var db;
+// var router = express.Router();
 
 app.use(express.json()); //convert req to json
 app.use(express.static(__dirname + '/app'));
@@ -81,35 +82,46 @@ app.post('/sendmail', function(req, res){
           if (err) { return console.log('connecting to db, but not saving obj', err); }
           console.log('member app saved to database', result);
           res.redirect('/');
-        }
+        })
       }
       else if ((req.body && req.body.pdf) && (req.body.formType === 'volunteer')) {
         db.collection('volunteerapp').save(req.body.text, function(err, result){
           if (err) { return console.log('connecting to db, but not saving obj', err);}
           console.log('volunteer app saved to database', result);
           res.redirect('/');
-        }
+        })
       }
       else if ((req.body && req.body.pdf) && (req.body.formType === 'nonrider')) {
         db.collection('nonriderapp').save(req.body.text, function(err, result){
           if (err) { return console.log('connecting to db, but not saving obj', err);}
           console.log('nonrider app saved to database', result);
           res.redirect('/');
-        }
+        })
       }
       else if (req.body && req.body.html) {
         db.collection('contactform').save(req.body.text, function(err, result){
           if (err) { return console.log('connecting to db, but not saving obj', err);}
           console.log('contact form saved to database', result);
           res.redirect('/');
-        }
+        })
       }
 
     });
     
     console.log('after mongo block');
     res.end();
+  }); // end /sendmail post request
+  
+  app.get('/getMemberForms', function (req,res) {
+    db.collection('memberapp', function(err, collection) {
+        collection.find().toArray(function(err, items) {
+            console.log(items);
+            res.send(items);
+        });
+    });
+     // res.send('Hello');
   });
+  
 
 app.listen(process.env.PORT || 13270);
 

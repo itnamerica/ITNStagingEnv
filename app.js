@@ -109,23 +109,22 @@ app.post('/sendmail', function(req, res){
     res.end();
   }); // end /sendmail post request
   
-  app.get('/getMemberForms', function (req,res) {
-    console.log('inside getmemberforms backend');
-    MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-      if (err) { 
-        console.log('db not connecting, but inside mongo block', err);
-      };
-      db = client.db('itnamerica');
-      db.collection('memberapp', function(err, collection) {
-        console.log('inside dbcollection');
-          collection.find().toArray(function(err, items) {
-              console.log(items);
-              res.send(items);
-          });
-      });
-    });
-     // res.send('Hello');
-  }); // end of /getMemberForms get request
+  // app.get('/getMemberForms', function (req,res) {
+  //   console.log('inside getmemberforms backend');
+  //   MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
+  //     if (err) { 
+  //       console.log('db not connecting, but inside mongo block', err);
+  //     };
+  //     db = client.db('itnamerica');
+  //     db.collection('memberapp', function(err, collection) {
+  //       console.log('inside dbcollection');
+  //         collection.find().toArray(function(err, items) {
+  //             console.log(items);
+  //             res.send(items);
+  //         });
+  //     });
+  //   });
+  // }); // end of /getMemberForms get request
   
   app.get('/getMemberApps', function (req,res) {
     MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
@@ -138,7 +137,45 @@ app.post('/sendmail', function(req, res){
         res.send(result);
       })
     });
-    // res.send('sending res memberapps');
+  }); // end of /getMemberForms get request
+  
+  app.get('/getVolunteerApps', function (req,res) {
+    MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
+      if (err) { 
+        console.log('db not connecting, but inside mongo block', err);
+      };
+      db = client.db('itnamerica');
+      db.collection('volunteerapp').find().toArray(function (err, result) {
+        console.log('result is ', result);
+        res.send(result);
+      })
+    });
+  }); // end of /getMemberForms get request
+  
+  app.get('/getNonRiderApps', function (req,res) {
+    MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
+      if (err) { 
+        console.log('db not connecting, but inside mongo block', err);
+      };
+      db = client.db('itnamerica');
+      db.collection('nonriderapp').find().toArray(function (err, result) {
+        console.log('result is ', result);
+        res.send(result);
+      })
+    });
+  }); // end of /getMemberForms get request
+  
+  app.get('/getContactForms', function (req,res) {
+    MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
+      if (err) { 
+        console.log('db not connecting, but inside mongo block', err);
+      };
+      db = client.db('itnamerica');
+      db.collection('contactform').find().toArray(function (err, result) {
+        console.log('result is ', result);
+        res.send(result);
+      })
+    });
   }); // end of /getMemberForms get request
   
   app.use(allPages, function(req, res){

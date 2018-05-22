@@ -208,6 +208,9 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   $scope.dataPDF = null;
   $scope.formType = '';
   $scope.memberFormData = [];
+  $scope.volunteerFormData = [];
+  $scope.nonRiderFormData = [];
+  $scope.contactFormData = [];
   $scope.formSubject = 'New application received';
   $scope.states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
   $scope.itnSources = ['Family','Friend','Speaker','Doctor','Radio','Television','Flier','Book','Phone','Agency on Aging', 'Social Worker','Internet','Referred by Current Member'];
@@ -359,18 +362,19 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     }, stepTime);
   }
 
-  $scope.getMemberApps = function(){
-    console.log('inside get member apps')
+  $scope.getApps = function(){
     FormService.getMemberForms().then(function(data){
-      console.log('inside then block FormServive.getMemberApps')
-      $scope.memberFormData = data;
-      return data;
-    })
-    console.log('moving to second api call, native');
-    $http.get('/getMemberApps').then(function(data){
-      console.log('data now is ', data);
-      $scope.memberFormData = data;
-    }) 
+      $scope.memberFormData = data.data;
+    });
+    FormService.getVolunteerForms().then(function(data){
+      $scope.volunteerFormData = data.data;
+    });
+    FormService.getNonRiderForms().then(function(data){
+      $scope.nonRiderFormData = data.data;
+    });
+    FormService.getContactForms().then(function(data){
+      $scope.contactFormData = data.data;
+    });
   };
 
   $scope.submitForm = function(formType){
@@ -520,24 +524,35 @@ myApp.filter('inputSelected', function(){
   }
 });
 
+
 myApp.service('FormService', function($http){
   this.getMemberForms = function(){
-    console.log('inside getMemberforms func in service')
-    return $http.get('/getMemberForms').then(function(data){
+    return $http.get('/getMemberApps').then(function(data){
       console.log('data is ', data);
-      return data;
+      return data.data;
     }) 
   };
   this.getVolunteerForms = function(){
-    
-  }
+    return $http.get('/getVolunteerApps').then(function(data){
+      console.log('data is ', data);
+      return data.data;
+    }) 
+  };
   this.getNonRiderForms = function(){
-    
-  }
+    return $http.get('/getNonRiderApps').then(function(data){
+      console.log('data is ', data);
+      return data.data;
+    }) 
+  };
   this.getContactForms = function(){
-    
-  }
+    return $http.get('/getContactForms').then(function(data){
+      console.log('data is ', data);
+      return data.data;
+    }) 
+  };
 });
+
+
 
 myApp.directive('contactForm', function(){
   return {

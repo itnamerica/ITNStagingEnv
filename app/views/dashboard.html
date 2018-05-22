@@ -1,28 +1,104 @@
 <div class="container-fluid" style="padding:2% 5% 10% 5%; background:pink">
   <h1 style="mb-50">Admin Dashboard</h1>
   
+  <a class="btn btn-lg" ng-click="getApps()">Get apps</a>
+  
   <div class="row">
     <div class="col-md-6">
       <h2>Membership/Rider applications</h2>
-      <a class="btn btn-lg" ng-click="getMemberApps()">Get members</a>
-      
-      <p>memberapps: {{memberapps}} <br>
-      memberFormData: {{memberFormData}}</p>
-    </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Rider Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Membership Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="rider in memberFormData">
+            <td>{{rider.riderName}}</td>
+            <td>{{rider.streetAddress}}, {{rider.city}}, {{rider.state}} {{rider.zip}}</td>
+            <td>{{rider.primaryPhone}}</td>
+            <td>{{rider.email}}</td>
+            <td>{{rider.membership}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!--col-md-6-->
     
     <div class="col-md-6">
       <h2>Volunteer/Driver applications</h2>
-    </div>
-  </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Rider Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="driver in volunteerFormData">
+            <td>{{driver.riderName}}</td>
+            <td>{{driver.streetAddress}}, {{driver.city}}, {{driver.state}} {{driver.zip}}</td>
+            <td>{{driver.primaryPhone}}</td>
+            <td>{{driver.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!--col-md-6-->
+  </div><!--row-->
+  
   
   
   <div class="row">
     <div class="col-md-6">
       <h2>Non-rider applications</h2>
-    </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Rider Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="nonrider in nonRiderFormData">
+            <td>{{nonrider.firstName}} {{nonrider.lastName}}</td>
+            <td>{{nonrider.address1}}, {{nonrider.city}}, {{nonrider.state}} {{nonrider.zip}}</td>
+            <td>{{nonrider.phone}}</td>
+            <td>{{nonrider.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!--col-md-6-->
     
     <div class="col-md-6">
       <h2>Contact forms</h2>
-    </div>
-  </div>
-</div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Rider Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="person in contactFormData">
+            <td>{{person.name}}</td>
+            <td>{{person.phone}}</td>
+            <td>{{person.email}}</td>
+            <td>{{person.subject}}</td>
+            <td>{{person.messageBody}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!--col-md-6-->
+  </div><!--row-->
+  
+</div><!--container-->

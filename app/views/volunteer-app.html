@@ -171,82 +171,6 @@
                             <span ng-if="itnForm.email.$error.pattern" class="help-block">{{errorMessages.email}}</span>
                           </div> 
 
-                      
-                          <h2>First Emergency Contact</h2>
-                          
-                          <div class="form-group" ng-class="{ 'has-error' : itnForm.firstEmName.$invalid && !itnForm.firstEmName.$pristine }">
-                            <label for="name">Name: *</label><br>
-                            <input type="text" class="form-control" id="name" name="firstEmName" ng-model="formData.firstEmergencyContact.name" ng-minlength="minlength" ng-maxlength="maxlength" required>
-                            <span ng-if="itnForm.firstEmName.$error.required && !itnForm.firstEmName.$pristine" class="help-block">{{errorMessages.required}}</span>
-                            <span ng-if="itnForm.firstEmName.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
-                            <span ng-if="itnForm.firstEmName.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
-                          </div>
-                          
-                          <div class="form-group" ng-class="{ 'has-error' : itnForm.firstEmRelationship.$invalid && !itnForm.firstEmRelationship.$pristine }">
-                            <label for="relationship">Relationship: *</label><br>
-                            <input type="text" class="form-control" id="relationship" name="firstEmRelationship" placeholder="Example: Daughter" ng-model="formData.firstEmergencyContact.relationship" ng-minlength="minlength" ng-maxlength="maxlength" required>
-                            <span ng-if="itnForm.firstEmRelationship.$error.required && !itnForm.firstEmRelationship.$pristine" class="help-block">{{errorMessages.required}}</span>
-                            <span ng-if="itnForm.firstEmRelationship.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
-                            <span ng-if="itnForm.firstEmRelationship.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
-                          </div>
-                          
-                          <div class="row">
-                            <div class="form-group col-sm-6" ng-class="{ 'has-error' : itnForm.firstEmStreet.$invalid && !itnForm.firstEmStreet.$pristine }">
-                              <label for="street">Street Address: *</label><br>
-                              <input type="text" class="form-control" id="street" name="firstEmStreet" ng-model="formData.firstEmergencyContact.street" ng-minlength="minlength" ng-maxlength="maxlength" required>
-                              <span ng-if="itnForm.firstEmStreet.$error.required && !itnForm.firstEmStreet.$pristine" class="help-block">{{errorMessages.required}}</span>
-                              <span ng-if="itnForm.firstEmStreet.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
-                              <span ng-if="itnForm.firstEmStreet.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
-                            </div>
-                            
-                            <div class="form-group col-sm-6" ng-class="{ 'has-error' : itnForm.firstEmCity.$invalid && !itnForm.firstEmCity.$pristine }">
-                              <label for="city">City: *</label><br>
-                              <input type="text" class="form-control" id="city" name="firtEmCity"  ng-model="formData.firstEmergencyContact.city" ng-minlength="minlength" ng-maxlength="maxlength" required>
-                              <span ng-if="itnForm.firstEmCity.$error.required && !itnForm.firstEmCity.$pristine" class="help-block">{{errorMessages.required}}</span>
-                              <span ng-if="itnForm.firstEmCity.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
-                              <span ng-if="itnForm.firstEmCity.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
-                            </div>
-                          </div><!--row-->
-                          
-                          <div class="row">
-                            <div class="form-group col-sm-6" ng-class="{ 'has-error' : itnForm.firstEmState.$invalid && !itnForm.firstEmState.$pristine }">
-                              <label for="state">State: *</label><br>
-                              <select ng-model="formData.firstEmergencyContact.state" class="form-control" name="firstEmState" id="state">
-                                 <option ng-repeat="state in states" value="{{state}}">{{state}}</option>
-                              </select>
-                              <span ng-if="itnForm.firstEmState.$error.required && !itnForm.firstEmState.$pristine" class="help-block">{{errorMessages.required}}</span>
-                            </div>
-                          
-                          <div class="form-group col-sm-6" ng-class="{ 'has-error' : itnForm.firstEmZip.$invalid && !itnForm.firstEmZip.$pristine }">
-                            <label for="zip">Zip Code: *</label><br>
-                            <input type="text" class="form-control" id="zip" name="firstEmZip" ng-model="formData.firstEmergencyContact.zip"  ng-pattern="zipPattern" required>
-                            <span ng-if="itnForm.firstEmZip.$error.required && !itnForm.firstEmZip.$pristine" class="help-block">{{errorMessages.required}}</span>
-                            <span ng-if="itnForm.firstEmZip.$error.pattern" class="help-block">{{errorMessages.zip}}</span>
-                          </div>
-                          </div><!--row-->
-                          
-                          <div class="row">
-                          <div class="form-group col-sm-6" ng-class="{ 'has-error' : itnForm.firstEmHomePhone.$invalid && !itnForm.firstEmHomePhone.$pristine }">
-                            <label for="home phone">Home Phone: *</label><br>
-                            <input type="text" class="form-control" id="home-phone" name="firstEmHomePhone" placeholder="Example: xxx-xxx-xxxx" ng-model="formData.firstEmergencyContact.homePhone" ng-pattern="phonePattern" required>
-                            <span ng-if="itnForm.firstEmHomePhone.$error.required && !itnForm.firstEmHomePhone.$pristine" class="help-block">{{errorMessages.required}}</span>
-                            <span ng-if="itnForm.firstEmHomePhone.$error.pattern" class="help-block">{{errorMessages.phone}}</span>
-                          </div>
-                          
-                          <div class="form-group col-sm-6" ng-class="{ 'has-error' : itnForm.firstEmCellphone.$invalid && !itnForm.firstEmCellphone.$pristine }">
-                            <label for="cell phone">Cell Phone: </label><br>
-                            <input type="text" class="form-control" id="cellphone" name="firstEmCellphone" placeholder="Example: xxx-xxx-xxxx" ng-model="formData.firstEmergencyContact.cellPhone" ng-pattern="phonePattern" required>
-                            <span ng-if="itnForm.firstEmCellphone.$error.required && !itnForm.firstEmCellphone.$pristine" class="help-block">{{errorMessages.required}}</span>
-                            <span ng-if="itnForm.firstEmCellphone.$error.pattern" class="help-block">{{errorMessages.phone}}</span>
-                          </div>
-                          </div><!--row-->
-                          
-                          <div class="form-group" ng-class="{ 'has-error' : itnForm.firstEmEmail.$invalid && !itnForm.firstEmEmail.$pristine }">
-                            <label for="email">Email: </label><br>
-                            <input type="email" class="form-control" id="email" name="firstEmEmail" placeholder="Example: test@example.com" ng-model="formData.firstEmergencyContact.email" ng-pattern="emailPattern">
-                            <span ng-if="itnForm.firstEmEmail.$error.required && !itnForm.firstEmEmail.$pristine" class="help-block">{{errorMessages.required}}</span>
-                            <span ng-if="itnForm.firstEmEmail.$error.pattern" class="help-block">{{errorMessages.email}}</span>
-                          </div>
                     </div><!--tab 1-->
                     
                     <button type="submit" ng-hide="loading" class="btn btn-lg pull-right btn-danger" style="background:#e05944; margin-left:2%" ng-disabled="form.$invalid">Submit</button>
@@ -274,7 +198,7 @@
   <h3 class="app-title">Volunteer Driver Application</h3>
   
   <br><label for="rider name">Name: *</label><br>
-  {{formData.riderNnme}}
+  {{formData.riderName}}
   <br><label for="gender">Gender: * </label><br>
   {{formData.riderGender}}
   <br><label for="gender">Street Address: * </label><br>

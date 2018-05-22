@@ -15,9 +15,6 @@ app.use(express.static(__dirname + '/app'));
 
 var allPages = ['/home','/what-we-do','/organization','/faces','/faq','/news','/contact','/become-member','/member-app','/volunteer-to-drive','/volunteer-app','/family','/member-programs','/pay-online','/donate','/corporate','/dashboard','/login'];
 
-app.use(allPages, function(req, res){
-  res.sendFile(__dirname + '/app/index.html');
-});
 
 app.post('/sendmail', function(req, res){
   console.log('post req', req.body);
@@ -120,7 +117,12 @@ app.post('/sendmail', function(req, res){
         });
     });
      // res.send('Hello');
+  }); // end of /getMemberForms get request
+  
+  app.use(allPages, function(req, res){
+    res.sendFile(__dirname + '/app/index.html');
   });
+
   
 
 app.listen(process.env.PORT || 13270);

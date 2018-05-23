@@ -9,7 +9,6 @@
           <tr>
             <th>Date Submited</th>
             <th>Rider Name</th>
-            <th>Date Submited</th>
             <th>Address</th>
             <th>Phone</th>
             <th>Email</th>
@@ -18,7 +17,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="rider in memberFormData">
-            <td></td>
+            <td>{{rider | timestamp | date}}</td>
             <td>{{rider.riderName}}</td>
             <td>{{rider.streetAddress}}, {{rider.city}}, {{rider.state}} {{rider.zip}}</td>
             <td>{{rider.primaryPhone}}</td>
@@ -54,9 +53,13 @@
         </thead>
         <tbody>
           <tr ng-repeat="driver in volunteerFormData">
+            <td>{{driver | timestamp | date}}</td>
             <td>{{driver.riderName}}</td>
             <td>{{driver.streetAddress}}, {{driver.city}}, {{driver.state}} {{driver.zip}}</td>
-            <td>{{driver.primaryPhone}}</td>
+            <td>{{driver.homePhone}}<br>
+              {{driver.cellPhone}}<br>
+              {{driver.workPhone}}
+            </td>
             <td>{{driver.email}}</td>
             <td>
               <button type="button" class="btn btn-danger btn-sm" ng-click="deleteApp('volunteer', driver._id)">
@@ -93,6 +96,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="nonrider in nonRiderFormData">
+            <td>{{nonrider | timestamp | date}}</td>
             <td>{{nonrider.firstName}} {{nonrider.lastName}}</td>
             <td>{{nonrider.address1}}, {{nonrider.city}}, {{nonrider.state}} {{nonrider.zip}}</td>
             <td>{{nonrider.phone}}</td>
@@ -128,6 +132,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="person in contactFormData">
+            <td>{{person | timestamp | date}}</td>
             <td>{{person.name}}</td>
             <td>{{person.phone}}</td>
             <td>{{person.email}}</td>

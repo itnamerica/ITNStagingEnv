@@ -9,12 +9,13 @@
       <table class="table table-striped">
         <thead>
           <tr>
+            <th>Date Submited</th>
             <th>Rider Name</th>
+            <th>Date Submited</th>
             <th>Address</th>
             <th>Phone</th>
             <th>Email</th>
-            <th>Membership Type</th>
-            <th>Actions</th>
+            <th>Operations</th>
           </tr>
         </thead>
         <tbody>
@@ -23,13 +24,15 @@
             <td>{{rider.streetAddress}}, {{rider.city}}, {{rider.state}} {{rider.zip}}</td>
             <td>{{rider.primaryPhone}}</td>
             <td>{{rider.email}}</td>
-            <td>{{rider.membership}}</td>
             <td>
               <button type="button" class="btn btn-danger btn-sm" ng-click="deleteApp('membership')">
                <span class="glyphicon glyphicon-trash"></span>
              </button>
              <button type="button" class="btn btn-info btn-sm" ng-click="viewApp('membership')">
                <span class="glyphicon glyphicon-eye-open"></span>
+             </button>
+             <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Download PDF" ng-click="downloadPDF('membership')">
+               <span class="glyphicon glyphicon-download"></span>
              </button>
             </td>
           </tr>
@@ -42,11 +45,12 @@
       <table class="table table-striped">
         <thead>
           <tr>
+            <th>Date Submited</th>
             <th>Rider Name</th>
             <th>Address</th>
             <th>Phone</th>
             <th>Email</th>
-            <th>Actions</th>
+            <th>Operations</th>
           </tr>
         </thead>
         <tbody>
@@ -61,6 +65,9 @@
              </button>
              <button type="button" class="btn btn-info btn-sm" ng-click="viewApp('volunteer')">
                <span class="glyphicon glyphicon-eye-open"></span>
+             </button>
+             <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Download PDF" ng-click="downloadPDF('volunteer')">
+               <span class="glyphicon glyphicon-download"></span>
              </button>
             </td>
           </tr>
@@ -77,11 +84,12 @@
       <table class="table table-striped">
         <thead>
           <tr>
+            <th>Date Submited</th>
             <th>Rider Name</th>
             <th>Address</th>
             <th>Phone</th>
             <th>Email</th>
-            <th>Actions</th>
+            <th>Operations</th>
           </tr>
         </thead>
         <tbody>
@@ -97,6 +105,9 @@
              <button type="button" class="btn btn-info btn-sm" ng-click="viewApp('nonrider')">
                <span class="glyphicon glyphicon-eye-open"></span>
              </button>
+             <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Download PDF" ng-click="downloadPDF('nonrider')">
+               <span class="glyphicon glyphicon-download"></span>
+             </button>
             </td>
           </tr>
         </tbody>
@@ -108,12 +119,12 @@
       <table class="table table-striped">
         <thead>
           <tr>
+            <th>Date Submited</th>
             <th>Rider Name</th>
             <th>Phone</th>
             <th>Email</th>
-            <th>Subject</th>
             <th>Message</th>
-            <th>Actions</th>
+            <th>Operations</th>
           </tr>
         </thead>
         <tbody>
@@ -121,8 +132,8 @@
             <td>{{person.name}}</td>
             <td>{{person.phone}}</td>
             <td>{{person.email}}</td>
-            <td>{{person.subject}}</td>
-            <td>{{person.messageBody}}</td>
+            <td><strong>{{person.subject}}</strong><br>
+              {{person.messageBody}}</td>
             <td>
               <button type="button" class="btn btn-danger btn-sm" ng-click="deleteApp('contact')">
                <span class="glyphicon glyphicon-trash"></span>
@@ -138,3 +149,10 @@
   </div><!--row-->
   
 </div><!--container-->
+
+
+<script>
+  $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip(); 
+  });
+</script>

@@ -117,25 +117,13 @@ myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
         url: '/dashboard',
         templateUrl: viewsPath + 'dashboard.html'
       })
-      .state('view-member-app', {
-        url: '/view-member-app',
-        templateUrl: viewsPath + 'view-member-app.html',
+      .state('view-form', {
+        url: '/view-form',
+        templateUrl: viewsPath + 'view-form.html',
         params: {
           formObj: null,
           formType: null
         }
-      })
-      .state('view-volunteer-app', {
-        url: '/view-volunteer-app',
-        templateUrl: viewsPath + 'view-volunteer-app.html'
-      })
-      .state('view-nonrider-app', {
-        url: '/view-nonrider-app',
-        templateUrl: viewsPath + 'view-nonrider-app.html'
-      })
-      .state('view-contact-form', {
-        url: '/view-contact-form',
-        templateUrl: viewsPath + 'view-contact-form.html'
       })
       // .state('dashboard', {
       //   url: '/dashboard',
@@ -232,6 +220,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   $scope.nonRiderFormData = [];
   $scope.contactFormData = [];
   $scope.formObj = {};
+  $scope.formType = {};
   $scope.formSubject = 'New application received';
   $scope.states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
   $scope.itnSources = ['Family','Friend','Speaker','Doctor','Radio','Television','Flier','Book','Phone','Agency on Aging', 'Social Worker','Internet','Referred by Current Member'];
@@ -399,8 +388,8 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   };
   
   $scope.catchFormObj = function(){
-    console.log('stateparams', $stateParams);
     $scope.formObj = $stateParams.formObj;
+    $scope.formObjType = $stateParams.formType;
     console.log('formobj is ', $scope.formObj);
   }
 

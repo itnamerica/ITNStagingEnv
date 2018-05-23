@@ -13,7 +13,7 @@ app.use(express.json()); //convert req to json
 app.use(express.static(__dirname + '/app'));
 
 
-var allPages = ['/home','/what-we-do','/organization','/faces','/faq','/news','/contact','/become-member','/member-app','/volunteer-to-drive','/volunteer-app','/family','/member-programs','/pay-online','/donate','/corporate','/dashboard','/login', '/view-member-app','view-volunteer-app','view-nonrider-app','view-contact-form'];
+var allPages = ['/home','/what-we-do','/organization','/faces','/faq','/news','/contact','/become-member','/member-app','/volunteer-to-drive','/volunteer-app','/family','/member-programs','/pay-online','/donate','/corporate','/dashboard','/login', '/view-form'];
 
 
 app.post('/sendmail', function(req, res){

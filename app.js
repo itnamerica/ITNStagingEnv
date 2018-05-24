@@ -162,14 +162,17 @@ app.post('/sendmail', function(req, res){
   }); // end of /getMemberForms get request
   
   app.delete('/deleteForm/:formId', function (req,res) {
-    console.log('req param', req.params.formId, 'req query', req.query, 'then', req.query.formType);
+    console.log('req param', req.params.formId, 'req query', req.query.formType);
     MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
       if (err) { 
         console.log('db not connecting, but inside mongo block', err);
       };
       db = client.db('itnamerica');
       var tableName = req.query.formType;
-      db.collection(tableName).remove({_id: req.params.formId}, function(err, result){
+      var recordId = req.params.formId;
+      console.log('about to remove ', recordId, 'from table ', tableName);
+      db.collection(tableName).remove({_id: recordId}, function(err, result){
+        console.log('record has been removed, i think');
         res.send(result);
       })
     });

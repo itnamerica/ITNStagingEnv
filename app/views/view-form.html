@@ -2,7 +2,7 @@
   
   <h1 class="mb-50">{{formObjType | tableToFormName}} Submission Form</h1>
 
-<table class="table table-striped" style="font-size:25px;font-weight:bold">
+<table class="table table-striped" id="form-table" style="font-size:25px;font-weight:bold">
   <tr ng-repeat="(key, value) in formObj">
     <td> {{key}} </td> <td> {{ value }} </td>
   </tr>
@@ -10,3 +10,14 @@
 
   
 </div>
+
+<script>
+  $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip(); 
+      $('#membership-table').DataTable();
+      $('#volunteer-table').DataTable();
+      $('#nonrider-table').DataTable();
+      $('#contact-table').DataTable();
+      $('#form-table').DataTable();
+  });
+</script>

@@ -162,14 +162,14 @@ app.post('/sendmail', function(req, res){
   }); // end of /getMemberForms get request
   
   app.delete('/deleteForm/:formId', function (req,res) {
-    console.log('REQ IS ', req, 'REQ PARAM', req.params);
+    console.log('req param', req.params.formId, 'req query', req.query, 'then', req.query.formType);
     MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
       if (err) { 
         console.log('db not connecting, but inside mongo block', err);
       };
       db = client.db('itnamerica');
-      var tableName = req.params.formType;
-      db.collection('nonriderapp').remove({_id: req.params.formObj._id}, function(err, result){
+      var tableName = req.query.formType;
+      db.collection(tableName).remove({_id: req.params.formId}, function(err, result){
         res.send(result);
       })
     });

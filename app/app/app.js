@@ -557,7 +557,6 @@ myApp.filter('timestamp', function(){
 
 myApp.filter('tableToFormName', function(){
   return function(tableName){
-    console.log('tablename in filter is ', tableName)
     if (tableName === 'memberapp'){return 'Membership'}
     else if (tableName === 'volunteerapp'){return 'Volunteer'}
     else if (tableName === 'nonriderapp'){return 'Non-Rider'}
@@ -594,11 +593,7 @@ myApp.service('FormService', function($http){
   };
   this.deleteForm = function(formType, formObj){
     var tableName = formType;
-    // if (formType === 'Membership'){tableName = 'memberapp'}
-    // else if (formType === 'Volunteer'){tableName = 'volunteerapp'}
-    // else if (formType === 'NonRider'){tableName = 'nonriderapp'}
-    // else if (formType === 'Contact'){tableName = 'contactform'}
-    return $http.delete('/deleteForm', {formType: tableName, formObj: formObj}).then(function(data){
+    return $http.delete('/deleteForm/'+formObj._id, { params: {formType: tableName, formObj: formObj}}).then(function(data){
       console.log('data is ', data);
       return data;
     }) 

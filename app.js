@@ -161,6 +161,20 @@ app.post('/sendmail', function(req, res){
     });
   }); // end of /getMemberForms get request
   
+  app.delete('/deleteForm', function (req,res) {
+    console.log('req is ', req);
+    MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
+      if (err) { 
+        console.log('db not connecting, but inside mongo block', err);
+      };
+      db = client.db('itnamerica');
+      var tableName = req.params.formType;
+      db.collection(tableName).remove({_id: req.params.formObj._id}, function(err, result){
+        res.send(result);
+      })
+    });
+  }); // end of delete request
+  
   app.use(allPages, function(req, res){
     res.sendFile(__dirname + '/app/index.html');
   });

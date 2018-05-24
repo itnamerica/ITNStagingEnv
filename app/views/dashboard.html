@@ -23,7 +23,7 @@
             <td>{{rider.primaryPhone}}</td>
             <td>{{rider.email}}</td>
             <td>
-              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteApp('Membership', rider._id)" data-toggle="tooltip" title="Delete Form">
+              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteForm('Membership', rider._id)" data-toggle="tooltip" title="Delete Form">
                <span class="glyphicon glyphicon-trash"></span>
              </button>
              <a ui-sref="view-form({formObj: {{rider}}, formType: 'Membership'})" class="btn btn-info btn-sm" data-toggle="tooltip" title="View details">
@@ -59,7 +59,7 @@
             <td>{{driver.homePhone}}</td>
             <td>{{driver.email}}</td>
             <td>
-              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteApp('Volunteer', driver)" data-toggle="tooltip" title="Delete Form">
+              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteForm('Volunteer', driver)" data-toggle="tooltip" title="Delete Form">
                <span class="glyphicon glyphicon-trash"></span>
              </button>
              <a ui-sref="view-form({formObj: {{driver}}, formType: 'Volunteer'})" class="btn btn-info btn-sm" data-toggle="tooltip" title="View details">
@@ -99,7 +99,7 @@
             <td>{{nonrider.phone}}</td>
             <td>{{nonrider.email}}</td>
             <td>
-              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteApp('NonRider', nonrider)" data-toggle="tooltip" title="Delete Form">
+              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteForm('NonRider', nonrider)" data-toggle="tooltip" title="Delete Form">
                <span class="glyphicon glyphicon-trash"></span>
              </button>
              <a ui-sref="view-form({formObj: {{nonrider}}, formType: 'NonRider'})" class="btn btn-info btn-sm" data-toggle="tooltip" title="View details">
@@ -136,7 +136,7 @@
             <td><strong>{{person.subject}}</strong><br>
               {{person.messageBody}}</td>
             <td>
-              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteApp('Contact', person)" data-toggle="tooltip" title="Delete Form">
+              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteForm('Contact', person)" data-toggle="tooltip" title="Delete Form">
                <span class="glyphicon glyphicon-trash"></span>
              </button>
              <a ui-sref="view-form({formObj: {{person}}, formType: 'Contact'})" class="btn btn-info btn-sm" data-toggle="tooltip" title="View details">

@@ -391,7 +391,13 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     $scope.formObj = $stateParams.formObj;
     $scope.formObjType = $stateParams.formType;
     console.log('formobj is ', $scope.formObj);
-  }
+  };
+  
+  $scope.deleteForm = function(formType, formObj){
+    FormService.deleteForm(formType, formObj).then(function(data){
+      console.log('data delete is ', data);
+    })
+  };
 
   $scope.submitForm = function(formType){
     console.log('submitForm, formData is', $scope.formData);
@@ -549,6 +555,16 @@ myApp.filter('timestamp', function(){
   }
 });
 
+myApp.filter('tableToFormName', function(){
+  return function(tableName){
+    if (tableName === 'memberapp'){return 'Membership'}
+    else if (tableName === 'volunteerapp'){return 'Volunteer'}
+    else if (tableName === 'nonriderapp'){return 'Non-Rider'}
+    else if (tableName === 'contactform'){return 'Contact'}
+    else {return 'Other'}
+  }
+});
+
 
 myApp.service('FormService', function($http){
   this.getMemberForms = function(){
@@ -575,6 +591,17 @@ myApp.service('FormService', function($http){
       return data.data;
     }) 
   };
+  this.deleteForm = function(formType, formObj){
+    var tableName;
+    if (formType === 'Membership'){tableName = 'memberapp'}
+    else if (formType === 'Volunteer'){tableName = 'volunteerapp'}
+    else if (formType === 'NonRider'){tableName = 'nonriderapp'}
+    else if (formType === 'Contact'){tableName = 'contactform'}
+    return $http.delete('/deleteForm', {formType: tableName, formObj: formObj}).then(function(data){
+      console.log('data is ', data);
+      return data;
+    }) 
+  }
 });
 
 

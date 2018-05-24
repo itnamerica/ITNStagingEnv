@@ -104,7 +104,6 @@ app.post('/sendmail', function(req, res){
           res.redirect('/');
         })
       }
-
     });
     
     console.log('after mongo block');
@@ -113,9 +112,7 @@ app.post('/sendmail', function(req, res){
   
   app.get('/getMemberApps', function (req,res) {
     MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-      if (err) { 
-        console.log('db not connecting, but inside mongo block', err);
-      };
+      if (err) { console.log('error', err);};
       db = client.db('itnamerica');
       db.collection('memberapp').find().toArray(function (err, result) {
         console.log('result is ', result);
@@ -126,9 +123,7 @@ app.post('/sendmail', function(req, res){
   
   app.get('/getVolunteerApps', function (req,res) {
     MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-      if (err) { 
-        console.log('db not connecting, but inside mongo block', err);
-      };
+      if (err) { console.log('error', err);};
       db = client.db('itnamerica');
       db.collection('volunteerapp').find().toArray(function (err, result) {
         console.log('result is ', result);
@@ -139,9 +134,7 @@ app.post('/sendmail', function(req, res){
   
   app.get('/getNonRiderApps', function (req,res) {
     MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-      if (err) { 
-        console.log('db not connecting, but inside mongo block', err);
-      };
+      if (err) { console.log('error', err);};
       db = client.db('itnamerica');
       db.collection('nonriderapp').find().toArray(function (err, result) {
         console.log('result is ', result);
@@ -152,9 +145,7 @@ app.post('/sendmail', function(req, res){
   
   app.get('/getContactForms', function (req,res) {
     MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-      if (err) { 
-        console.log('db not connecting, but inside mongo block', err);
-      };
+      if (err) { console.log('error', err);};
       db = client.db('itnamerica');
       db.collection('contactform').find().toArray(function (err, result) {
         console.log('result is ', result);
@@ -166,21 +157,14 @@ app.post('/sendmail', function(req, res){
   app.delete('/deleteForm/:formId', function (req,res) {
     console.log('req param', req.params.formId, 'req query', req.query.formType);
     MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-      if (err) { 
-        console.log('db not connecting, but inside mongo block', err);
-      };
+      if (err) { console.log('error', err);};
       db = client.db('itnamerica');
       var tableName = req.query.formType;
       var recordId = req.params.formId;
-      console.log('about to remove ', recordId, 'from table ', tableName);
       db.collection(tableName).deleteOne({_id: new mongo.ObjectId(recordId)}, function(err, result){
         console.log('record has been removed, i think');
         res.send(result);
-      })
-      // db.collection(tableName).remove({_id: recordId}, function(err, result){
-      //   console.log('record has been removed, i think');
-      //   res.send(result);
-      // })
+      });
     });
   }); // end of delete request
   

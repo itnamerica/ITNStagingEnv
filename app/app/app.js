@@ -395,7 +395,8 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   
   $scope.deleteForm = function(formType, formObj){
     FormService.deleteForm(formType, formObj).then(function(data){
-      console.log('data delete is ', data);
+      console.log('record successfully deleted ', data);
+      $scope.getApps();
     })
   };
 
@@ -592,9 +593,7 @@ myApp.service('FormService', function($http){
     }) 
   };
   this.deleteForm = function(formType, formObj){
-    console.log('formtype is ', formType);
     return $http.delete('/deleteForm/' + formObj._id, {params: {formType:formType}}).then(function(data){
-      console.log('data is ', data);
       return data;
     }) 
   }

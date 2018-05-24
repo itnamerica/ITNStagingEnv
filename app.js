@@ -2,12 +2,14 @@ var express = require('express');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var app = express();
+
 const MongoClient = require('mongodb').MongoClient
 var env = require(__dirname + '/env-vars.js');
 var gmail_login = env.gmail_login;
 var gmail_pass = env.gmail_pass;
 var db;
 // var router = express.Router();
+var mongo = require('mongodb');
 
 app.use(express.json()); //convert req to json
 app.use(express.static(__dirname + '/app'));
@@ -171,10 +173,14 @@ app.post('/sendmail', function(req, res){
       var tableName = req.query.formType;
       var recordId = req.params.formId;
       console.log('about to remove ', recordId, 'from table ', tableName);
-      db.collection(tableName).remove({_id: recordId}, function(err, result){
+      db.collection(tableName).deleteOne({_id: new mongo.ObjectId(recordId)}, function(err, result){
         console.log('record has been removed, i think');
         res.send(result);
       })
+      // db.collection(tableName).remove({_id: recordId}, function(err, result){
+      //   console.log('record has been removed, i think');
+      //   res.send(result);
+      // })
     });
   }); // end of delete request
   

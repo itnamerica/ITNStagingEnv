@@ -123,7 +123,7 @@
             <th>Rider Name</th>
             <th>Phone</th>
             <th>Email</th>
-            <th>Message</th>
+            <th>Subject</th>
             <th>Operations</th>
           </tr>
         </thead>
@@ -133,8 +133,7 @@
             <td>{{person.name}}</td>
             <td>{{person.phone}}</td>
             <td>{{person.email}}</td>
-            <td><strong>{{person.subject}}</strong><br>
-              {{person.messageBody}}</td>
+            <td><strong>{{person.subject}}</strong></td>
             <td>
               <button type="button" class="btn btn-danger btn-sm" ng-click="deleteForm('contactform', person)" data-toggle="tooltip" title="Delete Form">
                <span class="glyphicon glyphicon-trash"></span>

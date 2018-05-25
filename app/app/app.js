@@ -425,7 +425,8 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
       }
       var currentBlob = new Blob([uintArray], {type: 'application/pdf'});
       $scope.pdfUrl = URL.createObjectURL(currentBlob);
-      $("#output").append($("<a/>").attr({href: $scope.pdfUrl}).append("Download"));
+      // $("#output").append($("<a/>").attr({href: $scope.pdfUrl}).append("Download"));
+      $scope.redirectToURL($scope.pdfUrl);
     }
     else {
       return $scope.pdfUrl = "This form does not contain a PDF";

@@ -15,6 +15,7 @@
       <table class="table table-striped" id="membership-table">
         <thead>
           <tr>
+            <th>Count</th>
             <th>Date Submited</th>
             <th>Rider Name</th>
             <th>Address</th>
@@ -24,6 +25,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="rider in memberFormData">
+            <td>{{memberFormData.length - $index}}</td>
             <td>{{rider | timestamp | date}}</td>
             <td>{{rider.riderName}}</td>
             <td>{{rider.streetAddress}}, {{rider.city}}, {{rider.state}} {{rider.zip}}</td>
@@ -57,6 +59,7 @@
       <table class="table table-striped" id="volunteer-table">
         <thead>
           <tr>
+            <th>Count</th>
             <th>Date Submited</th>
             <th>Rider Name</th>
             <th>Address</th>
@@ -66,6 +69,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="driver in volunteerFormData">
+            <td>{{volunteerFormData.length - $index}}</td>
             <td>{{driver | timestamp | date}}</td>
             <td>{{driver.riderName}}</td>
             <td>{{driver.streetAddress}}, {{driver.city}}, {{driver.state}} {{driver.zip}}</td>
@@ -103,6 +107,7 @@
       <table class="table table-striped" id="nonrider-table">
         <thead>
           <tr>
+            <th>Count</th>
             <th>Date Submited</th>
             <th>Rider Name</th>
             <th>Address</th>
@@ -112,6 +117,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="nonrider in nonRiderFormData">
+            <td>{{nonRiderFormData.length - $index}}</td>
             <td>{{nonrider | timestamp | date}}</td>
             <td>{{nonrider.firstName}} {{nonrider.lastName}}</td>
             <td>{{nonrider.address1}}, {{nonrider.city}}, {{nonrider.state}} {{nonrider.zip}}</td>
@@ -145,6 +151,7 @@
       <table class="table table-striped" id="contact-table">
         <thead>
           <tr>
+            <th>Count</th>
             <th>Date Submited</th>
             <th>Rider Name</th>
             <th>Phone</th>
@@ -154,6 +161,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="person in contactFormData">
+            <td>{{contactFormData.length - $index}}</td>
             <td>{{person | timestamp | date}}</td>
             <td>{{person.name}}</td>
             <td>{{person.phone}}</td>
@@ -175,10 +183,14 @@
 </div><!--container-->
 
 <style>
-  .dashboard .row .col-md-6, .dashboard a {padding:2%}
+  .dashboard .row .col-md-6 {padding:2%}
+  .dashboard tr td {max-width:150px}
   .dashboard a {
     padding:2%;
     color:white !important;
+  }
+  .dashboard table a {
+    padding: 5%;
   }
   .dataTables_empty {display:none}
 </style>

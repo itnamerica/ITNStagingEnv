@@ -150,9 +150,6 @@ myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
   $urlRouterProvider.otherwise('/');
   $locationProvider.html5Mode(true).hashPrefix('');
 
-  // enable HTML5 Mode for SEO
-  // $locationProvider.html5Mode(true);
-  // $locationProvider.html5mode({ enabled: true, requireBase: false });
 })
 
 
@@ -246,6 +243,12 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     {name: 'Donate', state: 'donate', url: $scope.viewsPath + '/donate.html'},
     {name: 'Corporate Partnership', state: 'corporate', url: $scope.viewsPath + '/corporate.html'}
   ];
+  $scope.formCount = {
+    member: 0,
+    volunteer: 0,
+    nonrider: 0,
+    contact: 0
+  };
   
 
   $transitions.onSuccess({}, function(transition){
@@ -409,15 +412,19 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   $scope.getApps = function(){
     FormService.getMemberForms().then(function(data){
       $scope.memberFormData = data;
+      $scope.formCount.member = data.length
     });
     FormService.getVolunteerForms().then(function(data){
       $scope.volunteerFormData = data;
+      $scope.formCount.volunteer = data.length
     });
     FormService.getNonRiderForms().then(function(data){
       $scope.nonRiderFormData = data;
+      $scope.formCount.nonrider = data.length
     });
     FormService.getContactForms().then(function(data){
       $scope.contactFormData = data;
+      $scope.formCount.contact = data.length
     });
   };
   

@@ -4,7 +4,6 @@
   <div class="row">
     <div class="col-md-6">
       <h2>Membership/Rider applications</h2>
-      <!-- <div id="output">pdf: {{pdfUrl}}</div> -->
       <input type="text" id="searchInput" placeholder="Search">
       <a ng-click="searchTable('membership-table')">
         <span class="glyphicon glyphicon-search"></span>
@@ -81,7 +80,7 @@
              <a ui-sref="view-form({formObj: {{driver}}, formType: 'volunteerapp'})" class="btn btn-info btn-sm" data-toggle="tooltip" title="View details">
                <span class="glyphicon glyphicon-eye-open"></span>
              </a>
-             <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Download PDF" ng-click="downloadPDF('volunteerapp', driver)">
+             <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Download PDF" ng-click="base64ToPDF('volunteerapp', driver)">
                <span class="glyphicon glyphicon-download"></span>
              </button>
             </td>
@@ -129,7 +128,7 @@
              <a ui-sref="view-form({formObj: {{nonrider}}, formType: 'nonriderapp'})" class="btn btn-info btn-sm" data-toggle="tooltip" title="View details">
                <span class="glyphicon glyphicon-eye-open"></span>
              </a>
-             <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Download PDF" ng-click="downloadPDF('nonriderapp', nonrider)">
+             <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Download PDF" ng-click="base64ToPDF('nonriderapp', nonrider)">
                <span class="glyphicon glyphicon-download"></span>
              </button>
             </td>

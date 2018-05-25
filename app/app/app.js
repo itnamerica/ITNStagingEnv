@@ -249,6 +249,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     nonrider: 0,
     contact: 0
   };
+  $scope.pdfUrl = '';
   
 
   $transitions.onSuccess({}, function(transition){
@@ -408,6 +409,30 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
       tr[row].style.display = "table-row";
     }
   };
+  
+  $scope.base64ToPDF = function(formType, formObj){
+    console.log('inside base64 func');
+    if (formObj && formObj.pdf){
+      var base64 = formObj.pdf;
+      base64 = base64.replace("data:application/pdf;base64,", "");
+      var binaryImg = window.atob(base64);
+      var length = binaryImg.length;
+      var arrayBuffer = new ArrayBuffer(length);
+      var uintArray = new Uint8Array(arrayBuffer);
+
+      for (var i = 0; i < length; i++) {
+      uintArray[i] = binaryImg.charCodeAt(i);
+      }
+      var currentBlob = new Blob([uintArray], {type: 'application/pdf'});
+      $scope.pdfUrl = URL.createObjectURL(currentBlob);
+      $("#output").append($("<a/>").attr({href: $scope.pdfUrl}).append("Download"));
+    }
+    else {
+      return $scope.pdfUrl = "This form does not contain a PDF";
+    }
+
+  };
+
 
   $scope.getApps = function(){
     FormService.getMemberForms().then(function(data){

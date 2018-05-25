@@ -76,22 +76,29 @@ app.post('/sendmail', function(req, res){
       };
       db = client.db('itnamerica');
       
+      var objWithPDF; var pdfVal;
       if ((req.body && req.body.pdf) && (req.body.formType === 'membership')) {
-        db.collection('memberapp').save(req.body.text, function(err, result){
+        objWithPDF = req.body.text;
+        objWithPDF.pdf = req.body.pdf;
+        db.collection('memberapp').save(objWithPDF, function(err, result){
           if (err) { return console.log('connecting to db, but not saving obj', err); }
           console.log('member app saved to database', result);
           res.redirect('/');
         })
       }
       else if ((req.body && req.body.pdf) && (req.body.formType === 'volunteer')) {
-        db.collection('volunteerapp').save(req.body.text, function(err, result){
+        objWithPDF = req.body.text;
+        objWithPDF.pdf = req.body.pdf;
+        db.collection('volunteerapp').save(objWithPDF, function(err, result){
           if (err) { return console.log('connecting to db, but not saving obj', err);}
           console.log('volunteer app saved to database', result);
           res.redirect('/');
         })
       }
       else if ((req.body && req.body.pdf) && (req.body.formType === 'nonrider')) {
-        db.collection('nonriderapp').save(req.body.text, function(err, result){
+        objWithPDF = req.body.text;
+        objWithPDF.pdf = req.body.pdf;
+        db.collection('nonriderapp').save(objWithPDF, function(err, result){
           if (err) { return console.log('connecting to db, but not saving obj', err);}
           console.log('nonrider app saved to database', result);
           res.redirect('/');

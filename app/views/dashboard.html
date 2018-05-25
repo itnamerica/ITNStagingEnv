@@ -5,8 +5,11 @@
     <div class="col-md-6">
       <h2>Membership/Rider applications</h2>
       
-      <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for names..">
-      <table class="table table-striped" id="membershipTable">
+      <input type="text" id="searchInput" placeholder="Search">
+      <a onclick="searchTable()">
+        <span class="glyphicon glyphicon-search"></span>
+      </a>
+      <table class="table table-striped" id="membership-table">
         <thead>
           <tr>
             <th>Date Submited</th>
@@ -24,7 +27,7 @@
             <td>{{rider.riderName}}</td>
             <td>{{rider.streetAddress}}, {{rider.city}}, {{rider.state}} {{rider.zip}}</td>
             <td>{{rider.primaryPhone}}</td>
-            <td>Cherry</td>
+            <td>Penguin</td>
             <!-- <td>{{rider.email}}</td> -->
             <td>
               <button type="button" class="btn btn-danger btn-sm" ng-click="deleteForm('memberapp', rider._id)" data-toggle="tooltip" title="Delete Form">
@@ -158,33 +161,32 @@
 <script>
   $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip(); 
-      $('#membership-table').DataTable();
-      $('#volunteer-table').DataTable();
-      $('#nonrider-table').DataTable();
-      $('#contact-table').DataTable();
+      // $('#membership-table').DataTable();
+      // $('#volunteer-table').DataTable();
+      // $('#nonrider-table').DataTable();
+      // $('#contact-table').DataTable();
   });
   
   function searchTable() {
-  // Declare variables 
   var input, filter, table, tr, td, i;
   input = document.getElementById("searchInput");
   filter = input.value.toUpperCase();
-  console.log('filter is ', filter);
-  table = document.getElementById("membershipTable");
+  table = document.getElementById("membership-table");
   tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      console.log('a td, which  is ', td);
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        console.log('td exists ', td);
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    } 
+  
+  for (row = 0; row < tr.length; row++) {
+    tdd = tr[row].getElementsByTagName("td");
+    for (col = 0; col < tdd.length-1; col++) {
+      td = tr[row].getElementsByTagName("td")[col];
+      if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          console.log('td exists ', td, 'then tr', row, 'then tr row', tr[row]);
+          return tr[row].style.display = "table-row";
+        } else {
+          tr[row].style.display = "none";
+        }
+      } 
+    }
   }
 }
 </script>

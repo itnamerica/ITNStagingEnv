@@ -370,7 +370,41 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
             obj.innerHTML = end;
         }
     }, stepTime);
-  }
+  };
+  
+  $scope.searchTable = function(tableId) {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById(tableId);
+    tr = table.getElementsByTagName("tr");
+    
+    for (row = 0; row < tr.length; row++) {
+      tdd = tr[row].getElementsByTagName("td");
+      for (col = 0; col < tdd.length-1; col++) {
+        td = tr[row].getElementsByTagName("td")[col];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            return tr[row].style.display = "table-row";
+          } else {
+            tr[row].style.display = "none";
+          }
+        } 
+      }
+    }
+  };
+  
+  $scope.resetTable = function(tableId) {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById(tableId);
+    tr = table.getElementsByTagName("tr");
+    
+    for (row = 0; row < tr.length; row++) {
+      tr[row].style.display = "table-row";
+    }
+  };
 
   $scope.getApps = function(){
     FormService.getMemberForms().then(function(data){

@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-init="getApps()" style="padding:2% 5% 10% 5%; background:pink">
+<div class="container-fluid dashboard" ng-init="getApps()" style="padding:2% 5% 10% 5%; background:pink">
   <h1 style="mb-50">Admin Portal</h1>
   
   <div class="row">
@@ -6,8 +6,11 @@
       <h2>Membership/Rider applications</h2>
       
       <input type="text" id="searchInput" placeholder="Search">
-      <a onclick="searchTable()">
+      <a ng-click="searchTable('membership-table')">
         <span class="glyphicon glyphicon-search"></span>
+      </a>
+      <a ng-click="resetTable('membership-table')">
+        <i class="fa fa-undo"></i>
       </a>
       <table class="table table-striped" id="membership-table">
         <thead>
@@ -16,8 +19,6 @@
             <th>Rider Name</th>
             <th>Address</th>
             <th>Phone</th>
-            <!-- <th>Email</th> -->
-            <th>Apple</th>
             <th>Operations</th>
           </tr>
         </thead>
@@ -27,8 +28,6 @@
             <td>{{rider.riderName}}</td>
             <td>{{rider.streetAddress}}, {{rider.city}}, {{rider.state}} {{rider.zip}}</td>
             <td>{{rider.primaryPhone}}</td>
-            <td>Penguin</td>
-            <!-- <td>{{rider.email}}</td> -->
             <td>
               <button type="button" class="btn btn-danger btn-sm" ng-click="deleteForm('memberapp', rider._id)" data-toggle="tooltip" title="Delete Form">
                <span class="glyphicon glyphicon-trash"></span>
@@ -47,6 +46,14 @@
     
     <div class="col-md-6">
       <h2>Volunteer/Driver applications</h2>
+      
+      <input type="text" id="searchInput" placeholder="Search">
+      <a ng-click="searchTable('volunteer-table')">
+        <span class="glyphicon glyphicon-search"></span>
+      </a>
+      <a ng-click="resetTable('volunteer-table')">
+        <i class="fa fa-undo"></i>
+      </a>
       <table class="table table-striped" id="volunteer-table">
         <thead>
           <tr>
@@ -54,7 +61,6 @@
             <th>Rider Name</th>
             <th>Address</th>
             <th>Phone</th>
-            <th>Email</th>
             <th>Operations</th>
           </tr>
         </thead>
@@ -64,7 +70,6 @@
             <td>{{driver.riderName}}</td>
             <td>{{driver.streetAddress}}, {{driver.city}}, {{driver.state}} {{driver.zip}}</td>
             <td>{{driver.homePhone}}</td>
-            <td>{{driver.email}}</td>
             <td>
               <button type="button" class="btn btn-danger btn-sm" ng-click="deleteForm('volunteerapp', driver)" data-toggle="tooltip" title="Delete Form">
                <span class="glyphicon glyphicon-trash"></span>
@@ -87,6 +92,14 @@
   <div class="row">
     <div class="col-md-6">
       <h2>Non-Rider applications</h2>
+      
+      <input type="text" id="searchInput" placeholder="Search">
+      <a ng-click="searchTable('nonrider-table')">
+        <span class="glyphicon glyphicon-search"></span>
+      </a>
+      <a ng-click="resetTable('nonrider-table')">
+        <i class="fa fa-undo"></i>
+      </a>
       <table class="table table-striped" id="nonrider-table">
         <thead>
           <tr>
@@ -94,7 +107,6 @@
             <th>Rider Name</th>
             <th>Address</th>
             <th>Phone</th>
-            <th>Email</th>
             <th>Operations</th>
           </tr>
         </thead>
@@ -104,7 +116,6 @@
             <td>{{nonrider.firstName}} {{nonrider.lastName}}</td>
             <td>{{nonrider.address1}}, {{nonrider.city}}, {{nonrider.state}} {{nonrider.zip}}</td>
             <td>{{nonrider.phone}}</td>
-            <td>{{nonrider.email}}</td>
             <td>
               <button type="button" class="btn btn-danger btn-sm" ng-click="deleteForm('nonriderapp', nonrider)" data-toggle="tooltip" title="Delete Form">
                <span class="glyphicon glyphicon-trash"></span>
@@ -123,13 +134,20 @@
     
     <div class="col-md-6">
       <h2>Contact forms</h2>
+      
+      <input type="text" id="searchInput" placeholder="Search">
+      <a ng-click="searchTable('contact-table')">
+        <span class="glyphicon glyphicon-search"></span>
+      </a>
+      <a ng-click="resetTable('contact-table')">
+        <i class="fa fa-undo"></i>
+      </a>
       <table class="table table-striped" id="contact-table">
         <thead>
           <tr>
             <th>Date Submited</th>
             <th>Rider Name</th>
             <th>Phone</th>
-            <th>Email</th>
             <th>Subject</th>
             <th>Operations</th>
           </tr>
@@ -139,7 +157,6 @@
             <td>{{person | timestamp | date}}</td>
             <td>{{person.name}}</td>
             <td>{{person.phone}}</td>
-            <td>{{person.email}}</td>
             <td><strong>{{person.subject}}</strong></td>
             <td>
               <button type="button" class="btn btn-danger btn-sm" ng-click="deleteForm('contactform', person)" data-toggle="tooltip" title="Delete Form">
@@ -158,40 +175,14 @@
 </div><!--container-->
 
 
-<script>
+<!-- <script>
   $(document).ready(function(){
       $('[data-toggle="tooltip"]').tooltip(); 
-      // $('#membership-table').DataTable();
-      // $('#volunteer-table').DataTable();
-      // $('#nonrider-table').DataTable();
-      // $('#contact-table').DataTable();
   });
   
-  function searchTable() {
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("searchInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("membership-table");
-  tr = table.getElementsByTagName("tr");
-  
-  for (row = 0; row < tr.length; row++) {
-    tdd = tr[row].getElementsByTagName("td");
-    for (col = 0; col < tdd.length-1; col++) {
-      td = tr[row].getElementsByTagName("td")[col];
-      if (td) {
-        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-          console.log('td exists ', td, 'then tr', row, 'then tr row', tr[row]);
-          return tr[row].style.display = "table-row";
-        } else {
-          tr[row].style.display = "none";
-        }
-      } 
-    }
-  }
-}
-</script>
+</script> -->
 
 <style>
-  .dashboard .row .col-md-6 {padding:2%}
+  .dashboard .row .col-md-6, .dashboard a {padding:2%}
   .dataTables_empty {display:none}
 </style>

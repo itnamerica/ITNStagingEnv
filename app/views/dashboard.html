@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr dir-paginate="rider in memberFormData|orderBy:sortKey:reverse|filter:filterTable|itemsPerPage:10">
+          <tr dir-paginate="rider in memberFormData|orderBy:sortKey:reverse|filter:filterTable|itemsPerPage:10" pagination-id="membership">
             <td>{{memberFormData.length - $index}}</td>
             <td>{{rider | timestamp | date}}</td>
             <td>{{rider.riderName}}</td>
@@ -40,6 +40,7 @@
         </tbody>
       </table>
       <dir-pagination-controls
+        pagination-id="membership"
          max-size="5"
          direction-links="true"
          boundary-links="true" >
@@ -64,7 +65,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr dir-paginate="driver in volunteerFormData|orderBy:sortKey:reverse|filter:filterTable2|itemsPerPage:10">
+          <tr dir-paginate="driver in volunteerFormData|orderBy:sortKey:reverse|filter:filterTable2|itemsPerPage:10" pagination-id="volunteer">
             <td>{{volunteerFormData.length - $index}}</td>
             <td>{{driver | timestamp | date}}</td>
             <td>{{driver.riderName}}</td>
@@ -84,7 +85,12 @@
           </tr>
         </tbody>
       </table>
-
+      <dir-pagination-controls
+        pagination-id="volunteer"
+         max-size="5"
+         direction-links="true"
+         boundary-links="true" >
+      </dir-pagination-controls>
     </div><!--col-md-6-->
   </div><!--row-->
   
@@ -109,7 +115,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr dir-paginate="nonrider in nonRiderFormData|orderBy:sortKey:reverse|filter:filterTable3|itemsPerPage:10">
+          <tr dir-paginate="nonrider in nonRiderFormData|orderBy:sortKey:reverse|filter:filterTable3|itemsPerPage:10" pagination-id="nonrider">
             <td>{{nonRiderFormData.length - $index}}</td>
             <td>{{nonrider | timestamp | date}}</td>
             <td>{{nonrider.firstName}} {{nonrider.lastName}}</td>
@@ -129,7 +135,12 @@
           </tr>
         </tbody>
       </table>
-
+      <dir-pagination-controls
+        pagination-id="nonrider"
+         max-size="5"
+         direction-links="true"
+         boundary-links="true" >
+      </dir-pagination-controls>
     </div><!--col-md-6-->
     
     <div class="col-md-6">
@@ -150,7 +161,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr dir-paginate="person in contactFormData|orderBy:sortKey:reverse|filter:filterTable4|itemsPerPage:10">
+          <tr dir-paginate="person in contactFormData|orderBy:sortKey:reverse|filter:filterTable4|itemsPerPage:10" pagination-id="contact">
             <td>{{contactFormData.length - $index}}</td>
             <td>{{person | timestamp | date}}</td>
             <td>{{person.name}}</td>
@@ -167,7 +178,12 @@
           </tr>
         </tbody>
       </table>
-
+      <dir-pagination-controls
+        pagination-id="contact"
+         max-size="5"
+         direction-links="true"
+         boundary-links="true" >
+      </dir-pagination-controls>
       
     </div><!--col-md-6-->
   </div><!--row-->

@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ui.router', 'ngAnimate']);
+var myApp = angular.module('myApp', ['ui.router', 'ngAnimate','angularUtils.directives.dirPagination']);
 
 myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
   console.log('inside of config block');
@@ -466,6 +466,11 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
       $scope.getApps();
     })
   };
+  
+  $scope.sort = function(keyname){
+    $scope.sortKey = keyname;   //set the sortKey to the param passed
+    $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+};
 
   $scope.submitForm = function(formType){
     console.log('submitForm, formData is', $scope.formData);

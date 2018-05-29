@@ -17,7 +17,12 @@ app.use(express.static(__dirname + '/app'));
 
 var allPages = ['/home','/what-we-do','/organization','/faces','/faq','/news','/contact','/become-member','/member-app','/volunteer-to-drive','/volunteer-app','/family','/member-programs','/pay-online','/donate','/corporate', 'non-rider-member','/dashboard','/login', '/view-form','/draft'];
 
-
+MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
+  if (err) { 
+    console.log('db not connecting, but inside mongo block', err);
+  };
+  db = client.db('itnamerica');
+  
 app.post('/sendmail', function(req, res){
   console.log('post req', req.body);
 
@@ -70,11 +75,7 @@ app.post('/sendmail', function(req, res){
     });
     
     console.log('starting mongo block');
-    MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-      if (err) { 
-        console.log('db not connecting, but inside mongo block', err);
-      };
-      db = client.db('itnamerica');
+
       
       var objWithPDF; var pdfVal;
       if ((req.body && req.body.pdf) && (req.body.formType === 'membership')) {
@@ -111,69 +112,50 @@ app.post('/sendmail', function(req, res){
           res.redirect('/');
         })
       }
-    });
     
     console.log('after mongo block');
     res.end();
   }); // end /sendmail post request
   
   app.get('/getMemberApps', function (req,res) {
-    MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-      if (err) { console.log('error', err);};
-      db = client.db('itnamerica');
       db.collection('memberapp').find().toArray(function (err, result) {
         console.log('result is ', result);
         res.send(result);
       })
-    });
   }); // end of /getMemberForms get request
   
   app.get('/getVolunteerApps', function (req,res) {
-    MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-      if (err) { console.log('error', err);};
-      db = client.db('itnamerica');
       db.collection('volunteerapp').find().toArray(function (err, result) {
         console.log('result is ', result);
         res.send(result);
       })
-    });
   }); // end of /getMemberForms get request
   
   app.get('/getNonRiderApps', function (req,res) {
-    MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-      if (err) { console.log('error', err);};
-      db = client.db('itnamerica');
       db.collection('nonriderapp').find().toArray(function (err, result) {
         console.log('result is ', result);
         res.send(result);
       })
-    });
   }); // end of /getMemberForms get request
   
   app.get('/getContactForms', function (req,res) {
-    MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-      if (err) { console.log('error', err);};
-      db = client.db('itnamerica');
       db.collection('contactform').find().toArray(function (err, result) {
         console.log('result is ', result);
         res.send(result);
       })
-    });
   }); // end of /getMemberForms get request
   
   app.delete('/deleteForm/:formId', function (req,res) {
     console.log('req param', req.params.formId, 'req query', req.query.formType);
-    MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
-      if (err) { console.log('error', err);};
-      db = client.db('itnamerica');
       var tableName = req.query.formType;
       var recordId = req.params.formId;
       db.collection(tableName).deleteOne({_id: new mongo.ObjectId(recordId)}, function(err, result){
         console.log('record has been removed, i think');
         res.send(result);
       });
-    });
   }); // end of delete request
+  
+});//end of mongoclient
   
   app.use(allPages, function(req, res){
     res.sendFile(__dirname + '/app/index.html');

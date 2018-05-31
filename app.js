@@ -105,10 +105,17 @@ app.post('/sendmail', function(req, res){
           res.redirect('/');
         })
       }
-      else if (req.body && req.body.html) {
+      else if ((req.body && req.body.html) && (req.body.formType === 'contact')) {
         db.collection('contactform').save(req.body.text, function(err, result){
           if (err) { return console.log('connecting to db, but not saving obj', err);}
           console.log('contact form saved to database', result);
+          res.redirect('/');
+        })
+      }
+      else if ((req.body && req.body.html) && (req.body.formType === 'newsletter')) {
+        db.collection('newsletterform').save(req.body.text, function(err, result){
+          if (err) { return console.log('connecting to db, but not saving obj', err);}
+          console.log('newsletter form saved to database', result);
           res.redirect('/');
         })
       }

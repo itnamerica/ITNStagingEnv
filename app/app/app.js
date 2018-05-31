@@ -474,6 +474,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
 
   $scope.submitForm = function(formType){
     console.log('submitForm, formData is', $scope.formData);
+    $scope.formType = formType;
     $scope.loading = true;
     $http.post('/sendmail', {
       from: '"ITNLanier Web User" <donotreply@itnamerica.com>',
@@ -484,7 +485,8 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
       "<p><strong>Email:</strong>: " + $scope.formData.email + "</p>\n " +
       "<p><strong>Mobile:</strong>: " + $scope.formData.phone + "</p>\n " +
       "<p><strong>Subject:</strong>: " + $scope.formData.subject + "</p>\n " +
-      "<p><strong>Message Body:</strong>: " + $scope.formData.messageBody + "</p>\n "
+      "<p><strong>Message Body:</strong>: " + $scope.formData.messageBody + "</p>\n ",
+      formType: $scope.formType
     }).then(function(res){
         $scope.loading = false;
         $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';

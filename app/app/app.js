@@ -472,6 +472,12 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     $scope.reverse = !$scope.reverse; //if true make it false and vice versa
 };
 
+  $scope.login = function(){
+    FormService.login($scope.formData).then(function(data){
+      console.log('response is ', data);
+    });
+  };
+
   $scope.submitForm = function(formType){
     console.log('submitForm, formData is', $scope.formData);
     $scope.formType = formType;
@@ -680,6 +686,15 @@ myApp.service('FormService', function($http){
   this.deleteForm = function(formType, formObj){
     return $http.delete('/deleteForm/' + formObj._id, {params: {formType:formType}}).then(function(data){
       return data;
+    }) 
+  }
+  this.login = function(formData){
+    return $http.get('/getAdmin', {params: {formData:formData}})
+    .then(function(data){
+      console.log('response in service is ', data);
+      return data;
+    }).catch(function(error){
+      console.log('service, unable to login', error);
     }) 
   }
 });

@@ -10,10 +10,17 @@ var gmail_pass = env.gmail_pass;
 var db;
 // var router = express.Router();
 var mongo = require('mongodb');
+var session = require('express-session')
 
 app.use(express.json()); //convert req to json
 app.use(express.static(__dirname + '/app'));
 
+//use sessions for tracking logins
+// app.use(session({
+//   secret: 'girlsrock',
+//   resave: true,
+//   saveUninitialized: false
+// }));
 
 var allPages = ['/home','/what-we-do','/organization','/faces','/faq','/news','/contact','/become-member','/member-app','/volunteer-to-drive','/volunteer-app','/family','/member-programs','/pay-online','/donate','/corporate', 'non-rider-member','/dashboard','/login', '/view-form','/draft'];
 
@@ -136,21 +143,34 @@ app.post('/sendmail', function(req, res){
         console.log('result is ', result);
         res.send(result);
       })
-  }); // end of /getMemberForms get request
+  }); // end of /getVolunteerForms get request
   
   app.get('/getNonRiderApps', function (req,res) {
       db.collection('nonriderapp').find().toArray(function (err, result) {
         console.log('result is ', result);
         res.send(result);
       })
-  }); // end of /getMemberForms get request
+  }); // end of /getNonRiderForms get request
   
   app.get('/getContactForms', function (req,res) {
       db.collection('contactform').find().toArray(function (err, result) {
         console.log('result is ', result);
         res.send(result);
       })
-  }); // end of /getMemberForms get request
+  }); // end of /getContactForms get request
+  
+  app.get('/getAdmin', function (req,res) {
+      db.collection('users').find().toArray(function (err, result) {
+        var userInput = JSON.parse(req.query.formData);
+        if ((result[0].username === userInput.username) && (result[0].password === userInput.password)){
+          console.log('a match, initializing session');
+          res.send(result);
+        }
+        else {
+          res.status(500).send('error')
+        }  
+      })
+  }); // end of /getAdmin get request
   
   app.delete('/deleteForm/:formId', function (req,res) {
     console.log('req param', req.params.formId, 'req query', req.query.formType);

@@ -476,22 +476,33 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     console.log('submitForm, formData is', $scope.formData);
     $scope.formType = formType;
     $scope.loading = true;
-    $http.post('/sendmail', {
-      from: '"ITNLanier Web User" <donotreply@itnamerica.com>',
-      to: 'itnamerica2018@gmail.com',
-      subject: "ITNLanier Contact Form Submitted",
-      text: $scope.formData,
-      html: "<p><strong>Name:</strong>: " + $scope.formData.name + "</p>\n" +
-      "<p><strong>Email:</strong>: " + $scope.formData.email + "</p>\n " +
-      "<p><strong>Mobile:</strong>: " + $scope.formData.phone + "</p>\n " +
-      "<p><strong>Subject:</strong>: " + $scope.formData.subject + "</p>\n " +
-      "<p><strong>Message Body:</strong>: " + $scope.formData.messageBody + "</p>\n ",
-      formType: $scope.formType
-    }).then(function(res){
-        $scope.loading = false;
+    var formObj = {};
+    if (formType === 'contact'){
+      formObj = {
+        from: '"ITNSuncoast Web User" <donotreply@itnamerica.com>',
+        to: 'itnamerica2018@gmail.com',
+        subject: "ITNSuncoast Contact Form Submitted",
+        text: $scope.formData,
+        html: "<p><strong>Name:</strong>: " + $scope.formData.name + "</p>\n" +
+        "<p><strong>Email:</strong>: " + $scope.formData.email + "</p>\n " +
+        "<p><strong>Mobile:</strong>: " + $scope.formData.phone + "</p>\n " +
+        "<p><strong>Subject:</strong>: " + $scope.formData.subject + "</p>\n " +
+        "<p><strong>Message Body:</strong>: " + $scope.formData.messageBody + "</p>\n "
+      }
+    } else if (formType === 'newsletter'){
+        formObj = {
+          from: '"ITNSuncoast Web User" <donotreply@itnamerica.com>',
+          to: 'itnamerica2018@gmail.com',
+          subject: "ITNSuncoast Request to be added to Newsletter",
+          text: $scope.formData,
+          html: "<p><strong>Email:</strong>: " + $scope.formData.email + "</p> "
+        }
+    }
+    $http.post('/sendmail', formObj).then(function(res){
+        // $scope.loading = false;
         $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
     }).catch(function(err){
-        $scope.loading = false;
+        // $scope.loading = false;
         $scope.serverMessage = 'There was an error submitting your form. Please contact us by phone instead.';
     });
   }

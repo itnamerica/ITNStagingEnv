@@ -216,6 +216,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   $scope.volunteerFormData = [];
   $scope.nonRiderFormData = [];
   $scope.contactFormData = [];
+  $scope.newsletterFormData = [];
   $scope.formObj = {};
   $scope.formObjType = {};
   $scope.formSubject = 'New application received';
@@ -247,7 +248,8 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     member: 0,
     volunteer: 0,
     nonrider: 0,
-    contact: 0
+    contact: 0,
+    newsletter: 0
   };
   $scope.pdfUrl = '';
   
@@ -451,6 +453,10 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     FormService.getContactForms().then(function(data){
       $scope.contactFormData = data;
       $scope.formCount.contact = data.length
+    });
+    FormService.getNewsletterForms().then(function(data){
+      $scope.newsletterFormData = data;
+      $scope.formCount.newsletter = data.length
     });
   };
   
@@ -680,6 +686,12 @@ myApp.service('FormService', function($http){
   };
   this.getContactForms = function(){
     return $http.get('/getContactForms').then(function(data){
+      console.log('data is ', data);
+      return data.data;
+    }) 
+  };
+  this.getNewsletterForms = function(){
+    return $http.get('/getNewsletterForms').then(function(data){
       console.log('data is ', data);
       return data.data;
     }) 

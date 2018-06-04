@@ -129,15 +129,6 @@ app.post('/sendmail', function(req, res){
           res.redirect('/');
         })
       }
-      
-      // else if ((req.body.formType === 'newsletter')) {
-      //   console.log('inside newsletter backend block',req.body.text);
-      //   db.collection('newsletterform').save(req.body.text, function(err, result){
-      //     if (err) { return console.log('connecting to db, but not saving obj', err);}
-      //     console.log('newsletter form saved to database', result);
-      //     res.redirect('/');
-      //   })
-      // }
     
     console.log('after mongo block');
     res.end();
@@ -170,6 +161,13 @@ app.post('/sendmail', function(req, res){
         res.send(result);
       })
   }); // end of /getContactForms get request
+  
+  app.get('/getNewsletterForms', function (req,res) {
+      db.collection('newsletterform').find().toArray(function (err, result) {
+        console.log('result is ', result);
+        res.send(result);
+      })
+  }); // end of /getNewsletterForms get request
   
   app.get('/getAdmin', function (req,res) {
       db.collection('users').find().toArray(function (err, result) {

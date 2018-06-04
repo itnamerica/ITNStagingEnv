@@ -496,6 +496,10 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
       }
     });
   };
+  
+  $scope.logout = function(){
+    $window.location.reload();
+  };
 
   $scope.submitForm = function(formType){
     console.log('submitForm, formData is', $scope.formData, formType);

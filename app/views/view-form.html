@@ -1,12 +1,14 @@
 <div class="container" ng-init="catchFormObj()" style="padding: 5% 3%;">
   
+  <a ui-sref="dashboard" class="btn btn-lg">Return to Dashboard</a>
+  
   <h1 class="mb-50">{{formObjType | tableToFormName}} Submission Form</h1>
 
-<table class="table table-striped" id="form-table" style="font-size:25px;font-weight:bold">
-  <tr ng-repeat="(key, value) in formObj">
-    <td> {{key}} </td> <td> {{ value }} </td>
-  </tr>
-</table>
+  <table class="table table-striped" id="form-table" style="font-size:25px;font-weight:bold">
+    <tr ng-repeat="(key, value) in formObj">
+      <td> {{key}} </td> <td> {{ value }} </td>
+    </tr>
+  </table>
 
   
 </div>

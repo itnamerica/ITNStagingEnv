@@ -1,6 +1,10 @@
 <div class="container-fluid dashboard" ng-init="authenticate()" style="padding:2% 5% 10% 5%; background:pink">
   <h1 style="mb-50">Admin Portal</h1>
   
+  <p ng-hide="session">
+    <strong>You must first authenticate to view the applications :)</strong>
+  </p>
+  
   <div class="row">
     <div class="col-md-6">
       <h2>Membership/Rider applications</h2>

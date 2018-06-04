@@ -10,11 +10,13 @@ var gmail_pass = env.gmail_pass;
 var db;
 // var router = express.Router();
 var mongo = require('mongodb');
-var session = require('express-session')
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
 
 app.use(express.json()); //convert req to json
 app.use(express.static(__dirname + '/app'));
 
+app.use(session({secret: "Sam is awesome"}));
 //use sessions for tracking logins
 // app.use(session({
 //   secret: 'girlsrock',
@@ -174,6 +176,8 @@ app.post('/sendmail', function(req, res){
         var userInput = JSON.parse(req.query.formData);
         if ((result[0].username === userInput.username) && (result[0].password === userInput.password)){
           console.log('a match, initializing session');
+          req.session.user = userInput;
+          console.log('new session is ', req.session.user, 'and', req.session);
           res.send(result);
         }
         else {

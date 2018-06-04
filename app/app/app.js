@@ -479,7 +479,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   };
 
   $scope.submitForm = function(formType){
-    console.log('submitForm, formData is', $scope.formData);
+    console.log('submitForm, formData is', $scope.formData, formType);
     $scope.formType = formType;
     $scope.loading = true;
     var formObj = {};
@@ -501,7 +501,8 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
           to: 'itnamerica2018@gmail.com',
           subject: "ITNSuncoast Request to be added to Newsletter",
           text: $scope.formData,
-          html: "<p><strong>Email:</strong>: " + $scope.formData.email + "</p> "
+          html: "<p><strong>Email:</strong>: " + $scope.formData.email + "</p> ",
+          formType: $scope.formType
         }
     }
     $http.post('/sendmail', formObj).then(function(res){

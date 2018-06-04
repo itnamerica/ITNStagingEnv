@@ -81,7 +81,9 @@ app.post('/sendmail', function(req, res){
         // transporter.close();
     });
     
-    console.log('starting mongo block');
+    console.log('starting mongo block',req.body);
+    console.log(req.body.text.email);
+    console.log('formtype is ', req.body.formType);
 
       
       var objWithPDF; var pdfVal;
@@ -119,13 +121,23 @@ app.post('/sendmail', function(req, res){
           res.redirect('/');
         })
       }
-      else if ((req.body && req.body.html) && (req.body.formType === 'newsletter')) {
+      else if (req.body.text.email && (req.body.formType === 'newsletter')) {
+        console.log('inside newsletter backend block',req.body.text);
         db.collection('newsletterform').save(req.body.text, function(err, result){
           if (err) { return console.log('connecting to db, but not saving obj', err);}
           console.log('newsletter form saved to database', result);
           res.redirect('/');
         })
       }
+      
+      // else if ((req.body.formType === 'newsletter')) {
+      //   console.log('inside newsletter backend block',req.body.text);
+      //   db.collection('newsletterform').save(req.body.text, function(err, result){
+      //     if (err) { return console.log('connecting to db, but not saving obj', err);}
+      //     console.log('newsletter form saved to database', result);
+      //     res.redirect('/');
+      //   })
+      // }
     
     console.log('after mongo block');
     res.end();

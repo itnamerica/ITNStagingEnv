@@ -15,9 +15,12 @@
         <input type="password" class="form-control center-block" id="password" name="password" ng-model="formData.password" style="width:70%;height:50px" required>
         <span ng-if="itnForm.password.$error.required" class="help-block">{{errorMessages.required}}</span>
       </div> 
+      
+      <p style="color:red;font-size:25px;text-align:center"><strong>{{serverMessage}}</strong></p>
 
       <button type="submit" class="btn btn-lg center-block">Login</button>
     </form>
   </div>
+  
 
 </div>

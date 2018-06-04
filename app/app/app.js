@@ -481,6 +481,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   $scope.login = function(){
     FormService.login($scope.formData).then(function(data){
       console.log('response is ', data);
+      $state.go('dashboard')
     });
   };
 

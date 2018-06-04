@@ -219,6 +219,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   $scope.newsletterFormData = [];
   $scope.formObj = {};
   $scope.formObjType = {};
+  $scope.session = null;
   $scope.formSubject = 'New application received';
   $scope.states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
   $scope.itnSources = ['Family','Friend','Speaker','Doctor','Radio','Television','Flier','Book','Phone','Agency on Aging', 'Social Worker','Internet','Referred by Current Member'];
@@ -435,7 +436,12 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     }
 
   };
-
+  
+  $scope.authenticate = function(){
+    if ($scope.session){
+      $scope.getApps();
+    }
+  };
 
   $scope.getApps = function(){
     FormService.getMemberForms().then(function(data){
@@ -482,6 +488,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     FormService.login($scope.formData).then(function(data){
       console.log('response is ', data);
       if (data){
+        $scope.session = data;
         $state.go('dashboard')
       } else {
         $scope.serverMessage = 'Incorrect login or password';

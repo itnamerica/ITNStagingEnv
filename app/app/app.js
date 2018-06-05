@@ -503,62 +503,66 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
 
   $scope.submitForm = function(formType){
     console.log('submitForm, formData is', $scope.formData, formType);
-    $scope.formType = formType;
-    $scope.loading = true;
-    var formObj = {};
-    if (formType === 'contact'){
-      formObj = {
-        from: '"ITNSuncoast Web User" <donotreply@itnamerica.com>',
-        to: 'itnamerica2018@gmail.com',
-        subject: "ITNSuncoast Contact Form Submitted",
-        text: $scope.formData,
-        html: "<p><strong>Name:</strong>: " + $scope.formData.name + "</p>\n" +
-        "<p><strong>Email:</strong>: " + $scope.formData.email + "</p>\n " +
-        "<p><strong>Mobile:</strong>: " + $scope.formData.phone + "</p>\n " +
-        "<p><strong>Subject:</strong>: " + $scope.formData.subject + "</p>\n " +
-        "<p><strong>Message Body:</strong>: " + $scope.formData.messageBody + "</p>\n "
-      }
-    } else if (formType === 'newsletter'){
+    if (!(Object.keys($scope.formData).length === 0 && $scope.formData.constructor === Object)) {
+      $scope.formType = formType;
+      $scope.loading = true;
+      var formObj = {};
+      if (formType === 'contact'){
         formObj = {
           from: '"ITNSuncoast Web User" <donotreply@itnamerica.com>',
           to: 'itnamerica2018@gmail.com',
-          subject: "ITNSuncoast Request to be added to Newsletter",
+          subject: "ITNSuncoast Contact Form Submitted",
           text: $scope.formData,
-          html: "<p><strong>Email:</strong>: " + $scope.formData.email + "</p> ",
-          formType: $scope.formType
+          html: "<p><strong>Name:</strong>: " + $scope.formData.name + "</p>\n" +
+          "<p><strong>Email:</strong>: " + $scope.formData.email + "</p>\n " +
+          "<p><strong>Mobile:</strong>: " + $scope.formData.phone + "</p>\n " +
+          "<p><strong>Subject:</strong>: " + $scope.formData.subject + "</p>\n " +
+          "<p><strong>Message Body:</strong>: " + $scope.formData.messageBody + "</p>\n "
         }
+      } else if (formType === 'newsletter'){
+          formObj = {
+            from: '"ITNSuncoast Web User" <donotreply@itnamerica.com>',
+            to: 'itnamerica2018@gmail.com',
+            subject: "ITNSuncoast Request to be added to Newsletter",
+            text: $scope.formData,
+            html: "<p><strong>Email:</strong>: " + $scope.formData.email + "</p> ",
+            formType: $scope.formType
+          }
+      }
+      $http.post('/sendmail', formObj).then(function(res){
+          // $scope.loading = false;
+          $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
+      }).catch(function(err){
+          // $scope.loading = false;
+          $scope.serverMessage = 'There was an error submitting your form. Please contact us by phone instead.';
+      });
     }
-    $http.post('/sendmail', formObj).then(function(res){
-        // $scope.loading = false;
-        $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
-    }).catch(function(err){
-        // $scope.loading = false;
-        $scope.serverMessage = 'There was an error submitting your form. Please contact us by phone instead.';
-    });
   }
   
   //for membership, volunteer and non-rider forms
   $scope.submitFormWithPDF = function(formType){
     console.log('submitForm PDF, formData is ', $scope.formData);
-    $scope.formType = formType;
-    $scope.loading = true;
-    if (formType === 'volunteer') {
-        $(document).ready(function(){
-          $('#pdfVersion').css('display', 'block');
-        })
-        $scope.formSubject = 'ITNLanier - New volunteer application received';
-        $scope.generateMultiPagePDF();
-    } else if (formType === 'membership') {
-        $(document).ready(function(){
-          $('#pdfVersion').css('display', 'block');
-        })
-        $scope.showPdf = true;
-        $scope.formSubject = 'ITNLanier - New membership application received';
-        $scope.generateMultiPagePDF();
-    } else if (formType === 'nonrider') {
-        $scope.formSubject = 'ITNLanier - Non-Rider application Form submitted';
-        $scope.generatePDF();
-    } 
+    if (!(Object.keys($scope.formData).length === 0 && $scope.formData.constructor === Object)) {
+      $scope.formType = formType;
+      $scope.loading = true;
+      if (formType === 'volunteer') {
+          $(document).ready(function(){
+            $('#pdfVersion').css('display', 'block');
+          })
+          $scope.formSubject = 'ITNLanier - New volunteer application received';
+          $scope.generateMultiPagePDF();
+      } else if (formType === 'membership') {
+          $(document).ready(function(){
+            $('#pdfVersion').css('display', 'block');
+          })
+          $scope.showPdf = true;
+          $scope.formSubject = 'ITNLanier - New membership application received';
+          $scope.generateMultiPagePDF();
+      } else if (formType === 'nonrider') {
+          $scope.formSubject = 'ITNLanier - Non-Rider application Form submitted';
+          $scope.generatePDF();
+      } 
+    }
   }
   
   

@@ -503,11 +503,12 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
 
   $scope.submitForm = function(formType){
     console.log('submitForm, formData is', $scope.formData, formType);
-    if (!(Object.keys($scope.formData).length === 0 && $scope.formData.constructor === Object)) {
+    var objLength = Object.keys($scope.formData).length;
+    if (!(objLength === 0 && $scope.formData.constructor === Object)) {
       $scope.formType = formType;
       $scope.loading = true;
       var formObj = {};
-      if (formType === 'contact'){
+      if (formType === 'contact' && objLength === 5){
         formObj = {
           from: '"ITNSuncoast Web User" <donotreply@itnamerica.com>',
           to: 'itnamerica2018@gmail.com',
@@ -519,7 +520,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
           "<p><strong>Subject:</strong>: " + $scope.formData.subject + "</p>\n " +
           "<p><strong>Message Body:</strong>: " + $scope.formData.messageBody + "</p>\n "
         }
-      } else if (formType === 'newsletter'){
+      } else if (formType === 'newsletter' && objLength === 1){
           formObj = {
             from: '"ITNSuncoast Web User" <donotreply@itnamerica.com>',
             to: 'itnamerica2018@gmail.com',
@@ -536,8 +537,10 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
           // $scope.loading = false;
           $scope.serverMessage = 'There was an error submitting your form. Please contact us by phone instead.';
       });
-    } else {
+    } else if (objLength === 0){
       $scope.serverMessage = 'You cannot submit an empty form';
+    } else {
+      $scope.serverMessage = 'Please fill in all required fields before submitting ';
     }
   }
   

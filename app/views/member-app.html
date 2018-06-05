@@ -140,10 +140,12 @@
                           <input type="email" class="form-control" id="email" name="email" placeholder="Example: test@example.com" ng-model="formData.email" ng-pattern="emailPattern">
                           <span ng-if="itnForm.email.$error.pattern" class="help-block">{{errorMessages.email}}</span>
                         </div> 
-
-invalid: {{itnForm.$invalid}}
-input: {{itnForm.riderName.$invalid}}
-                          <button type="submit" ng-hide="itnForm.$invalid" class="btn btn-lg pull-right btn-danger" style="background:#e05944; margin-left:2%" ng-disabled="form.$invalid">Submit</button>
+                          
+                          <p ng-show="itnForm.$invalid">
+                            <strong>Your form is incomplete. Please enter all required fields.</strong>
+                          </p>
+                          
+                          <button type="submit" ng-hide="itnForm.$invalid && loading" class="btn btn-lg pull-right btn-danger" style="background:#e05944; margin-left:2%" ng-disabled="form.$invalid">Submit</button>
                           <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
 
                         </div><!--tab 1-->

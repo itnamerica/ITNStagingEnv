@@ -105,7 +105,7 @@
                   <strong>Your form is incomplete. Please enter all required fields.</strong>
                 </p>
 
-                <input type="submit" id="submit" ng-hide="itnForm.$invalid && loading" class="btn btn-lg btn-primary pull-right itn-green-bg" value="Send" style="margin-left:2%">
+                <input type="submit" id="submit" ng-hide="itnForm.$invalid || loading" class="btn btn-lg btn-primary pull-right itn-green-bg" value="Send" style="margin-left:2%">
                 <input type="reset" class="btn btn-lg btn-primary pull-left itn-green-bg" ng-click="formData = {}" value="Reset">
 
                 

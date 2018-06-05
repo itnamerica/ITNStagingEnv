@@ -502,46 +502,42 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   };
 
   $scope.submitForm = function(formType){
-    console.log('submitForm, formData is', $scope.formData, formType);
     var objLength = Object.keys($scope.formData).length;
-    if (!(objLength === 0 && $scope.formData.constructor === Object)) {
-      $scope.formType = formType;
-      $scope.loading = true;
-      var formObj = {};
-      if (formType === 'contact' && objLength === 5){
+    $scope.formType = formType;
+    $scope.loading = true;
+    var formObj = {};
+    if (formType === 'contact' && objLength === 5){
+      console.log('submitting valid contact form');
+      formObj = {
+        from: '"ITNSuncoast Web User" <donotreply@itnamerica.com>',
+        to: 'itnamerica2018@gmail.com',
+        subject: "ITNSuncoast Contact Form Submitted",
+        text: $scope.formData,
+        html: "<p><strong>Name:</strong>: " + $scope.formData.name + "</p>\n" +
+        "<p><strong>Email:</strong>: " + $scope.formData.email + "</p>\n " +
+        "<p><strong>Mobile:</strong>: " + $scope.formData.phone + "</p>\n " +
+        "<p><strong>Subject:</strong>: " + $scope.formData.subject + "</p>\n " +
+        "<p><strong>Message Body:</strong>: " + $scope.formData.messageBody + "</p>\n "
+      }
+    } else if (formType === 'newsletter' && objLength === 1){
+      console.log('submitting valid newsletter form');
         formObj = {
           from: '"ITNSuncoast Web User" <donotreply@itnamerica.com>',
           to: 'itnamerica2018@gmail.com',
-          subject: "ITNSuncoast Contact Form Submitted",
+          subject: "ITNSuncoast Request to be added to Newsletter",
           text: $scope.formData,
-          html: "<p><strong>Name:</strong>: " + $scope.formData.name + "</p>\n" +
-          "<p><strong>Email:</strong>: " + $scope.formData.email + "</p>\n " +
-          "<p><strong>Mobile:</strong>: " + $scope.formData.phone + "</p>\n " +
-          "<p><strong>Subject:</strong>: " + $scope.formData.subject + "</p>\n " +
-          "<p><strong>Message Body:</strong>: " + $scope.formData.messageBody + "</p>\n "
+          html: "<p><strong>Email:</strong>: " + $scope.formData.email + "</p> ",
+          formType: $scope.formType
         }
-      } else if (formType === 'newsletter' && objLength === 1){
-          formObj = {
-            from: '"ITNSuncoast Web User" <donotreply@itnamerica.com>',
-            to: 'itnamerica2018@gmail.com',
-            subject: "ITNSuncoast Request to be added to Newsletter",
-            text: $scope.formData,
-            html: "<p><strong>Email:</strong>: " + $scope.formData.email + "</p> ",
-            formType: $scope.formType
-          }
-      }
-      $http.post('/sendmail', formObj).then(function(res){
-          // $scope.loading = false;
-          $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
-      }).catch(function(err){
-          // $scope.loading = false;
-          $scope.serverMessage = 'There was an error submitting your form. Please contact us by phone instead.';
-      });
-    } else if (objLength === 0){
-      $scope.serverMessage = 'You cannot submit an empty form';
     } else {
-      $scope.serverMessage = 'Please fill in all required fields before submitting ';
+      return $scope.serverMessage = "Please reload the page and fill in all required fields before submitting."
     }
+    $http.post('/sendmail', formObj)
+      .then(function(res){
+        $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
+    }).catch(function(err){
+        $scope.serverMessage = 'There was an error submitting your form. Please contact us by phone instead.';
+    });
   }
   
   //for membership, volunteer and non-rider forms

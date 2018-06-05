@@ -141,7 +141,8 @@
                           <span ng-if="itnForm.email.$error.pattern" class="help-block">{{errorMessages.email}}</span>
                         </div> 
 
-
+invalid: {{form.$invalid}} {{itnForm.$invalid}}
+input: {{itnForm.riderName.$invalid}}
                           <button type="submit" ng-hide="loading" class="btn btn-lg pull-right btn-danger" style="background:#e05944; margin-left:2%" ng-disabled="form.$invalid">Submit</button>
                           <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
 

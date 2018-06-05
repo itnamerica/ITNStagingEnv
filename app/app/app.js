@@ -503,6 +503,11 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
 
   $scope.submitForm = function(formType){
     console.log('submitForm, formData is', $scope.formData, formType);
+    if ($scope.itnForm.$valid){
+      console.log('form is valid');
+    } else {
+      console.log('form is invalid');
+    }
     if (!(Object.keys($scope.formData).length === 0 && $scope.formData.constructor === Object)) {
       $scope.formType = formType;
       $scope.loading = true;
@@ -536,6 +541,8 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
           // $scope.loading = false;
           $scope.serverMessage = 'There was an error submitting your form. Please contact us by phone instead.';
       });
+    } else {
+      $scope.serverMessage = 'You cannot submit an empty form';
     }
   }
   
@@ -562,6 +569,8 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
           $scope.formSubject = 'ITNLanier - Non-Rider application Form submitted';
           $scope.generatePDF();
       } 
+    } else {
+      $scope.serverMessage = 'You cannot submit an empty form';
     }
   }
   

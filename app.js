@@ -3,26 +3,22 @@ var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var app = express();
 
-const MongoClient = require('mongodb').MongoClient
+const MongoClient = require('mongodb').MongoClient;
+var mongo = require('mongodb');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+
 var env = require(__dirname + '/env-vars.js');
 var gmail_login = env.gmail_login;
 var gmail_pass = env.gmail_pass;
 var db;
 // var router = express.Router();
-var mongo = require('mongodb');
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
+
 
 app.use(express.json()); //convert req to json
 app.use(express.static(__dirname + '/app'));
 
 app.use(session({secret: "Sam is awesome"}));
-//use sessions for tracking logins
-// app.use(session({
-//   secret: 'girlsrock',
-//   resave: true,
-//   saveUninitialized: false
-// }));
 
 var allPages = ['/home','/what-we-do','/organization','/faces','/faq','/news','/contact','/become-member','/member-app','/volunteer-to-drive','/volunteer-app','/family','/member-programs','/pay-online','/donate','/corporate', 'non-rider-member','/dashboard','/login', '/view-form','/draft'];
 

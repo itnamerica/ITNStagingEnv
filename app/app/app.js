@@ -211,16 +211,6 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     mismatchDate: "This value does not match the date you entered above"
   };
   $scope.dataPDF = null;
-  $scope.formType = '';
-  $scope.memberFormData = [];
-  $scope.volunteerFormData = [];
-  $scope.nonRiderFormData = [];
-  $scope.contactFormData = [];
-  $scope.newsletterFormData = [];
-  $scope.formObj = {};
-  $scope.formObjType = {};
-  $scope.session = null;
-  console.log('session is ', $scope.session);
   $scope.formSubject = 'New application received';
   $scope.states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
   $scope.itnSources = ['Family','Friend','Speaker','Doctor','Radio','Television','Flier','Book','Phone','Agency on Aging', 'Social Worker','Internet','Referred by Current Member'];
@@ -246,14 +236,24 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     {name: 'Donate', state: 'donate', url: $scope.viewsPath + '/donate.html'},
     {name: 'Corporate Partnership', state: 'corporate', url: $scope.viewsPath + '/corporate.html'}
   ];
-  $scope.formCount = {
-    member: 0,
-    volunteer: 0,
-    nonrider: 0,
-    contact: 0,
-    newsletter: 0
-  };
-  $scope.pdfUrl = '';
+    $scope.formType = '';
+    $scope.memberFormData = [];
+    $scope.volunteerFormData = [];
+    $scope.nonRiderFormData = [];
+    $scope.contactFormData = [];
+    $scope.newsletterFormData = [];
+    $scope.formObj = {};
+    $scope.formObjType = {};
+    $scope.session = null;
+    console.log('session is ', $scope.session);
+    $scope.formCount = {
+      member: 0,
+      volunteer: 0,
+      nonrider: 0,
+      contact: 0,
+      newsletter: 0
+    };
+    $scope.pdfUrl = '';
   
 
   $transitions.onSuccess({}, function(transition){
@@ -273,7 +273,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   
   //use this function instead of ng-href as ng-href is not compatible with html5mode
   $scope.redirectToURL = function(url){
-    $window.location.href = url;    
+    $window.open(url, '_blank');      
   }
   
   $scope.scrollTo = function(id) {
@@ -378,6 +378,16 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
             obj.innerHTML = end;
         }
     }, stepTime);
+  };
+  
+  var zoomLevel = 1;
+  $scope.resizeText = function(multiplier) {
+    if (multiplier){
+      zoomLevel += multiplier;
+      $('#main-content-inner').css('transform','scale(' + zoomLevel + ')');
+    } else {
+      $('#main-content-inner').css('transform','scale(1)');
+    }    
   };
   
   $scope.searchTable = function(tableId) {
@@ -501,11 +511,12 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     $window.location.reload();
   };
 
+  //for contact and newsletter forms
   $scope.submitForm = function(formType){
     var objLength = Object.keys($scope.formData).length;
+    var formObj = {};
     $scope.formType = formType;
     $scope.loading = true;
-    var formObj = {};
     if (formType === 'contact' && objLength === 5){
       console.log('submitting valid contact form');
       formObj = {
@@ -517,7 +528,8 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
         "<p><strong>Email:</strong>: " + $scope.formData.email + "</p>\n " +
         "<p><strong>Mobile:</strong>: " + $scope.formData.phone + "</p>\n " +
         "<p><strong>Subject:</strong>: " + $scope.formData.subject + "</p>\n " +
-        "<p><strong>Message Body:</strong>: " + $scope.formData.messageBody + "</p>\n "
+        "<p><strong>Message Body:</strong>: " + $scope.formData.messageBody + "</p>\n ",
+        formType: $scope.formType
       }
     } else if (formType === 'newsletter' && objLength === 1){
       console.log('submitting valid newsletter form');
@@ -538,29 +550,22 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     }).catch(function(err){
         $scope.serverMessage = 'There was an error submitting your form. Please contact us by phone instead.';
     });
-  }
+  };
   
   //for membership, volunteer and non-rider forms
   $scope.submitFormWithPDF = function(formType){
     console.log('submitForm PDF, formData is ', $scope.formData);
+    $scope.formType = formType;
     if (!(Object.keys($scope.formData).length === 0 && $scope.formData.constructor === Object)) {
-      $scope.formType = formType;
       $scope.loading = true;
-      if (formType === 'volunteer') {
-          $(document).ready(function(){
-            $('#pdfVersion').css('display', 'block');
-          })
-          $scope.formSubject = 'ITNLanier - New volunteer application received';
-          $scope.generateMultiPagePDF();
-      } else if (formType === 'membership') {
-          $(document).ready(function(){
-            $('#pdfVersion').css('display', 'block');
-          })
-          $scope.showPdf = true;
-          $scope.formSubject = 'ITNLanier - New membership application received';
-          $scope.generateMultiPagePDF();
+      if (formType === 'membership' || formType === 'volunteer') {
+        $(document).ready(function(){
+          $('#pdfVersion').css('display', 'block');
+        })
+        $scope.formSubject = 'ITNStagingEnv - New ' + formType + ' application received';
+        $scope.generateMultiPagePDF();
       } else if (formType === 'nonrider') {
-          $scope.formSubject = 'ITNLanier - Non-Rider application Form submitted';
+          $scope.formSubject = 'ITNStagingEnv - Non-Rider application Form submitted';
           $scope.generatePDF();
       } 
     } else {
@@ -589,10 +594,8 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
           pdf: $scope.dataPDF,
           formType: $scope.formType
         }).then(function(res){
-            $scope.loading = false;
             $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
         }).catch(function(err){
-          $scope.loading = false;
           $scope.serverMessage = 'There was an error submitting your form. Please contact us, or consider submitting your form by paper instead.';
         });
       });
@@ -618,10 +621,8 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
           pdf: $scope.dataPDF,
           formType: $scope.formType
         }).then(function(res){
-            $scope.loading = false;
             $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
         }).catch(function(err){
-          $scope.loading = false;
           $scope.serverMessage = 'There was an error submitting your form. Please contact us, or consider submitting your form by paper instead.';
         });
       });
@@ -665,6 +666,19 @@ myApp.filter('inputSelected', function(){
       word = [];
       })
       return keyArr.toString();
+    }
+  }
+});
+
+myApp.filter('filterLongObj', function($filter){
+  return function(formObj){
+    if (Object.keys(formObj).length > 1 && formObj.constructor === Object){
+      var pretty = JSON.stringify(formObj).replace(/{|}|"/g, "");
+      return pretty;
+    } else if (formObj.constructor === Object){
+      return $filter('inputSelected')(formObj);
+    } else {
+      return formObj;
     }
   }
 });

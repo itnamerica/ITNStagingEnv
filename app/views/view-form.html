@@ -6,7 +6,7 @@
 
   <table class="table table-striped" id="form-table" style="font-size:25px;font-weight:bold">
     <tr ng-repeat="(key, value) in formObj">
-      <td> {{key}} </td> <td> {{ value }} </td>
+      <td> {{key}} </td> <td> {{ value | filterLongObj }} </td>
     </tr>
   </table>
 

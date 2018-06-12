@@ -561,8 +561,10 @@ var originalFormData = $scope.formData;
     }
     $http.post('/sendmail', formObj)
       .then(function(res){
+        $scope.loading = false;
         $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
     }).catch(function(err){
+        $scope.loading = false;
         $scope.serverMessage = 'There was an error submitting your form. Please contact us by phone instead.';
     });
   };
@@ -609,8 +611,10 @@ var originalFormData = $scope.formData;
           pdf: $scope.dataPDF,
           formType: $scope.formType
         }).then(function(res){
+            $scope.loading = false;
             $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
         }).catch(function(err){
+          $scope.loading = false;
           $scope.serverMessage = 'There was an error submitting your form. Please contact us, or consider submitting your form by paper instead.';
         });
       });
@@ -636,8 +640,10 @@ var originalFormData = $scope.formData;
           pdf: $scope.dataPDF,
           formType: $scope.formType
         }).then(function(res){
+            $scope.loading = false;
             $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
         }).catch(function(err){
+          $scope.loading = false;
           $scope.serverMessage = 'There was an error submitting your form. Please contact us, or consider submitting your form by paper instead.';
         });
       });

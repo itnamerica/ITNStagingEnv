@@ -172,7 +172,7 @@
                           
                           <div class="row">
                             <div class="form-group col-sm-6" ng-class="{ 'has-error' : itnForm.otherPhone.$invalid && !itnForm.otherPhone.$pristine }">
-                              <label for="cell phone">Other Phone: <span style="color:red">*</span></label><br>
+                              <label for="cell phone">Other Phone:</label><br>
                               <input type="text" class="form-control" id="primary-phone" name="otherPhone" placeholder="Example: xxx-xxx-xxxx"  ng-model="formData.otherPhone" ng-pattern="phonePattern">
                               <span ng-if="itnForm.otherPhone.$error.pattern" class="help-block">{{errorMessages.phone}}</span>
                             </div>
@@ -1319,7 +1319,7 @@
   {{formData.zip}}
   <br><label for="home phone">Preferred Phone: <span style="color:red">*</span></label><br>
   {{formData.preferredPhone}}
-  <br><label for="cell phone">Other Phone: <span style="color:red">*</span></label><br>
+  <br><label for="cell phone">Other Phone:</label><br>
   {{formData.otherPhone}}
   <br><label for="email">Email: </label><br>
   {{formData.email}}

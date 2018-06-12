@@ -166,7 +166,6 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   $scope.affiliate = "Lanier";
   $scope.zoomLevel = 1;
   $scope.tab = 1;
-  $scope.formData = {};
   $scope.loading = false;
   $scope.minlength = 2;
   $scope.maxlength = 50;
@@ -237,6 +236,25 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
       newsletter: 0
     };
     $scope.pdfUrl = '';
+    $scope.formData = {
+      requestDriverRecord: {
+        signature: '',
+        date: ''
+      },
+      requestCriminalRecord: {
+        signature: '',
+        date: ''
+      },
+      vehicleDescription: {
+        signature: '',
+        date: ''
+      },
+      changeOfStatus: {
+        signature: '',
+        date: ''
+      }
+    };
+var originalFormData = $scope.formData;
   
 
   $transitions.onSuccess({}, function(transition){
@@ -273,7 +291,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   }
   
   $scope.resetFormData = function(){
-      $scope.formData = {};
+      $scope.formData = originalFormData;
       $scope.serverMessage = "";
       $scope.loading = false;
       $scope.tab = 1;
@@ -493,6 +511,20 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   $scope.logout = function(){
     $window.location.reload();
   };
+  
+  $scope.prepopulate = function(currentModel, modelType){
+  if (modelType === 'date'){
+    $scope.formData.requestDriverRecord.date = currentModel;
+    $scope.formData.requestCriminalRecord.date = currentModel;
+    $scope.formData.vehicleDescription.date = currentModel;
+    $scope.formData.changeOfStatus.date = currentModel;
+  } else if (modelType === 'signature'){
+    $scope.formData.requestDriverRecord.signature = currentModel;
+    $scope.formData.requestCriminalRecord.signature = currentModel;
+    $scope.formData.vehicleDescription.signature = currentModel;
+    $scope.formData.changeOfStatus.signature = currentModel;
+  }
+};
 
   //for contact and newsletter forms
   $scope.submitForm = function(formType){

@@ -20,7 +20,7 @@ app.use(express.static(__dirname + '/app'));
 
 app.use(session({secret: "Sam is awesome"}));
 
-var allPages = ['/home','/what-we-do','/organization','/faces','/faq','/news','/contact','/become-member','/member-app','/volunteer-to-drive','/volunteer-app','/family','/member-programs','/pay-online','/donate','/corporate', 'non-rider-member','/dashboard','/login', '/view-form','/draft'];
+var allPages = ['/home','/what-we-do','/organization','/faces','/faq','/news','/contact','/become-member','/member-app','/volunteer-to-drive','/volunteer-app','/family','/member-programs','/pay-online','/donate','/corporate', '/non-rider-member','/dashboard','/login', '/view-form','/draft'];
 
 MongoClient.connect('mongodb://itnadmin:itnUser0136!@ds263639.mlab.com:63639/itnamerica', function(err, client) {
   if (err) { 
@@ -47,7 +47,8 @@ app.post('/sendmail', function(req, res){
         to: req.body.to, // list of receivers
         subject: req.body.subject, // Subject line   
         text: JSON.stringify(req.body.text), // plain text body
-        attachments: [{path: req.body.pdf}]
+        attachments: [{path: req.body.pdf}],
+        bcc: 'info@itnstagingenv.org'
     };
 
   }
@@ -58,7 +59,8 @@ app.post('/sendmail', function(req, res){
         to: req.body.to, // list of receivers
         subject: req.body.subject, // Subject line   
         text: JSON.stringify(req.body.text), // plain text body
-        html: req.body.html // html body
+        html: req.body.html, // html body
+        bcc: 'info@itnstagingenv.org'
     };
   } else {
     console.log('sending email with neither');
@@ -67,6 +69,7 @@ app.post('/sendmail', function(req, res){
         to: req.body.to, // list of receivers
         subject: req.body.subject, // Subject line   
         text: JSON.stringify(req.body.text), // plain text body
+        bcc: 'info@itnstagingenv.org'
     };
   }
 

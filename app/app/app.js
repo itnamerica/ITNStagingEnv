@@ -84,11 +84,6 @@ myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
       .state('volunteer-app', {
         url: '/volunteer-app',
         templateUrl: viewsPath + 'volunteer-app.html'
-            // resolve: {
-            //     formData: function ($scope) {
-            //         $scope.formData = {};
-            //     },
-            //   }
       })
       .state('newsletters', {
         url: '/newsletters',
@@ -125,18 +120,6 @@ myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
           formType: null
         }
       })
-      // .state('dashboard', {
-      //   url: '/dashboard',
-      //   templateUrl: viewsPath + 'dashboard.html',
-      //   resolve: {
-      //     memberapps : function($http, FormService, $scope){
-      //       return FormService.getMemberForms().then(function(data){
-      //         $scope.memberFormData = data;
-      //         return data;
-      //       })
-      //     }
-      //   }
-      // })
       .state('wildcard', {
         url: '/*',
         templateUrl: viewsPath + 'home.html'
@@ -273,7 +256,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   
   //use this function instead of ng-href as ng-href is not compatible with html5mode
   $scope.redirectToURL = function(url){
-    $window.open(url, '_blank');      
+    $window.open(url, '_blank');
   }
   
   $scope.scrollTo = function(id) {
@@ -520,9 +503,9 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     if (formType === 'contact' && objLength === 5){
       console.log('submitting valid contact form');
       formObj = {
-        from: '"ITNSuncoast Web User" <donotreply@itnamerica.com>',
+        from: '"ITNStagingEnv Web User" <donotreply@itnamerica.com>',
         to: 'itnamerica2018@gmail.com',
-        subject: "ITNSuncoast Contact Form Submitted",
+        subject: "ITNStagingEnv Contact Form Submitted",
         text: $scope.formData,
         html: "<p><strong>Name:</strong>: " + $scope.formData.name + "</p>\n" +
         "<p><strong>Email:</strong>: " + $scope.formData.email + "</p>\n " +
@@ -534,9 +517,9 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     } else if (formType === 'newsletter' && objLength === 1){
       console.log('submitting valid newsletter form');
         formObj = {
-          from: '"ITNSuncoast Web User" <donotreply@itnamerica.com>',
+          from: '"ITNStagingEnv Web User" <donotreply@itnamerica.com>',
           to: 'itnamerica2018@gmail.com',
-          subject: "ITNSuncoast Request to be added to Newsletter",
+          subject: "ITNStagingEnv Request to be added to Newsletter",
           text: $scope.formData,
           html: "<p><strong>Email:</strong>: " + $scope.formData.email + "</p> ",
           formType: $scope.formType
@@ -571,7 +554,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     } else {
       $scope.serverMessage = 'You cannot submit an empty form';
     }
-  }
+  };
   
   
   $scope.generatePDF = function() {

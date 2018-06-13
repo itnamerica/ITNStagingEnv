@@ -523,6 +523,9 @@ var originalFormData = $scope.formData;
     $scope.formData.requestCriminalRecord.signature = currentModel;
     $scope.formData.vehicleDescription.signature = currentModel;
     $scope.formData.changeOfStatus.signature = currentModel;
+  } else if (modelType === 'signature'){
+    $scope.formData.requestDriverRecord.name = currentModel;
+    $scope.formData.requestCriminalRecord.name = currentModel;
   }
 };
 

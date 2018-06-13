@@ -11,7 +11,7 @@
             <div class="form-area br-15 border-road" id="formConfirmation">  
               
               <h2 class="app-title">Volunteer Driver Application</h2>
-              {{tab}}
+
               <div class="instructions" ng-hide="showForm">
                             
                 <h3>Main Duty</h3>
@@ -116,7 +116,7 @@
                       
                         <div class="form-group" ng-class="{ 'has-error' : itnForm.riderName.$invalid && !itnForm.riderName.$pristine }">
                           <label for="rider name">Name: <span style="color:red">*</span></label><br>
-                          <input type="text" class="form-control" id="riderName" name="riderName" ng-model="formData.riderName" ng-minlength="minlength" ng-maxlength="maxlength" required>
+                          <input type="text" class="form-control" id="riderName" name="riderName" ng-model="formData.riderName" ng-change="prepopulate(formData.riderName, 'name')" ng-minlength="minlength" ng-maxlength="maxlength" required>
                           <span ng-if="itnForm.riderName.$error.required && !itnForm.riderName.$pristine" class="help-block">{{errorMessages.required}}</span>
                           <span ng-if="itnForm.riderName.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
                           <span ng-if="itnForm.riderName.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
@@ -291,7 +291,7 @@
                               <span ng-if="itnForm.adequateVision.$error.required && !itnForm.adequateVision.$pristine" class="help-block">{{errorMessages.required}}</span>
                           </div>
                           
-                          <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.currentEmployment.$invalid}">
+                          <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.currentEmployment.$invalid && !itnForm.currentEmployment.$pristine}">
                             <label for="current employment">Current Employment Status: <span style="color:red">*</span></label><br>
                             <label class="radio-inline"><input ng-model="formData.currentEmployment" name="currentEmployment" type="radio" value="none" ng-click="occupation = false">None</label>
                             <label class="radio-inline"><input ng-model="formData.currentEmployment" name="currentEmployment" type="radio" value="fulltime" ng-click="occupation = true">Full-time</label>
@@ -343,16 +343,16 @@
                       
                       <h2>References</h2>
                       
-                      <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.criminalConviction.$invalid && itnForm.criminalConviction.$pristine}">
+                      <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.criminalConviction.$invalid && !itnForm.criminalConviction.$pristine}">
                         <label for="criminal conviction">Have you had any past criminal convictions, or do you have any charges pending against you in a court of law?<span style="color:red">*</span></label><br>
-                        <label class="radio-inline"><input type="radio" name="criminalConviction" value="yes" ng-model="formData.criminalConviction" ng-click="crimConvic = false">Yes</label>
-                        <label class="radio-inline"><input type="radio" name="criminalConviction" value="no" ng-model="formData.criminalConviction" ng-click="crimConvic = true" required>No</label>
+                        <label class="radio-inline"><input type="radio" name="criminalConviction" value="yes" ng-model="formData.criminalConviction" ng-click="crimConvic = true">Yes</label>
+                        <label class="radio-inline"><input type="radio" name="criminalConviction" value="no" ng-model="formData.criminalConviction" ng-click="crimConvic = false" required>No</label>
                         <input type="text" class="form-control"   id="limitations" name="limitations" placeholder="List convictions:" ng-model="formData.criminalConvictionDetail"
                         ng-show="crimConvic">
                         <span ng-if="itnForm.criminalConviction.$error.required && !itnForm.criminalConviction.$pristine" class="help-block">{{errorMessages.required}}</span>
                       </div>
                       
-                      <div class="form-group ta-center" ng-class="{ 'has-error' :itnForm.movingViolation.$invalid  && itnForm.movingViolation.$pristine}">
+                      <div class="form-group ta-center" ng-class="{ 'has-error' :itnForm.movingViolation.$invalid  && !itnForm.movingViolation.$pristine}">
                         <label for="moving violation">Have you been convicted of any moving violations in the past three years? <span style="color:red">*</span> </label><br>
                         <label class="radio-inline"><input type="radio" name="movingViolation" value="yes" ng-model="formData.movingViolation" required>Yes</label>
                         <label class="radio-inline"><input type="radio" name="movingViolation" value="no" ng-model="formData.movingViolation">No</label>
@@ -528,7 +528,7 @@
                             
                             <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.memberOfProfessionalOrgOrUnion.$invalid || itnForm.servedInMilitary.$invalid " class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
                             <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Previous</button>  
-                            
+                            org invalid: {{itnForm.memberOfProfessionalOrgOrUnion.$invalid }} military: {{ itnForm.servedInMilitary.$invalid }} 
                             <h2>Volunteering with ITN</h2>
                             
                             <div class="form-group">
@@ -644,7 +644,7 @@
                 <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.memberOfProfessionalOrgOrUnion.$invalid && !itnForm.memberOfProfessionalOrgOrUnion.$pristine }">
                   <label for="professional organization or labor union">Are you part of any professional organizations or labor unions?: <span style="color:red">*</span> </label><br>
                   <label class="radio-inline"><input ng-model="formData.memberOfProfessionalOrgOrUnion" type="radio" name="memberOfProfessionalOrgOrUnion" value="yes" ng-click="specifyUnions = !specifyUnions">Yes</label>
-                  <label class="radio-inline"><input type="radio" name="memberOfProfessionalOrgOrUnion" value="no">No</label>
+                  <label class="radio-inline"><input type="radio" name="memberOfProfessionalOrgOrUnion" value="no" required>No</label>
                     <input ng-model="formData.memberOfProfessionalOrgOrUnions" type="text" class="form-control" id="unions" name="unions" placeholder="Please list:" ng-if="specifyUnions">
                     <span ng-if="itnForm.memberOfProfessionalOrgOrUnion.$error.required && !itnForm.memberOfProfessionalOrgOrUnion.$pristine" class="help-block">{{errorMessages.required}}</span>
                 </div>
@@ -652,7 +652,7 @@
                 <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.servedInMilitary.$invalid && !itnForm.servedInMilitary.$pristine }">
                   <label for="served in armed forces">Have you ever served on active duty in the U.S. Armed Forces, Military Reserves, or National Guard: <span style="color:red">*</span></label><br>
                   <label class="radio-inline"><input ng-model="formData.servedInMilitary" type="radio" name="servedInMilitary" value="yes">Yes</label>
-                  <label class="radio-inline"><input ng-model="formData.servedInMilitary" type="radio" name="servedInMilitary" value="no">No</label>
+                  <label class="radio-inline"><input ng-model="formData.servedInMilitary" type="radio" name="servedInMilitary" value="no" required>No</label>
                   <span ng-if="itnForm.servedInMilitary.$error.required && !itnForm.servedInMilitary.$pristine" class="help-block">{{errorMessages.required}}</span>
                 </div>
                 
@@ -772,7 +772,7 @@
                               <span ng-if="itnForm.signature2.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
                             </div>
                             
-                            <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.date2.$invalid && !itnForm.date2.$pristine }">
+                            <div class="form-group" ng-class="{ 'has-error' : itnForm.date2.$invalid && !itnForm.date2.$pristine }">
                               <label for="date">Agreement Date: <span style="color:red">*</span></label>
                               <input ng-model="formData.requestDriverRecord.date" type="text" class="form-control" id="date" name="date2" placeholder="MM/DD/YYYY" ng-pattern="datePattern" required>
                               <span ng-if="itnForm.date2.$error.required && !itnForm.date2.$pristine" class="help-block">{{errorMessages.required}}</span>
@@ -780,7 +780,7 @@
                             </div>
 
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.agree2.$invalid && !itnForm.agree2.$pristine }">
-                              <label class="checkbox-inline"><input type="checkbox" value="authorize" name="agree2" ng-model="formData.requestDriverRecord.authorize" required>By checking this box and submitting this form, you agree that your digital signature will be considered your legal signature and represents your agreement to the terms and policies outlined above.</label>
+                              <label class="checkbox-inline"><input type="checkbox" value="authorize" name="agree2" ng-model="formData.requestDriverRecord.agree" required>By checking this box and submitting this form, you agree that your digital signature will be considered your legal signature and represents your agreement to the terms and policies outlined above.</label>
                               <span ng-if="itnForm.agree2.$error.required && !itnForm.agree2.$pristine" class="help-block">{{errorMessages.required}}</span>
                             </div>
                             
@@ -840,7 +840,7 @@
                             
                             
                             <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.agree3.$invalid && !itnForm.agree3.$pristine }">
-                              <label class="checkbox-inline"><input ng-model="formData.requestCriminalRecord.authorize" type="checkbox" value="authorize" name="agree3" required>
+                              <label class="checkbox-inline"><input ng-model="formData.requestCriminalRecord.agree" type="checkbox" value="authorize" name="agree3" required>
                                 <span style="color:red">*</span>
                                   By checking this box and submitting this form, you agree that your digital signature will be considered your legal signature and represents your agreement to the terms and policies outlined above.
                               </label>

@@ -1252,7 +1252,7 @@
                             </div>
                           </div>
                           
-                          <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
+                          <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.signature5.$invalid || itnForm.date5.$invalid" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
                           <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Previous</button>  
                           
                           
@@ -1273,33 +1273,37 @@
 
                           <p>I understand that I need to report any changes in the above to ITN, and agree to do so in a timely manner.</p>
                           
-                          <div class="form-group" ng-class="{ 'has-error' : itnForm.signature5.$invalid && !itnForm.signature5.$pristine }">
-                            <label for="signature">Volunteer Driver Signature <span style="color:red">*</span>:</label><br>
-                            <input type="text" class="form-control" id="signature" name="signature5" placeholder="Type your full name" ng-model="formData.changeOfStatus.signature" ng-minlength="minlength" ng-maxlength="maxlength" required>
-                            <span ng-if="itnForm.signature5.$error.required && !itnForm.signature5.$pristine" class="help-block">{{errorMessages.required}}</span>
-                            <span ng-if="itnForm.signature5.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
-                            <span ng-if="itnForm.signature5.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
-                          </div>
+                          <div class="row">
+                            <div class="form-group col-sm-8" ng-class="{ 'has-error' : itnForm.signature5.$invalid && !itnForm.signature5.$pristine }">
+                              <label for="signature">Volunteer Driver Signature <span style="color:red">*</span>:</label><br>
+                              <input type="text" class="form-control" id="signature" name="signature5" placeholder="Type your full name" ng-model="formData.changeOfStatus.signature" ng-minlength="minlength" ng-maxlength="maxlength" required>
+                              <span ng-if="itnForm.signature5.$error.required && !itnForm.signature5.$pristine" class="help-block">{{errorMessages.required}}</span>
+                              <span ng-if="itnForm.signature5.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
+                              <span ng-if="itnForm.signature5.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
+                            </div>
+                            
+                            <div class="form-group col-sm-2" ng-class="{ 'has-error' : itnForm.date5.$invalid && !itnForm.date5.$pristine }">
+                              <label for="date">Date: <span style="color:red">*</span></label><br>
+                              <input type="text" class="form-control" id="date" name="date5" ng-model="formData.changeOfStatus.date" ng-pattern="datePattern" placeholder="mm/dd/yyyy" ng-minlength="minlength" ng-maxlength="maxlength" required>
+                              <span ng-if="itnForm.date5.$error.required && !itnForm.date5.$pristine" class="help-block">{{errorMessages.required}}</span>
+                              <span ng-if="itnForm.date5.$error.pattern" class="help-block">{{errorMessages.date}}</span>
+                            </div>
+                          </div><!--row-->
                           
-                          <div class="form-group" ng-class="{ 'has-error' : itnForm.date5.$invalid && !itnForm.date5.$pristine }">
-                            <label for="date">Date: <span style="color:red">*</span></label><br>
-                            <input type="text" class="form-control" id="date" name="date5" ng-model="formData.changeOfStatus.date" ng-pattern="datePattern" placeholder="mm/dd/yyyy" ng-minlength="minlength" ng-maxlength="maxlength" required>
-                            <span ng-if="itnForm.date5.$error.required && !itnForm.date5.$pristine" class="help-block">{{errorMessages.required}}</span>
-                            <span ng-if="itnForm.date5.$error.pattern" class="help-block">{{errorMessages.date}}</span>
-                          </div>
                           
+                          <div class="row">
+                            <div class="form-group col-sm-8">
+                              <label for="itn Signature">ITN<em>America</em> Signature <span style="color:red">*</span>: (will be signed by ITN after submission)</label><br>
+                              <input type="text" class="form-control" id="itnSignature" name="itnSignature" ng-model="formData.changeOfStatus.itnSignature" ng-disabled="true">
+                            </div>
+                            
+                            <div class="form-group col-sm-2">
+                              <label for="itn date">Date <span style="color:red">*</span>: (will be signed by ITN after submission)</label><br>
+                              <input type="text" class="form-control" id="itnDate" name="itnDate" ng-pattern="datePattern" ng-model="formData.changeOfStatus.itnDate" ng-disabled="true">
+                            </div>
+                          </div><!--row-->
                           
-                          <div class="form-group">
-                            <label for="itn Signature">ITN<em>America</em> Signature <span style="color:red">*</span>: (will be signed by ITN after submission)</label><br>
-                            <input type="text" class="form-control" id="itnSignature" name="itnSignature" ng-model="formData.changeOfStatus.itnSignature" ng-disabled="true">
-                          </div>
-                          
-                          <div class="form-group">
-                            <label for="itn date">Date <span style="color:red">*</span>: (will be signed by ITN after submission)</label><br>
-                            <input type="text" class="form-control" id="itnDate" name="itnDate" ng-pattern="datePattern" ng-model="formData.changeOfStatus.itnDate" ng-disabled="true">
-                          </div>
-                          
-                        <button type="submit" class="btn btn-lg pull-right btn-danger" style="background:#e05944; margin-left:2%" ng-disabled="itnForm.$invalid || loading">Submit</button>
+                        <button type="submit" ng-disabled="itnForm.signature5.$invalid || itnForm.date5.$invalid" class="btn btn-lg pull-right btn-danger" style="background:#e05944; margin-left:2%" ng-disabled="itnForm.$invalid || loading">Submit</button>
                         <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg">Previous</button>  
                         
                         

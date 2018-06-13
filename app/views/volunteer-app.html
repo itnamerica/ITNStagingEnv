@@ -529,7 +529,7 @@
                             
                             <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.memberOfProfessionalOrgOrUnion.$invalid || itnForm.servedInMilitary.$invalid " class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
                             <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Previous</button>  
-                            org invalid: {{itnForm.memberOfProfessionalOrgOrUnion.$invalid }} military: {{ itnForm.servedInMilitary.$invalid }} 
+                            
                             <h2>Volunteering with ITN</h2>
                             
                             <div class="form-group">
@@ -890,7 +890,7 @@
                             </div>
                           </div>
                           
-                          <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.vehicleOwner.$invalid || itnForm.make1.$invalid || itnForm.model1.$invalid || itnForm.year1.$invalid || itnForm.registrationPlate1.$invalid || itnForm.numberOfDoors1.$invalid || itnForm.registrationExpiration1.$invalid || itnForm.insuranceCompany1.$invalid || itnForm.agent1.$invalid || itnForm.agentAddress1.$invalid ||itnForm.canTransportWalker.$invalid ||  itnForm.canTransportWheelChair.$invalid || itnForm.passengerCapacity.$invalid || itnForm.generalCondition.$invalid || itnForm.canTransportPets.$invalid || itnForm.hasLargeTrunk.$invalid ||itnForm.hasCoveredTruckBed.$invalid ||  itnForm.onlyVehicle.$invalid || itnForm.signature4.$invalid ||itnForm.date4.$invalid ||  itnForm.agree4.$invalid" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
+                          <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.vehicleOwner.$invalid || itnForm.make1.$invalid || itnForm.model1.$invalid || itnForm.year1.$invalid || itnForm.registrationPlate1.$invalid || itnForm.numberOfDoors1.$invalid || itnForm.registrationExpiration1.$invalid || itnForm.insuranceCompany1.$invalid || itnForm.agent1.$invalid || itnForm.agentAddress1.$invalid || itnForm.canTransportWalker.$invalid ||  itnForm.canTransportWheelChair.$invalid || itnForm.passengerCapacity.$invalid || itnForm.generalCondition.$invalid || itnForm.canTransportPets.$invalid || itnForm.hasLargeTrunk.$invalid || itnForm.hasCoveredTruckBed.$invalid ||  itnForm.onlyVehicle.$invalid || itnForm.signature4.$invalid || itnForm.date4.$invalid ||  itnForm.agree4.$invalid" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
                           <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Previous</button>  
                           
                           <h2>Vehicle Description Information</h2>
@@ -1059,7 +1059,7 @@
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.make2.$invalid && !itnForm.make2.$pristine }">
                               <label for="make">Make <span style="color:red">*</span>:</label><br>
-                              <input type="text" class="form-control" id="make" name="make2" ng-model="formData.secondVehicleDescription.make" ng-minlength="minlength" ng-maxlength="maxlength" required>
+                              <input type="text" class="form-control" id="make" name="make2" ng-model="formData.secondVehicleDescription.make" ng-minlength="minlength" ng-maxlength="maxlength">
                               <span ng-if="itnForm.make2.$error.required && !itnForm.make2.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.make2.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
                               <span ng-if="itnForm.make2.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
@@ -1067,7 +1067,7 @@
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.model2.$invalid && !itnForm.model2.$pristine }">
                               <label for="model">Model <span style="color:red">*</span>:</label><br>
-                              <input type="text" class="form-control" id="model" name="model2" ng-model="formData.secondVehicleDescription.model" ng-minlength="minlength" ng-maxlength="maxlength" required>
+                              <input type="text" class="form-control" id="model" name="model2" ng-model="formData.secondVehicleDescription.model" ng-minlength="minlength" ng-maxlength="maxlength">
                               <span ng-if="itnForm.model2.$error.required && !itnForm.model2.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.model2.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
                               <span ng-if="itnForm.model2.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
@@ -1082,7 +1082,7 @@
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.year2.$invalid && !itnForm.year2.$pristine }">
                               <label for="year">Year <span style="color:red">*</span>:</label><br>
-                              <input type="text" class="form-control" id="year" name="year2" ng-model="formData.secondVehicleDescription.year" ng-minlength="minlength" ng-maxlength="maxlength" required>
+                              <input type="text" class="form-control" id="year" name="year2" ng-model="formData.secondVehicleDescription.year" ng-minlength="minlength" ng-maxlength="maxlength">
                               <span ng-if="itnForm.year2.$error.required && !itnForm.year2.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.year2.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
                               <span ng-if="itnForm.year2.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
@@ -1090,7 +1090,7 @@
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.registrationPlate2.$invalid && !itnForm.registrationPlate2.$pristine }">
                               <label for="registration Plate">Registration plate <span style="color:red">*</span>:</label><br>
-                              <input type="text" class="form-control" id="registrationPlate" name="registrationPlate2" ng-model="formData.secondVehicleDescription.registrationPlate" ng-minlength="minlength" ng-maxlength="maxlength" required>
+                              <input type="text" class="form-control" id="registrationPlate" name="registrationPlate2" ng-model="formData.secondVehicleDescription.registrationPlate" ng-minlength="minlength" ng-maxlength="maxlength">
                               <span ng-if="itnForm.registrationPlate2.$error.required && !itnForm.registrationPlate2.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.registrationPlate2.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
                               <span ng-if="itnForm.registrationPlate2.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
@@ -1105,20 +1105,20 @@
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.numberOfDoors2.$invalid && !itnForm.numberOfDoors2.$pristine }">
                               <label for="number Of Doors">Number of doors <span style="color:red">*</span>:</label><br>
-                              <input type="text" class="form-control" id="numberOfDoors" name="numberOfDoors2" ng-model="formData.secondVehicleDescription.numberOfDoors" required>
+                              <input type="text" class="form-control" id="numberOfDoors" name="numberOfDoors2" ng-model="formData.secondVehicleDescription.numberOfDoors">
                               <span ng-if="itnForm.numberOfDoors2.$error.required && !itnForm.numberOfDoors2.$pristine" class="help-block">{{errorMessages.required}}</span>
                             </div>
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.registrationExpiration2.$invalid && !itnForm.registrationExpiration2.$pristine }">
                               <label for="registration Expiration">Registration expiration date: <span style="color:red">*</span></label><br>
-                              <input type="text" class="form-control" id="registrationExpiration" name="registrationExpiration2" ng-model="formData.secondVehicleDescription.registrationExpiration" ng-pattern="datePattern" placeholder="mm/dd/yyyy" required>
+                              <input type="text" class="form-control" id="registrationExpiration" name="registrationExpiration2" ng-model="formData.secondVehicleDescription.registrationExpiration" ng-pattern="datePattern" placeholder="mm/dd/yyyy">
                               <span ng-if="itnForm.registrationExpiration2.$error.required && !itnForm.registrationExpiration2.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.registrationExpiration2.$error.pattern" class="help-block">{{errorMessages.date}}</span>
                             </div>
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.insuranceCompany2.$invalid && !itnForm.insuranceCompany2.$pristine }">
                               <label for="insurance Company">Insurance company: <span style="color:red">*</span></label><br>
-                              <input type="text" class="form-control" id="insuranceCompany" name="insuranceCompany2" ng-model="formData.secondVehicleDescription.insuranceCompany" ng-minlength="minlength" ng-maxlength="maxlength" required>
+                              <input type="text" class="form-control" id="insuranceCompany" name="insuranceCompany2" ng-model="formData.secondVehicleDescription.insuranceCompany" ng-minlength="minlength" ng-maxlength="maxlength">
                               <span ng-if="itnForm.insuranceCompany2.$error.required && !itnForm.insuranceCompany2.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.insuranceCompany2.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
                               <span ng-if="itnForm.insuranceCompany2.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
@@ -1126,7 +1126,7 @@
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.agent2.$invalid && !itnForm.agent2.$pristine }">
                               <label for="agent">Agent: <span style="color:red">*</span></label><br>
-                              <input type="text" class="form-control" id="agent" name="agent2" ng-model="formData.secondVehicleDescription.agent" ng-minlength="minlength" ng-maxlength="maxlength" required>
+                              <input type="text" class="form-control" id="agent" name="agent2" ng-model="formData.secondVehicleDescription.agent" ng-minlength="minlength" ng-maxlength="maxlength">
                               <span ng-if="itnForm.agent2.$error.required && !itnForm.agent2.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.agent2.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
                               <span ng-if="itnForm.agent2.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
@@ -1134,7 +1134,7 @@
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.agentAddress2.$invalid && !itnForm.agentAddress2.$pristine }">
                               <label for="agent address">Agent Email Address: <span style="color:red">*</span></label><br>
-                              <input type="text" class="form-control" id="agentAddress" name="agentAddress2" ng-model="formData.secondVehicleDescription.agentEmailAddress" placeholder="Example: test@example.com" ng-pattern="emailPattern" ng-minlength="minlength" ng-maxlength="maxlength" required>
+                              <input type="text" class="form-control" id="agentAddress" name="agentAddress2" ng-model="formData.secondVehicleDescription.agentEmailAddress" placeholder="Example: test@example.com" ng-pattern="emailPattern" ng-minlength="minlength" ng-maxlength="maxlength">
                               <span ng-if="itnForm.agentAddress2.$error.required && !itnForm.agentAddress2.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.email.$error.pattern" class="help-block">{{errorMessages.email}}</span>
                               <span ng-if="itnForm.agentAddress2.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
@@ -1150,42 +1150,42 @@
                             
                             <div class="form-group ta-center">
                               <label for="can transport walker or wheelchair">Are you able to transport a folding walker?<span style="color:red">*</span></label><br>
-                              <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.canTransportWalker" type="radio" value="yes" required>Yes</label>
+                              <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.canTransportWalker" type="radio" value="yes">Yes</label>
                               <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.canTransportWalker" type="radio" value="no">No</label>
                             </div>
                             
                             <div class="form-group ta-center">
                               <label for="can transport walker or wheelchair">Are you able to transport a wheelchair?<span style="color:red">*</span></label><br>
-                              <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.canTransportWheelChair" type="radio" value="yes" required>Yes</label>
+                              <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.canTransportWheelChair" type="radio" value="yes">Yes</label>
                               <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.canTransportWheelChair" type="radio" value="no">No</label>
                             </div>
                             
                             <div class="form-group">
                               <label for="general condition">Please describe the general condition of the vehicle(s) and any known defects: <span style="color:red">*</span></label><br>
                               <input type="text" class="form-control"   id="generalCondition" name="generalCondition" ng-model="formData.secondVehicleDescription.generalCondition"
-                               ng-minlength="minlength" ng-maxlength="maxlength" required>
+                               ng-minlength="minlength" ng-maxlength="maxlength">
                             </div>
                             
                             <div class="form-group">
                               <label for="passenger capacity">Passenger capacity: <span style="color:red">*</span></label><br>
-                              <input type="text" class="form-control" id="passengerCapacity" name="passengerCapacity" ng-model="formData.secondVehicleDescription.passengerCapacity" placeholder="number of people" required>people
+                              <input type="text" class="form-control" id="passengerCapacity" name="passengerCapacity" ng-model="formData.secondVehicleDescription.passengerCapacity" placeholder="number of people">people
                             </div>
                             
                             <div class="form-group ta-center">
                               <label for="can Transport Pets">Are you willing to transport properly restrained pets: <span style="color:red">*</span></label><br>
-                              <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.canTransportPets" type="radio" value="yes" required>Yes</label>
+                              <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.canTransportPets" type="radio" value="yes">Yes</label>
                               <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.canTransportPets" type="radio" value="no">No</label>
                             </div>
                             
                             <div class="form-group ta-center">
                               <label for="has large trunk">Do you have a large trunk: <span style="color:red">*</span></label><br>
-                              <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.hasLargeTrunk" type="radio" value="yes" required>Yes</label>
+                              <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.hasLargeTrunk" type="radio" value="yes">Yes</label>
                               <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.hasLargeTrunk" type="radio" value="no">No</label>
                             </div>
                             
                             <div class="form-group ta-center">
                               <label for="has covered truck bed">Covered truck bed: <span style="color:red">*</span></label><br>
-                              <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.hasCoveredTruckBed" type="radio" value="yes" required>Yes</label>
+                              <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.hasCoveredTruckBed" type="radio" value="yes">Yes</label>
                               <label class="radio-inline"><input ng-model="formData.secondVehicleDescription.hasCoveredTruckBed" type="radio" value="no">No</label>
                             </div>
 
@@ -1219,7 +1219,7 @@
                           
                           <div class="ta-center required-warning"><em>Please enter all required fields with an asterik (<span style="color:red">*</span>) to go to the next page.</em></div>
                           
-                          <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.vehicleOwner.$invalid || itnForm.make1.$invalid || itnForm.model1.$invalid || itnForm.year1.$invalid || itnForm.registrationPlate1.$invalid || itnForm.numberOfDoors1.$invalid || itnForm.registrationExpiration1.$invalid || itnForm.insuranceCompany1.$invalid || itnForm.agent1.$invalid || itnForm.agentAddress1.$invalid ||itnForm.canTransportWalker.$invalid ||  itnForm.canTransportWheelChair.$invalid || itnForm.passengerCapacity.$invalid || itnForm.generalCondition.$invalid || itnForm.canTransportPets.$invalid || itnForm.hasLargeTrunk.$invalid ||itnForm.hasCoveredTruckBed.$invalid ||  itnForm.onlyVehicle.$invalid || itnForm.signature4.$invalid ||itnForm.date4.$invalid ||  itnForm.agree4.$invalid" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
+                          <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.vehicleOwner.$invalid || itnForm.make1.$invalid || itnForm.model1.$invalid || itnForm.year1.$invalid || itnForm.registrationPlate1.$invalid || itnForm.numberOfDoors1.$invalid || itnForm.registrationExpiration1.$invalid || itnForm.insuranceCompany1.$invalid || itnForm.agent1.$invalid || itnForm.agentAddress1.$invalid || itnForm.canTransportWalker.$invalid ||  itnForm.canTransportWheelChair.$invalid || itnForm.passengerCapacity.$invalid || itnForm.generalCondition.$invalid || itnForm.canTransportPets.$invalid || itnForm.hasLargeTrunk.$invalid || itnForm.hasCoveredTruckBed.$invalid ||  itnForm.onlyVehicle.$invalid || itnForm.signature4.$invalid || itnForm.date4.$invalid ||  itnForm.agree4.$invalid" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
                           <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
                           
                         </div><!--tab5-->
@@ -1719,7 +1719,7 @@
 }
 .s-stepper small {
   font-size:60%;
-  font-weight:bold;
+  /* font-weight:bold; */
 }
   
 .s-stepper .s-step {

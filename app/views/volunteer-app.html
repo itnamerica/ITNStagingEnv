@@ -780,7 +780,7 @@
                             </div>
 
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.agree2.$invalid && !itnForm.agree2.$pristine }">
-                              <label class="checkbox-inline"><input type="checkbox" value="authorize" ng-model="formData.requestDriverRecord.authorize" required>By checking this box and submitting this form, you agree that your digital signature will be considered your legal signature and represents your agreement to the terms and policies outlined above.</label>
+                              <label class="checkbox-inline"><input type="checkbox" value="authorize" name="agree2" ng-model="formData.requestDriverRecord.authorize" required>By checking this box and submitting this form, you agree that your digital signature will be considered your legal signature and represents your agreement to the terms and policies outlined above.</label>
                               <span ng-if="itnForm.agree2.$error.required && !itnForm.agree2.$pristine" class="help-block">{{errorMessages.required}}</span>
                             </div>
                             
@@ -840,7 +840,7 @@
                             
                             
                             <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.agree3.$invalid && !itnForm.agree3.$pristine }">
-                              <label class="checkbox-inline"><input ng-model="formData.requestCriminalRecord.authorize" type="checkbox" value="authorize" required>
+                              <label class="checkbox-inline"><input ng-model="formData.requestCriminalRecord.authorize" type="checkbox" value="authorize" name="agree3" required>
                                 <span style="color:red">*</span>
                                   By checking this box and submitting this form, you agree that your digital signature will be considered your legal signature and represents your agreement to the terms and policies outlined above.
                               </label>
@@ -887,16 +887,17 @@
                             </div>
                           </div>
                           
-                          <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
+                          <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.vehicleOwner.$invalid || itnForm.make1.$invalid || itnForm.model1.$invalid || itnForm.year1.$invalid || itnForm.registrationPlate1.$invalid || itnForm.numberOfDoors1.$invalid || itnForm.registrationExpiration1.$invalid || itnForm.insuranceCompany1.$invalid || itnForm.agent1.$invalid || itnForm.agentAddress1.$invalid ||itnForm.canTransportWalker.$invalid ||  itnForm.canTransportWheelChair.$invalid || itnForm.passengerCapacity.$invalid | itnForm.generalCondition.$invalid || itnForm.canTransportPets.$invalid || itnForm.hasLargeTrunk.$invalid ||itnForm.hasCoveredTruckBed.$invalid ||  itnForm.onlyVehicle.$invalid || itnForm.signature4.$invalid ||itnForm.date4.$invalid ||  itnForm.agree4.$invalid" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
                           <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Previous</button>  
                           
                           <h2>Vehicle Description Information</h2>
                           
                           
-                          <div class="form-group ta-center">
+                          <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.vehicleOwner.$invalid && !itnForm.vehicleOwner.$pristine }">
                             <label for="own vehicle">Do you own the vehicle?: <span style="color:red">*</span></label><br>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.vehicleOWner" type="radio" value="yes" required>Yes</label>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.vehicleOWner" type="radio" value="no">No</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.vehicleOwner" type="radio" name="vehicleOwner" value="yes" required>Yes</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.vehicleOwner" name="vehicleOwner" type="radio" value="no">No</label>
+                            <span ng-if="itnForm.vehicleOwner.$error.required && !itnForm.vehicleOwner.$pristine" class="help-block">{{errorMessages.required}}</span>
                           </div>
                           
                           <h3>Vehicle Description</h3>
@@ -992,51 +993,62 @@
                             <span ng-if="itnForm.agentPhone1.$error.pattern" class="help-block">{{errorMessages.phone}}</span>
                           </div>
                           
-                          <div class="form-group ta-center">
+                          <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.canTransportWalker.$invalid && !itnForm.canTransportWalker.$pristine }">
                             <label for="can transport walker or wheelchair">Are you able to transport a folding walker?<span style="color:red">*</span></label><br>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.canTransportWalker" type="radio" value="yes" required>Yes</label>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.canTransportWalker" type="radio" value="no">No</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.canTransportWalker" type="radio" name="canTransportWalker" value="yes" required>Yes</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.canTransportWalker" type="radio" name="canTransportWalker" value="no">No</label>
+                            <span ng-if="itnForm.canTransportWalker.$error.required && !itnForm.canTransportWalker.$pristine" class="help-block">{{errorMessages.required}}</span>
                           </div>
                           
-                          <div class="form-group ta-center">
+                          <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.canTransportWheelChair.$invalid && !itnForm.canTransportWheelChair.$pristine }">
                             <label for="can transport walker or wheelchair">Are you able to transport a wheelchair?<span style="color:red">*</span></label><br>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.canTransportWheelChair" type="radio" value="yes" required>Yes</label>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.canTransportWheelChair" type="radio" value="no">No</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.canTransportWheelChair" type="radio" name="canTransportWheelChair"  value="yes" required>Yes</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.canTransportWheelChair" type="radio" name="canTransportWheelChair" value="no">No</label>
+                            <span ng-if="itnForm.canTransportWheelChair.$error.required && !itnForm.canTransportWheelChair.$pristine" class="help-block">{{errorMessages.required}}</span>
                           </div>
                           
-                          <div class="form-group">
+                          <div class="form-group" ng-class="{ 'has-error' : itnForm.generalCondition.$invalid && !itnForm.generalCondition.$pristine }">
                             <label for="general condition">Please describe the general condition of the vehicle(s) and any known defects: <span style="color:red">*</span></label><br>
                             <input type="text" class="form-control"   id="generalCondition" name="generalCondition" ng-model="formData.vehicleDescription.generalCondition"
                              ng-minlength="minlength" ng-maxlength="maxlength" required>
+                             <span ng-if="itnForm.generalCondition.$error.required && !itnForm.generalCondition.$pristine" class="help-block">{{errorMessages.required}}</span>
                           </div>
                           
-                          <div class="form-group">
+                          <div class="form-group" ng-class="{ 'has-error' : itnForm.passengerCapacity.$invalid && !itnForm.passengerCapacity.$pristine }">
                             <label for="passenger capacity">Passenger capacity: <span style="color:red">*</span></label><br>
                             <input type="text" class="form-control" id="passengerCapacity" name="passengerCapacity" ng-model="formData.vehicleDescription.passengerCapacity" placeholder="number of people" required>people
+                            
+                            <span ng-if="itnForm.passengerCapacity.$error.required && !itnForm.passengerCapacity.$pristine" class="help-block">{{errorMessages.required}}</span>
                           </div>
                           
-                          <div class="form-group ta-center">
+                          <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.canTransportPets.$invalid && !itnForm.canTransportPets.$pristine }">
                             <label for="can Transport Pets">Are you willing to transport properly restrained pets: <span style="color:red">*</span></label><br>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.canTransportPets" type="radio" value="yes" required>Yes</label>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.canTransportPets" type="radio" value="no">No</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.canTransportPets" type="radio" name="canTransportPets" value="yes" required>Yes</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.canTransportPets" type="radio" name="canTransportPets" value="no">No</label>
+                            <span ng-if="itnForm.canTransportPets.$error.required && !itnForm.canTransportPets.$pristine" class="help-block">{{errorMessages.required}}</span>
                           </div>
                           
-                          <div class="form-group ta-center">
+                          <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.hasLargeTrunk.$invalid && !itnForm.hasLargeTrunk.$pristine }">
                             <label for="has large trunk">Do you have a large trunk: <span style="color:red">*</span></label><br>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.hasLargeTrunk" type="radio" value="yes" required>Yes</label>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.hasLargeTrunk" type="radio" value="no">No</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.hasLargeTrunk" type="radio" name="hasLargeTrunk" value="yes" required>Yes</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.hasLargeTrunk" type="radio" name="hasLargeTrunk" value="no">No</label>
+                            <span ng-if="itnForm.hasLargeTrunk.$error.required && !itnForm.hasLargeTrunk.$pristine" class="help-block">{{errorMessages.required}}</span>
                           </div>
                           
-                          <div class="form-group ta-center">
+                          <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.hasCoveredTruckBed.$invalid && !itnForm.hasCoveredTruckBed.$pristine }">
                             <label for="has covered truck bed">Covered truck bed: <span style="color:red">*</span></label><br>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.hasCoveredTruckBed" type="radio" value="yes" required>Yes</label>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.hasCoveredTruckBed" type="radio" value="no">No</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.hasCoveredTruckBed" type="radio" name="hasCoveredTruckBed"  value="yes" required>Yes</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.hasCoveredTruckBed" type="radio" name="hasCoveredTruckBed" value="no">No</label>
+                            
+                            <span ng-if="itnForm.hasCoveredTruckBed.$error.required && !itnForm.hasCoveredTruckBed.$pristine" class="help-block">{{errorMessages.required}}</span>
                           </div>
                           
-                          <div class="form-group ta-center">
+                          <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.onlyVehicle.$invalid && !itnForm.onlyVehicle.$pristine }">
                             <label for="only vehicle">Is this the only vehicle you will be using: <span style="color:red">*</span></label><br>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.onlyVehicle" ng-click="secondVehicle = false" type="radio" value="yes" required>Yes</label>
-                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.onlyVehicle" ng-click="secondVehicle = true" type="radio" value="no">No</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.onlyVehicle" ng-click="secondVehicle = false" type="radio" name="onlyVehicle" value="yes" required>Yes</label>
+                            <label class="radio-inline"><input ng-model="formData.vehicleDescription.onlyVehicle" ng-click="secondVehicle = true" type="radio" name="onlyVehicle" value="no">No</label>
+                            
+                            <span ng-if="itnForm.onlyVehicle.$error.required && !itnForm.onlyVehicle.$pristine" class="help-block">{{errorMessages.required}}</span>
                           </div>
                           
                           
@@ -1194,14 +1206,15 @@
                           </div>
                           
                           
-                          <div class="form-group ta-center">
-                            <label class="checkbox-inline"><input ng-model="formData.vehicleDescription.authorize" type="checkbox" value="authorize" required>
+                          <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.agree4.$invalid && !itnForm.agree4.$pristine }">
+                            <label class="checkbox-inline"><input ng-model="formData.vehicleDescription.authorize" type="checkbox" name="agree4" value="authorize" required>
                               <span style="color:red">*</span>
                                 By checking this box and submitting this form, you agree that your digital signature will be considered your legal signature and represents your agreement to the terms and policies outlined above.
                             </label>
+                            <span ng-if="itnForm.agree4.$error.required && !itnForm.agree4.$pristine" class="help-block">{{errorMessages.required}}</span>
                           </div>
                           
-                          <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
+                          <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.vehicleOwner.$invalid || itnForm.make1.$invalid || itnForm.model1.$invalid || itnForm.year1.$invalid || itnForm.registrationPlate1.$invalid || itnForm.numberOfDoors1.$invalid || itnForm.registrationExpiration1.$invalid || itnForm.insuranceCompany1.$invalid || itnForm.agent1.$invalid || itnForm.agentAddress1.$invalid ||itnForm.canTransportWalker.$invalid ||  itnForm.canTransportWheelChair.$invalid || itnForm.passengerCapacity.$invalid | itnForm.generalCondition.$invalid || itnForm.canTransportPets.$invalid || itnForm.hasLargeTrunk.$invalid ||itnForm.hasCoveredTruckBed.$invalid ||  itnForm.onlyVehicle.$invalid || itnForm.signature4.$invalid ||itnForm.date4.$invalid ||  itnForm.agree4.$invalid" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
                           <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
                           
                         </div><!--tab5-->

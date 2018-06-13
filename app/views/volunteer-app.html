@@ -736,14 +736,14 @@
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.maidenName.$invalid && !itnForm.maidenName.$pristine }">
                               <label for="maiden name">Previous/Maiden name (if applicable):</label><br>
-                              <input type="text" class="form-control" id="maidenName" name="maidenName" ng-minlength="minlength" ng-maxlength="maxlength"  ng-model="formData.requestDriverRecord.maidenName">
+                              <input type="text" class="form-control" id="maidenName" name="maidenName" ng-minlength="minlength" ng-maxlength="maxlength"  ng-model="formData.requestDriverRecord.maidenName" ng-change="prepopulate(formData.requestDriverRecord.maidenName, 'maiden')">
                               <span ng-if="itnForm.maidenName.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
                               <span ng-if="itnForm.maidenName.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
                             </div>
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.dob1.$invalid && !itnForm.dob1.$pristine }">
                               <label for="date of birth">Date of Birth <span style="color:red">*</span>:</label><br>
-                              <input type="text" class="form-control" id="dob" name="dob1" placeholder="MM/DD/YYYY"   ng-model="formData.requestDriverRecord.dob" ng-pattern="dobPattern" required>
+                              <input type="text" class="form-control" id="dob" name="dob1" placeholder="MM/DD/YYYY"   ng-model="formData.requestDriverRecord.dob" ng-change="prepopulate(formData.requestDriverRecord.dob, 'dob')" ng-pattern="dobPattern" required>
                               <span ng-if="itnForm.dob1.$error.required && !itnForm.maidenName.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.dob1.$error.pattern" class="help-block">{{errorMessages.dob}}</span>
                             </div>

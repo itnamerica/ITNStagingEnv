@@ -239,11 +239,13 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     $scope.formData = {
       requestDriverRecord: {
         signature: '',
-        date: ''
+        date: '',
+        name: ''
       },
       requestCriminalRecord: {
         signature: '',
-        date: ''
+        date: '',
+        name: ''
       },
       vehicleDescription: {
         signature: '',
@@ -523,9 +525,13 @@ var originalFormData = $scope.formData;
     $scope.formData.requestCriminalRecord.signature = currentModel;
     $scope.formData.vehicleDescription.signature = currentModel;
     $scope.formData.changeOfStatus.signature = currentModel;
-  } else if (modelType === 'signature'){
+  } else if (modelType === 'name'){
     $scope.formData.requestDriverRecord.name = currentModel;
     $scope.formData.requestCriminalRecord.name = currentModel;
+  } else if (modelType === 'dob'){
+    $scope.formData.requestCriminalRecord.dob = currentModel;
+  } else if (modelType === 'maiden'){
+    $scope.formData.requestCriminalRecord.maidenName = currentModel;
   }
 };
 

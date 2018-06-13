@@ -719,10 +719,9 @@
                               </div>
                             </div>
                             
-                            <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px"">Next</button>
-                            <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px"">Previous</button>  
+                            <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.name2.$invalid || itnForm.dob1.$invalid || itnForm.licenseNumber.$invalid || itnForm.drivingRecordState.$invalid || itnForm.signature2.$invalid || itnForm.date2.$invalid || itnForm.agree2.$invalid || itnForm.criminalRecordState.$invalid || itnForm.name3.$invalid || itnForm.dob3.$invalid ||itnForm.signature3.$invalid ||  itnForm.date3.$invalid || itnForm.agree3.$invalid" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
+                            <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Previous</button>  
                             
-                        
                             
                             <h2>Authorization to Request Driver Record</h2>
                           
@@ -775,12 +774,14 @@
                             
                             <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.date2.$invalid && !itnForm.date2.$pristine }">
                               <label for="date">Agreement Date: <span style="color:red">*</span></label>
-                              <input ng-model="formData.requestDriverRecord.date" type="text" class="form-control" id="date" name="date2" required>
+                              <input ng-model="formData.requestDriverRecord.date" type="text" class="form-control" id="date" name="date2" placeholder="MM/DD/YYYY" ng-pattern="datePattern" required>
                               <span ng-if="itnForm.date2.$error.required && !itnForm.date2.$pristine" class="help-block">{{errorMessages.required}}</span>
+                              <span ng-if="itnForm.date2.$error.pattern" class="help-block">{{errorMessages.datePattern}}</span>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" ng-class="{ 'has-error' : itnForm.agree2.$invalid && !itnForm.agree2.$pristine }">
                               <label class="checkbox-inline"><input type="checkbox" value="authorize" ng-model="formData.requestDriverRecord.authorize" required>By checking this box and submitting this form, you agree that your digital signature will be considered your legal signature and represents your agreement to the terms and policies outlined above.</label>
+                              <span ng-if="itnForm.agree2.$error.required && !itnForm.agree2.$pristine" class="help-block">{{errorMessages.required}}</span>
                             </div>
                             
                             
@@ -807,16 +808,15 @@
                             </div>
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.maidenName3.$invalid && !itnForm.maidenName3.$pristine }">
-                              <label for="maiden name">Previous/maiden name (if applicable) <span style="color:red">*</span> :</label><br>
+                              <label for="maiden name">Previous/maiden name (if applicable):</label><br>
                               <input type="text" class="form-control" id="maidenName" name="maidenName3"   ng-model="formData.requestCriminalRecord.maidenName" ng-minlength="minlength" ng-maxlength="maxlength" required>
-                              <span ng-if="itnForm.maidenName3.$error.required && !itnForm.maidenName3.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.maidenName3.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
                               <span ng-if="itnForm.maidenName3.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
                             </div>
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.dob3.$invalid && !itnForm.dob3.$pristine }">
                               <label for="date of birth">Date of Birth <span style="color:red">*</span>:</label><br>
-                              <input type="text" class="form-control" id="dob" name="dob3" placeholder="MM/DD/YYYY"   ng-model="formData.requestCriminalRecord.dob" ng-pattern="dobPattern" ng-pattern="datePattern" required>
+                              <input type="text" class="form-control" id="dob" name="dob3" placeholder="MM/DD/YYYY"   ng-model="formData.requestCriminalRecord.dob" ng-pattern="datePattern" required>
                               <span ng-if="itnForm.dob3.$error.required && !itnForm.dob3.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.dob3.$error.pattern" class="help-block">{{errorMessages.date}}</span>
                             </div>
@@ -839,15 +839,16 @@
                             </div>
                             
                             
-                            <div class="form-group ta-center">
+                            <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.agree3.$invalid && !itnForm.agree3.$pristine }">
                               <label class="checkbox-inline"><input ng-model="formData.requestCriminalRecord.authorize" type="checkbox" value="authorize" required>
                                 <span style="color:red">*</span>
                                   By checking this box and submitting this form, you agree that your digital signature will be considered your legal signature and represents your agreement to the terms and policies outlined above.
                               </label>
+                              <span ng-if="itnForm.agree3.$error.required && !itnForm.agree3.$pristine" class="help-block">{{errorMessages.required}}</span>
                             </div>
                             
                           
-                            <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
+                            <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.name2.$invalid || itnForm.dob1.$invalid || itnForm.licenseNumber.$invalid || itnForm.drivingRecordState.$invalid || itnForm.signature2.$invalid || itnForm.date2.$invalid || itnForm.agree2.$invalid || itnForm.criminalRecordState.$invalid || itnForm.name3.$invalid || itnForm.dob3.$invalid ||itnForm.signature3.$invalid ||  itnForm.date3.$invalid || itnForm.agree3.$invalid" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
                             <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
 
                         </div><!--tab4-->

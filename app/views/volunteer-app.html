@@ -103,7 +103,9 @@
                       </div>
                       
                   
-                      <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.memberFor.$invalid ||  itnForm.adequateVision.$invalid || itnForm.currentEmployment.$invalid || itnForm.gender.$invalid || itnForm.riderName.$invalid ||  itnForm.street.$invalid || itnForm.city.$invalid || itnForm.state.$invalid || itnForm.zip.$invalid || itnForm.preferredPhone.$invalid || itnForm.firstEmName.$invalid  || itnForm.firstEmRelationship.$invalid || itnForm.firstEmPreferredPhone.$invalid || itnForm.firstEmState.$invalid || itnForm.firstEmCity.$invalid || itnForm.firstEmZip.$invalid || itnForm.firstEmStreet.$invalid " class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
+                      <!-- <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.memberFor.$invalid ||  itnForm.adequateVision.$invalid || itnForm.currentEmployment.$invalid || itnForm.gender.$invalid || itnForm.riderName.$invalid ||  itnForm.street.$invalid || itnForm.city.$invalid || itnForm.state.$invalid || itnForm.zip.$invalid || itnForm.preferredPhone.$invalid || itnForm.firstEmName.$invalid  || itnForm.firstEmRelationship.$invalid || itnForm.firstEmPreferredPhone.$invalid || itnForm.firstEmState.$invalid || itnForm.firstEmCity.$invalid || itnForm.firstEmZip.$invalid || itnForm.firstEmStreet.$invalid " class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button> -->
+                      
+                      <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
                   
                       
                       <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.memberFor.$invalid && !itnForm.memberFor.$pristine }">
@@ -305,7 +307,9 @@
                           <div class="ta-center required-warning"><em>Please enter all required fields with an asterik (<span style="color:red">*</span>) to go to the next page.</em></div>
 
                           
-                          <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.memberFor.$invalid ||  itnForm.adequateVision.$invalid || itnForm.currentEmployment.$invalid || itnForm.gender.$invalid || itnForm.riderName.$invalid ||  itnForm.street.$invalid || itnForm.city.$invalid || itnForm.state.$invalid || itnForm.zip.$invalid || itnForm.preferredPhone.$invalid || itnForm.firstEmName.$invalid  || itnForm.firstEmRelationship.$invalid || itnForm.firstEmPreferredPhone.$invalid || itnForm.firstEmState.$invalid || itnForm.firstEmCity.$invalid || itnForm.firstEmZip.$invalid || itnForm.firstEmStreet.$invalid " class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
+                          <!-- <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.memberFor.$invalid ||  itnForm.adequateVision.$invalid || itnForm.currentEmployment.$invalid || itnForm.gender.$invalid || itnForm.riderName.$invalid ||  itnForm.street.$invalid || itnForm.city.$invalid || itnForm.state.$invalid || itnForm.zip.$invalid || itnForm.preferredPhone.$invalid || itnForm.firstEmName.$invalid  || itnForm.firstEmRelationship.$invalid || itnForm.firstEmPreferredPhone.$invalid || itnForm.firstEmState.$invalid || itnForm.firstEmCity.$invalid || itnForm.firstEmZip.$invalid || itnForm.firstEmStreet.$invalid " class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button> -->
+                          
+                          <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;">Next</button>
                     </div><!--tab 1-->
                     
                     <div class="member-tabs" ng-if="tab===2" id="tab2">
@@ -337,7 +341,8 @@
                         </div>
                       </div>
                       
-                      <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.criminalConviction.$invalid ||  itnForm.movingViolation.$invalid || itnForm.firstRefName.$invalid || itnForm.firstRefPhoneOrMailing.$invalid || itnForm.firstRefEmail.$invalid ||  itnForm.firstRefAcquainted.$invalid || itnForm.secondRefName.$invalid || itnForm.secondRefPhoneOrMailing.$invalid || itnForm.secondRefEmail.$invalid ||  itnForm.secondRefAcquainted.$invalid || itnForm.thirdRefName.$invalid || itnForm.thirdRefPhoneOrMailing.$invalid || itnForm.thirdRefEmail.$invalid ||  itnForm.thirdRefAcquainted.$invalid || itnForm.signature1.$invalid || itnForm.date1.$invalid || itnForm.agree1.$invalid" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
+                      <!-- <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.criminalConviction.$invalid ||  itnForm.movingViolation.$invalid || itnForm.firstRefName.$invalid || itnForm.firstRefPhoneOrMailing.$invalid || itnForm.firstRefEmail.$invalid ||  itnForm.firstRefAcquainted.$invalid || itnForm.secondRefName.$invalid || itnForm.secondRefPhoneOrMailing.$invalid || itnForm.secondRefEmail.$invalid ||  itnForm.secondRefAcquainted.$invalid || itnForm.thirdRefName.$invalid || itnForm.thirdRefPhoneOrMailing.$invalid || itnForm.thirdRefEmail.$invalid ||  itnForm.thirdRefAcquainted.$invalid || itnForm.signature1.$invalid || itnForm.date1.$invalid || itnForm.agree1.$invalid" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button> -->
+                      <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
                       <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Previous</button>  
                       
                       <h2>References</h2>
@@ -491,7 +496,8 @@
                       <div class="ta-center required-warning"><em>Please enter all required fields with an asterik (<span style="color:red">*</span>) to go to the next page.</em></div>
 
 
-                      <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.criminalConviction.$invalid ||  itnForm.movingViolation.$invalid || itnForm.firstRefName.$invalid || itnForm.firstRefPhoneOrMailing.$invalid || itnForm.firstRefEmail.$invalid ||  itnForm.firstRefAcquainted.$invalid || itnForm.secondRefName.$invalid || itnForm.secondRefPhoneOrMailing.$invalid || itnForm.secondRefEmail.$invalid ||  itnForm.secondRefAcquainted.$invalid || itnForm.thirdRefName.$invalid || itnForm.thirdRefPhoneOrMailing.$invalid || itnForm.thirdRefEmail.$invalid ||  itnForm.thirdRefAcquainted.$invalid || itnForm.signature1.$invalid || itnForm.date1.$invalid || itnForm.agree1.$invalid" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
+                      <!-- <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.criminalConviction.$invalid ||  itnForm.movingViolation.$invalid || itnForm.firstRefName.$invalid || itnForm.firstRefPhoneOrMailing.$invalid || itnForm.firstRefEmail.$invalid ||  itnForm.firstRefAcquainted.$invalid || itnForm.secondRefName.$invalid || itnForm.secondRefPhoneOrMailing.$invalid || itnForm.secondRefEmail.$invalid ||  itnForm.secondRefAcquainted.$invalid || itnForm.thirdRefName.$invalid || itnForm.thirdRefPhoneOrMailing.$invalid || itnForm.thirdRefEmail.$invalid ||  itnForm.thirdRefAcquainted.$invalid || itnForm.signature1.$invalid || itnForm.date1.$invalid || itnForm.agree1.$invalid" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button> -->
+                      <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;">Next</button>
                       <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
                             
                           </div><!--tab2-->
@@ -527,7 +533,8 @@
                               </div>
                             </div>
                             
-                            <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.memberOfProfessionalOrgOrUnion.$invalid || itnForm.servedInMilitary.$invalid " class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
+                            <!-- <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.memberOfProfessionalOrgOrUnion.$invalid || itnForm.servedInMilitary.$invalid " class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button> -->
+                            <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
                             <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Previous</button>  
                             
                             <h2>Volunteering with ITN</h2>
@@ -686,7 +693,8 @@
                 
                 <div class="ta-center required-warning"><em>Please enter all required fields with an asterik (<span style="color:red">*</span>) to go to the next page.</em></div>
 
-                <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.memberOfProfessionalOrgOrUnion.$invalid || itnForm.servedInMilitary.$invalid " class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
+                <!-- <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.memberOfProfessionalOrgOrUnion.$invalid || itnForm.servedInMilitary.$invalid " class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button> -->
+                <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
                 <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
                 
                 </div><!--tab3-->
@@ -721,7 +729,8 @@
                               </div>
                             </div>
                             
-                            <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.name2.$invalid || itnForm.dob1.$invalid || itnForm.licenseNumber.$invalid || itnForm.drivingRecordState.$invalid || itnForm.signature2.$invalid || itnForm.date2.$invalid || itnForm.agree2.$invalid || itnForm.criminalRecordState.$invalid || itnForm.name3.$invalid || itnForm.dob3.$invalid ||itnForm.signature3.$invalid ||  itnForm.date3.$invalid || itnForm.agree3.$invalid" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
+                            <!-- <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.name2.$invalid || itnForm.dob1.$invalid || itnForm.licenseNumber.$invalid || itnForm.drivingRecordState.$invalid || itnForm.signature2.$invalid || itnForm.date2.$invalid || itnForm.agree2.$invalid || itnForm.criminalRecordState.$invalid || itnForm.name3.$invalid || itnForm.dob3.$invalid ||itnForm.signature3.$invalid ||  itnForm.date3.$invalid || itnForm.agree3.$invalid" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button> -->
+                            <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
                             <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Previous</button>  
                             
                             
@@ -851,7 +860,8 @@
                             
                             <div class="ta-center required-warning"><em>Please enter all required fields with an asterik (<span style="color:red">*</span>) to go to the next page.</em></div>
                           
-                            <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.name2.$invalid || itnForm.dob1.$invalid || itnForm.licenseNumber.$invalid || itnForm.drivingRecordState.$invalid || itnForm.signature2.$invalid || itnForm.date2.$invalid || itnForm.agree2.$invalid || itnForm.criminalRecordState.$invalid || itnForm.name3.$invalid || itnForm.dob3.$invalid ||itnForm.signature3.$invalid ||  itnForm.date3.$invalid || itnForm.agree3.$invalid" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
+                            <!-- <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.name2.$invalid || itnForm.dob1.$invalid || itnForm.licenseNumber.$invalid || itnForm.drivingRecordState.$invalid || itnForm.signature2.$invalid || itnForm.date2.$invalid || itnForm.agree2.$invalid || itnForm.criminalRecordState.$invalid || itnForm.name3.$invalid || itnForm.dob3.$invalid ||itnForm.signature3.$invalid ||  itnForm.date3.$invalid || itnForm.agree3.$invalid" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button> -->
+                            <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;">Next</button>
                             <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
 
                         </div><!--tab4-->
@@ -890,7 +900,8 @@
                             </div>
                           </div>
                           
-                          <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.vehicleOwner.$invalid || itnForm.make1.$invalid || itnForm.model1.$invalid || itnForm.year1.$invalid || itnForm.registrationPlate1.$invalid || itnForm.numberOfDoors1.$invalid || itnForm.registrationExpiration1.$invalid || itnForm.insuranceCompany1.$invalid || itnForm.agent1.$invalid || itnForm.agentAddress1.$invalid || itnForm.canTransportWalker.$invalid ||  itnForm.canTransportWheelChair.$invalid || itnForm.passengerCapacity.$invalid || itnForm.generalCondition.$invalid || itnForm.canTransportPets.$invalid || itnForm.hasLargeTrunk.$invalid || itnForm.hasCoveredTruckBed.$invalid ||  itnForm.onlyVehicle.$invalid || itnForm.signature4.$invalid || itnForm.date4.$invalid ||  itnForm.agree4.$invalid" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
+                          <!-- <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.vehicleOwner.$invalid || itnForm.make1.$invalid || itnForm.model1.$invalid || itnForm.year1.$invalid || itnForm.registrationPlate1.$invalid || itnForm.numberOfDoors1.$invalid || itnForm.registrationExpiration1.$invalid || itnForm.insuranceCompany1.$invalid || itnForm.agent1.$invalid || itnForm.agentAddress1.$invalid || itnForm.canTransportWalker.$invalid ||  itnForm.canTransportWheelChair.$invalid || itnForm.passengerCapacity.$invalid || itnForm.generalCondition.$invalid || itnForm.canTransportPets.$invalid || itnForm.hasLargeTrunk.$invalid || itnForm.hasCoveredTruckBed.$invalid ||  itnForm.onlyVehicle.$invalid || itnForm.signature4.$invalid || itnForm.date4.$invalid ||  itnForm.agree4.$invalid" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button> -->
+                          <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
                           <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Previous</button>  
                           
                           <h2>Vehicle Description Information</h2>
@@ -1219,7 +1230,8 @@
                           
                           <div class="ta-center required-warning"><em>Please enter all required fields with an asterik (<span style="color:red">*</span>) to go to the next page.</em></div>
                           
-                          <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.vehicleOwner.$invalid || itnForm.make1.$invalid || itnForm.model1.$invalid || itnForm.year1.$invalid || itnForm.registrationPlate1.$invalid || itnForm.numberOfDoors1.$invalid || itnForm.registrationExpiration1.$invalid || itnForm.insuranceCompany1.$invalid || itnForm.agent1.$invalid || itnForm.agentAddress1.$invalid || itnForm.canTransportWalker.$invalid ||  itnForm.canTransportWheelChair.$invalid || itnForm.passengerCapacity.$invalid || itnForm.generalCondition.$invalid || itnForm.canTransportPets.$invalid || itnForm.hasLargeTrunk.$invalid || itnForm.hasCoveredTruckBed.$invalid ||  itnForm.onlyVehicle.$invalid || itnForm.signature4.$invalid || itnForm.date4.$invalid ||  itnForm.agree4.$invalid" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
+                          <!-- <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.vehicleOwner.$invalid || itnForm.make1.$invalid || itnForm.model1.$invalid || itnForm.year1.$invalid || itnForm.registrationPlate1.$invalid || itnForm.numberOfDoors1.$invalid || itnForm.registrationExpiration1.$invalid || itnForm.insuranceCompany1.$invalid || itnForm.agent1.$invalid || itnForm.agentAddress1.$invalid || itnForm.canTransportWalker.$invalid ||  itnForm.canTransportWheelChair.$invalid || itnForm.passengerCapacity.$invalid || itnForm.generalCondition.$invalid || itnForm.canTransportPets.$invalid || itnForm.hasLargeTrunk.$invalid || itnForm.hasCoveredTruckBed.$invalid ||  itnForm.onlyVehicle.$invalid || itnForm.signature4.$invalid || itnForm.date4.$invalid ||  itnForm.agree4.$invalid" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button> -->
+                          <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;">Next</button>
                           <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
                           
                         </div><!--tab5-->
@@ -1257,7 +1269,8 @@
                             </div>
                           </div>
                           
-                          <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.signature5.$invalid || itnForm.date5.$invalid" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
+                          <!-- <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.signature5.$invalid || itnForm.date5.$invalid" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button> -->
+                          <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
                           <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Previous</button>  
                           
                           

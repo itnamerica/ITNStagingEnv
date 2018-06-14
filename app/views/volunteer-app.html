@@ -1384,7 +1384,7 @@
   <br><label for="state">State: <span style="color:red">*</span></label><br>
   {{formData.firstEmergencyContact.state}}
   <br><label for="zip">Zip Code: <span style="color:red">*</span></label><br>
-  {{formData.firstEmergencyContact.zipPattern}}
+  {{formData.firstEmergencyContact.zip}}
   <br><label for="home phone">Preferred Phone: <span style="color:red">*</span></label><br>
   {{formData.firstEmergencyContact.preferredPhone}}
   <br><label for="cell phone">Other Phone: </label><br>
@@ -1397,7 +1397,7 @@
   {{formData.drivingExperience.years}}
   <br><label for="Estimated miles driven last year">Estimated miles driven last year:</label><br>
   {{formData.drivingExperience.milesDrivenLastYr}}
-  <br><label for="vision last examined">When was your vision last examined: <span style="color:red">*</span></label><br>
+  <br><label for="vision last examined">When was your vision last examined:</label><br>
   {{formData.drivingExperience.visionLastExamined}}
   <br><label for="vision adequate driving">Is your vision adequate for driving: <span style="color:red">*</span></label><br>
   {{formData.drivingExperience.adequateVision}} {{formData.drivingExperience.adequateVisionLimitations}}
@@ -1449,7 +1449,7 @@
   
   <p>This information is correct to the best of my knowledge. I give the Independent Transportation Network permission to check on this information, and to contact references.</p>
   
-  <br><label for="signature">Signature (type your full name):</label><br>
+  <br><label for="signature">Signature: <span style="color:red">*</span></label><br>
   {{formData.references.signature}}
   <br><label for="date">Agreement Date: <span style="color:red">*</span></label><br>
   {{formData.references.date}}
@@ -1523,7 +1523,7 @@
   <h3>Authorization to Request Driver Record</h3>
   <br><label for="name">Name <span style="color:red">*</span>:</label><br>
   {{formData.requestDriverRecord.name}}
-  <br><label for="maiden name">Previous/Maiden name (if applicable) <span style="color:red">*</span> :</label><br>
+  <br><label for="maiden name">Previous/Maiden name (if applicable):</label><br>
   {{formData.requestDriverRecord.maidenName}}
   <br><label for="date of birth">Date of Birth <span style="color:red">*</span>:</label><br>
   {{formData.requestDriverRecord.dob}}
@@ -1548,7 +1548,7 @@
   
   <br><label for="name">Name <span style="color:red">*</span>:</label><br>
   {{formData.requestCriminalRecord.name}}
-  <br><label for="maiden name">Previous/maiden name (if applicable) <span style="color:red">*</span> :</label><br>
+  <br><label for="maiden name">Previous/maiden name (if applicable):</label><br>
   {{formData.requestCriminalRecord.maidenName}}
   <br><label for="date of birth">Date of Birth <span style="color:red">*</span>:</label><br>
   {{formData.requestCriminalRecord.dob}}

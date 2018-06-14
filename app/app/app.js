@@ -443,7 +443,8 @@ var originalFormData = $scope.formData;
       var currentBlob = new Blob([uintArray], {type: 'application/pdf'});
       $scope.pdfUrl = URL.createObjectURL(currentBlob);
       // $("#output").append($("<a/>").attr({href: $scope.pdfUrl}).append("Download"));
-      $scope.redirectToURL($scope.pdfUrl);
+      // $scope.redirectToURL($scope.pdfUrl);
+      window.location.href = $scope.pdfUrl;
     }
     else {
       return $scope.pdfUrl = "This form does not contain a PDF";
@@ -578,12 +579,29 @@ var originalFormData = $scope.formData;
     });
   };
   
+  $scope.checkRequiredFields = function(formType){
+    if (formType === 'volunteer'){
+      if ($scope.formData.memberFor && $scope.formData.riderName && $scope.formData.riderGender && $scope.formData.streetAddress && $scope.formData.city && $scope.formData.state && $scope.formData.zip && $scope.formData.preferredPhone && $scope.formData.firstEmergencyContact.name && $scope.formData.firstEmergencyContact.relationship && $scope.formData.firstEmergencyContact.street && $scope.formData.firstEmergencyContact.city && $scope.formData.firstEmergencyContact.state && $scope.formData.firstEmergencyContact.zip && $scope.formData.drivingExperience.adequateVision && $scope.formData.drivingExperience.currentEmployment && $scope.formData.criminalConviction && $scope.formData.movingViolation && $scope.formData.firstReference.name && $scope.formData.firstReference.phoneOrMailing && $scope.formData.firstReference.acquainted && $scope.formData.secondReference.name && $scope.formData.secondReference.phoneOrMailing && $scope.formData.secondReference.acquainted && $scope.formData.thirdReference.name && $scope.formData.thirdReference.phoneOrMailing && $scope.formData.thirdReference.acquainted && $scope.formData.references.signature && $scope.formData.references.date && $scope.formData.memberOfProfessionalOrgOrUnion && $scope.formData.servedInMilitary && $scope.requestDriverRecord.name && $scope.requestDriverRecord.dob && $scope.requestDriverRecord.licenseNumber && $scope.requestDriverRecord.authorize && $scope.requestDriverRecord.signature && $scope.requestDriverRecord.date  && $scope.requestCriminalRecord.name && $scope.requestCriminalRecord.dob && $scope.requestCriminalRecord.licenseNumber && $scope.requestCriminalRecord.authorize && $scope.requestCriminalRecord.signature && $scope.requestCriminalRecord.date && $scope.formData.vehicleDescription.vehicleOWner && $scope.formData.vehicleDescription.make && $scope.formData.vehicleDescription.model && $scope.formData.vehicleDescription.year && $scope.formData.vehicleDescription.registrationPlate && $scope.formData.vehicleDescription.numberOfDoors && $scope.formData.vehicleDescription.registrationExpiration && $scope.formData.vehicleDescription.insuranceCompany && $scope.formData.vehicleDescription.agent && $scope.formData.vehicleDescription.agentEmailAddress && $scope.formData.vehicleDescription.canTransportWalker && $scope.formData.vehicleDescription.canTransportWheelChair && $scope.formData.vehicleDescription.generalCondition && $scope.formData.vehicleDescription.passengerCapacity && $scope.formData.vehicleDescription.canTransportPets && $scope.formData.vehicleDescription.hasLargeTrunk && $scope.formData.vehicleDescription.hasCoveredTruckBed && $scope.formData.vehicleDescription.onlyVehicle && $scope.formData.vehicleDescription.signature && $scope.formData.vehicleDescription.date && $scope.formData.changeOfStatus.signature && $scope.formData.changeOfStatus.date ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+  
   //for membership, volunteer and non-rider forms
   $scope.submitFormWithPDF = function(formType){
     console.log('submitForm PDF, formData is ', $scope.formData);
     $scope.formType = formType;
+    var volunteerRequiredComplete = $scope.checkRequiredFields('volunteer');
     if (!(Object.keys($scope.formData).length === 0 && $scope.formData.constructor === Object)) {
       $scope.loading = true;
+      //check for validations
+      if (!volunteerRequiredComplete){
+        $scope.loading = false;
+        return $scope.serverMessage = 'Please complete all required fields.';
+      }
+      
       if (formType === 'membership' || formType === 'volunteer') {
         $(document).ready(function(){
           $('#pdfVersion').css('display', 'block');
@@ -595,6 +613,7 @@ var originalFormData = $scope.formData;
           $scope.generatePDF();
       } 
     } else {
+      $scope.loading = false;
       $scope.serverMessage = 'You cannot submit an empty form';
     }
   };

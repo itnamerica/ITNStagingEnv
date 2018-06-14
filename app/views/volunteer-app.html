@@ -844,7 +844,7 @@
                             
                             <div class="form-group" ng-class="{ 'has-error' : itnForm.date3.$invalid && !itnForm.date3.$pristine }">
                               <label for="date">Date <span style="color:red">*</span>:</label><br>
-                              <input type="text" class="form-control" id="date" name="date3" ng-model="formData.requestCriminalRecord.date" ng-pattern="datePattern" required>
+                              <input type="text" class="form-control" id="date" name="date3" placeholder="Example: mm/dd/yyy"  ng-model="formData.requestCriminalRecord.date" ng-pattern="datePattern" required>
                               <span ng-if="itnForm.date3.$error.required && !itnForm.date3.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.date3.$error.pattern" class="help-block">{{errorMessages.date}}</span>
                             </div>

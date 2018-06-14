@@ -515,24 +515,24 @@ var originalFormData = $scope.formData;
   };
   
   $scope.prepopulate = function(currentModel, modelType){
-  if (modelType === 'date'){
-    $scope.formData.requestDriverRecord.date = currentModel;
-    $scope.formData.requestCriminalRecord.date = currentModel;
-    $scope.formData.vehicleDescription.date = currentModel;
-    $scope.formData.changeOfStatus.date = currentModel;
-  } else if (modelType === 'signature'){
-    $scope.formData.requestDriverRecord.signature = currentModel;
-    $scope.formData.requestCriminalRecord.signature = currentModel;
-    $scope.formData.vehicleDescription.signature = currentModel;
-    $scope.formData.changeOfStatus.signature = currentModel;
-  } else if (modelType === 'name'){
-    $scope.formData.requestDriverRecord.name = currentModel;
-    $scope.formData.requestCriminalRecord.name = currentModel;
-  } else if (modelType === 'dob'){
-    $scope.formData.requestCriminalRecord.dob = currentModel;
-  } else if (modelType === 'maiden'){
-    $scope.formData.requestCriminalRecord.maidenName = currentModel;
-  }
+    if (modelType === 'date'){
+      $scope.formData.requestDriverRecord.date = currentModel;
+      $scope.formData.requestCriminalRecord.date = currentModel;
+      $scope.formData.vehicleDescription.date = currentModel;
+      $scope.formData.changeOfStatus.date = currentModel;
+    } else if (modelType === 'signature'){
+      $scope.formData.requestDriverRecord.signature = currentModel;
+      $scope.formData.requestCriminalRecord.signature = currentModel;
+      $scope.formData.vehicleDescription.signature = currentModel;
+      $scope.formData.changeOfStatus.signature = currentModel;
+    } else if (modelType === 'name'){
+      $scope.formData.requestDriverRecord.name = currentModel;
+      $scope.formData.requestCriminalRecord.name = currentModel;
+    } else if (modelType === 'dob'){
+      $scope.formData.requestCriminalRecord.dob = currentModel;
+    } else if (modelType === 'maiden'){
+      $scope.formData.requestCriminalRecord.maidenName = currentModel;
+    }
 };
 
   //for contact and newsletter forms

@@ -721,7 +721,7 @@
                           <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.memberOfProfessionalOrgOrUnion.$invalid && !itnForm.memberOfProfessionalOrgOrUnion.$pristine }">
                             <label for="professional organization or labor union">Are you part of any professional organizations or labor unions?: <span style="color:red">*</span> </label><br>
                             <label class="radio-inline"><input ng-model="formData.memberOfProfessionalOrgOrUnion" type="radio" name="memberOfProfessionalOrgOrUnion" value="yes" ng-click="specifyUnions = true">Yes</label>
-                            <label class="radio-inline"><input type="radio" name="memberOfProfessionalOrgOrUnion" value="no" ng-click="specifyUnions = false">No</label>
+                            <label class="radio-inline"><input ng-model="formData.memberOfProfessionalOrgOrUnion" type="radio" name="memberOfProfessionalOrgOrUnion" value="no" ng-click="specifyUnions = false">No</label>
                               <input ng-model="formData.memberOfProfessionalOrgOrUnions" type="text" class="form-control" id="unions" name="unions" placeholder="Please list:" ng-if="specifyUnions">
                               <span ng-if="itnForm.memberOfProfessionalOrgOrUnion.$error.required && !itnForm.memberOfProfessionalOrgOrUnion.$pristine" class="help-block">{{errorMessages.required}}</span>
                           </div>

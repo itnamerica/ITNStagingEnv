@@ -1,4 +1,4 @@
-<div class="member-app" >
+<div class="member-app">
       
     <div class="jumbotron section first-hero" id="first-hero-online-app">
       <h1>Online Membership Form</h1>
@@ -52,6 +52,7 @@
                         </div>
                       </div>
                       
+                      <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
                       
                       
                         <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.memberFor.$invalid }">
@@ -212,7 +213,7 @@
 
                         <div class="member-tabs" ng-if="tab===2 || tab===99" id="tab2">
                           
-                        <img ng-src="{{assetsPath}}/images/icons/itnlanier_white_bg.png" style="margin:auto;display:block" alt="main logo"/>
+                        <img ng-src="{{assetsPath}}/images/icons/itnlanier_white_bg.png" style="margin:auto;display:block;margin-left:33% !important" alt="main logo"/>
 
                         <div class="s-stepper">
                           <div data-target="#stage1" id="stage-1-step" class="s-step">
@@ -244,6 +245,9 @@
                             <small>Agreement & Consent</small>
                           </div>
                         </div>
+                        
+                        <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
+                        <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
 
 
                         <div id="first-emergency">
@@ -416,7 +420,7 @@
 
                           <div class="member-tabs" ng-if="tab===3 || tab===99" id="tab3">
                             
-                            <img ng-src="{{assetsPath}}/images/icons/itnlanier_white_bg.png" ng-style="margin:auto;display:block;text-align:center" alt="main logo"/>
+                            <img ng-src="{{assetsPath}}/images/icons/itnlanier_white_bg.png" style="margin:auto;display:block;text-align:center;margin-left:33% !important" alt="main logo"/>
                             
                             <div class="s-stepper">
                               <div data-target="#stage1" id="stage-1-step" class="s-step">
@@ -448,6 +452,9 @@
                                 <small>Agreement & Consent</small>
                               </div>
                             </div>
+                            
+                            <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
+                            <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
                             
                             <div class="form-group ta-center"  ng-class="{ 'has-error' : itnForm.heardAboutItn.$invalid && !itnForm.heardAboutItn.$pristine }">
                               <label for="Heard about ITN">How did you hear about ITN?: <span style="color:red">*</span></label><br>
@@ -545,7 +552,7 @@
                           
                           <div class="member-tabs" ng-if="tab===4 || tab===99" id="tab4">
                             
-                            <img ng-src="{{assetsPath}}/images/icons/itnlanier_white_bg.png" ng-style="margin:auto;display:block;text-align:center" alt="main logo"/>
+                            <img ng-src="{{assetsPath}}/images/icons/itnlanier_white_bg.png" style="margin:auto;display:block;text-align:center;margin-left:33% !important" alt="main logo"/>
                             
                             <div class="s-stepper">
                               <div data-target="#stage1" id="stage-1-step" class="s-step">
@@ -577,6 +584,9 @@
                                 <small>Agreement & Consent</small>
                               </div>
                             </div>
+                            
+                            <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
+                            <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
                             
                             <p><em>ITNAmerica respects your privacy and will keep all customer information confidential. The following information allows us to provide better service to our customers, and helps us better understand the circumstances that customers face when they apply to use the ITN for rides.</em></p>
                             
@@ -656,7 +666,7 @@
 
                         <div class="member-tabs" ng-if="tab===5 || tab===99" id="tab5">
                           
-                          <img ng-src="{{assetsPath}}/images/icons/itnlanier_white_bg.png" ng-style="margin:auto;display:block;text-align:center" alt="main logo"/>
+                          <img ng-src="{{assetsPath}}/images/icons/itnlanier_white_bg.png" style="margin:auto;display:block;text-align:center;margin-left:33% !important"  alt="main logo"/>
                           
                           <div class="s-stepper">
                             <div data-target="#stage1" id="stage-1-step" class="s-step">
@@ -688,6 +698,9 @@
                               <small>Agreement & Consent</small>
                             </div>
                           </div>
+                          
+                          <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
+                          <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
                           
                           <h2>Civic Engagement</h2>
                           
@@ -747,7 +760,7 @@
 
                         <div class="member-tabs" ng-if="tab===6 || tab===99" id="tab6">
                           
-                          <img ng-src="{{assetsPath}}/images/icons/itnlanier_white_bg.png" ng-style="margin:auto;display:block;text-align:center" alt="main logo"/>
+                          <img ng-src="{{assetsPath}}/images/icons/itnlanier_white_bg.png" style="margin:auto;display:block;text-align:center" alt="main logo"/>
                           
                           <div class="s-stepper">
                             <div data-target="#stage1" id="stage-1-step" class="s-step">
@@ -779,6 +792,9 @@
                               <small>Agreement & Consent</small>
                             </div>
                           </div>
+                          
+                          <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Next</button>
+                          <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
                           
                           <h2>Driving Information</h2>
                           
@@ -948,7 +964,7 @@
 
                         <div class="member-tabs" ng-if="tab===7 || tab===99" id="tab7">
                           
-                          <img ng-src="{{assetsPath}}/images/icons/itnlanier_white_bg.png" ng-style="margin:auto;display:block;text-align:center" alt="main logo" style="margin-left:33% !important"/>
+                          <img ng-src="{{assetsPath}}/images/icons/itnlanier_white_bg.png" style="margin:auto;display:block;text-align:center;margin-left:33% !important" alt="main logo"/>
                           
                           <div class="s-stepper">
                             <div data-target="#stage1" id="stage-1-step" class="s-step">
@@ -980,6 +996,8 @@
                               <small>Agreement & Consent</small>
                             </div>
                           </div>
+                          
+                          <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%">Previous</button>  
                           
                           <h3 class="mt-50 mb-25">Personal Transportation Account Agreement</h3>
                           
@@ -1363,8 +1381,7 @@
     margin-bottom:70px;
   }
   .s-stepper small {
-    font-size:60%;
-    /* font-weight:bold; */
+    font-size:78%;
   }
     
   .s-stepper .s-step {

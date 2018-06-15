@@ -238,25 +238,83 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     $scope.pdfUrl = '';
     $scope.formData = {
       requestDriverRecord: {
-        signature: '',
-        date: '',
-        name: ''
+        signature: null,
+        date: null,
+        name: null,
+        dob: null,
+        agree: null,
+        authorize: null,
+        licenseNumber: null
       },
       requestCriminalRecord: {
-        signature: '',
-        date: '',
-        name: ''
+        signature: null,
+        date: null,
+        name: null,
+        dob: null,
+        agree: null,
+        authorize: null,
+        licenseNumber: null
       },
       vehicleDescription: {
-        signature: '',
-        date: ''
+        signature: null,
+        date: null,
+        agent: null,
+        agentEmailAddress: null,
+        authorize: null,
+        canTransportPets: null,
+        canTransportWalker: null,
+        canTransportWheelChair: null,
+        generalCondition: null,
+        hasCoveredTruckBed: null,
+        hasLargeTrunk: null,
+        insuranceCompany: null,
+        make: null,
+        model: null,
+        numberOfDoors: null,
+        onlyVehicle: null,
+        passengerCapacity: null,
+        registrationExpiration: null,
+        registrationPlate: null
       },
       changeOfStatus: {
-        signature: '',
-        date: ''
-      }
+        signature: null,
+        date: null
+      },
+      drivingExperience: {
+        adequateVision: null
+      },
+      firstEmergencyContact: {
+        city: null,
+        email: null,
+        name: null,
+        preferredPhone: null,
+        relationship: null,
+        state: null,
+        street: null,
+        zip: null
+      },
+      firstReference: {
+        acquainted: null,
+        phoneOrMailing: null,
+        name: null
+      },
+      references: {
+        signature: null,
+        date: null
+      },
+      secondReference: {
+        acquainted: null,
+        phoneOrMailing: null,
+        name: null
+      },
+      thirdReference: {
+        acquainted: null,
+        phoneOrMailing: null,
+        name: null
+      },
     };
 var originalFormData = $scope.formData;
+
   
 
   $transitions.onSuccess({}, function(transition){
@@ -536,6 +594,32 @@ var originalFormData = $scope.formData;
     }
 };
 
+$scope.checkRequiredFields = function(formType){
+  console.log('inside check required');
+  var requiredVolunteerFieldsArray = [$scope.formData.memberFor , $scope.formData.riderName , $scope.formData.riderGender , $scope.formData.streetAddress , $scope.formData.city , $scope.formData.state , $scope.formData.zip , $scope.formData.preferredPhone , $scope.formData.firstEmergencyContact, $scope.formData.changeOfStatus, $scope.formData.drivingExperience, $scope.formData.firstReference, $scope.formData.secondReference, $scope.formData.thirdReference, $scope.formData.references, $scope.formData.requestDriverRecord, $scope.formData.requestCriminalRecord, $scope.formData.vehicleDescription, $scope.formData.firstEmergencyContact.name , $scope.formData.firstEmergencyContact.relationship , $scope.formData.firstEmergencyContact.street , $scope.formData.firstEmergencyContact.city , $scope.formData.firstEmergencyContact.state , $scope.formData.firstEmergencyContact.zip , $scope.formData.drivingExperience.adequateVision , $scope.formData.drivingExperience.currentEmployment , $scope.formData.criminalConviction , $scope.formData.movingViolation , $scope.formData.firstReference.name , $scope.formData.firstReference.phoneOrMailing , $scope.formData.firstReference.acquainted , $scope.formData.secondReference.name , $scope.formData.secondReference.phoneOrMailing , $scope.formData.secondReference.acquainted , $scope.formData.thirdReference.name , $scope.formData.thirdReference.phoneOrMailing , $scope.formData.thirdReference.acquainted , $scope.formData.references.signature , $scope.formData.references.date , $scope.formData.memberOfProfessionalOrgOrUnion , $scope.formData.servedInMilitary , $scope.formData.requestDriverRecord.name , $scope.formData.requestDriverRecord.dob , $scope.formData.requestDriverRecord.licenseNumber , $scope.formData.requestDriverRecord.authorize , $scope.formData.requestDriverRecord.signature , $scope.formData.requestDriverRecord.date  , $scope.formData.requestCriminalRecord.name , $scope.formData.requestCriminalRecord.dob , $scope.formData.requestCriminalRecord.licenseNumber , $scope.formData.requestCriminalRecord.authorize , $scope.formData.requestCriminalRecord.signature , $scope.formData.requestCriminalRecord.date , $scope.formData.vehicleDescription.vehicleOWner , $scope.formData.vehicleDescription.make , $scope.formData.vehicleDescription.model , $scope.formData.vehicleDescription.year , $scope.formData.vehicleDescription.registrationPlate , $scope.formData.vehicleDescription.numberOfDoors , $scope.formData.vehicleDescription.registrationExpiration , $scope.formData.vehicleDescription.insuranceCompany , $scope.formData.vehicleDescription.agent , $scope.formData.vehicleDescription.agentEmailAddress , $scope.formData.vehicleDescription.canTransportWalker , $scope.formData.vehicleDescription.canTransportWheelChair , $scope.formData.vehicleDescription.generalCondition , $scope.formData.vehicleDescription.passengerCapacity , $scope.formData.vehicleDescription.canTransportPets , $scope.formData.vehicleDescription.hasLargeTrunk , $scope.formData.vehicleDescription.hasCoveredTruckBed , $scope.formData.vehicleDescription.onlyVehicle , $scope.formData.vehicleDescription.signature , $scope.formData.vehicleDescription.date , $scope.formData.changeOfStatus.signature , $scope.formData.changeOfStatus.date , $scope.formData.agree , $scope.formData.requestDriverRecord.agree , $scope.formData.requestDriverRecord.authorize , $scope.formData.requestCriminalRecord.agree , $scope.formData.requestCriminalRecord.authorize , $scope.formData.vehicleDescription.authorize];
+  
+  for (var field=0; field < requiredVolunteerFieldsArray.length; field++ ){
+    console.log(requiredVolunteerFieldsArray[field]);
+    if (!requiredVolunteerFieldsArray[field]){
+      console.log('this element wasnt validated', field);
+      return false;
+    } 
+  }
+  return true;
+};
+
+$scope.checkRequiredFields2 = function(formType){
+  if (formType === 'volunteer'){
+    if ($scope.formData.memberFor && $scope.formData.riderName && $scope.formData.riderGender && $scope.formData.streetAddress && $scope.formData.city && $scope.formData.state && $scope.formData.zip && $scope.formData.preferredPhone && $scope.formData.firstEmergencyContact.name && $scope.formData.firstEmergencyContact.relationship && $scope.formData.firstEmergencyContact.street && $scope.formData.firstEmergencyContact.city && $scope.formData.firstEmergencyContact.state && $scope.formData.firstEmergencyContact.zip && $scope.formData.drivingExperience.adequateVision && $scope.formData.drivingExperience.currentEmployment && $scope.formData.criminalConviction && $scope.formData.movingViolation && $scope.formData.firstReference.name && $scope.formData.firstReference.phoneOrMailing && $scope.formData.firstReference.acquainted && $scope.formData.secondReference.name && $scope.formData.secondReference.phoneOrMailing && $scope.formData.secondReference.acquainted && $scope.formData.thirdReference.name && $scope.formData.thirdReference.phoneOrMailing && $scope.formData.thirdReference.acquainted && $scope.formData.references.signature && $scope.formData.references.date && $scope.formData.memberOfProfessionalOrgOrUnion && $scope.formData.servedInMilitary && $scope.requestDriverRecord.name && $scope.requestDriverRecord.dob && $scope.requestDriverRecord.licenseNumber && $scope.requestDriverRecord.authorize && $scope.requestDriverRecord.signature && $scope.requestDriverRecord.date  && $scope.requestCriminalRecord.name && $scope.requestCriminalRecord.dob && $scope.requestCriminalRecord.licenseNumber && $scope.requestCriminalRecord.authorize && $scope.requestCriminalRecord.signature && $scope.requestCriminalRecord.date && $scope.formData.vehicleDescription.vehicleOWner && $scope.formData.vehicleDescription.make && $scope.formData.vehicleDescription.model && $scope.formData.vehicleDescription.year && $scope.formData.vehicleDescription.registrationPlate && $scope.formData.vehicleDescription.numberOfDoors && $scope.formData.vehicleDescription.registrationExpiration && $scope.formData.vehicleDescription.insuranceCompany && $scope.formData.vehicleDescription.agent && $scope.formData.vehicleDescription.agentEmailAddress && $scope.formData.vehicleDescription.canTransportWalker && $scope.formData.vehicleDescription.canTransportWheelChair && $scope.formData.vehicleDescription.generalCondition && $scope.formData.vehicleDescription.passengerCapacity && $scope.formData.vehicleDescription.canTransportPets && $scope.formData.vehicleDescription.hasLargeTrunk && $scope.formData.vehicleDescription.hasCoveredTruckBed && $scope.formData.vehicleDescription.onlyVehicle && $scope.formData.vehicleDescription.signature && $scope.formData.vehicleDescription.date && $scope.formData.changeOfStatus.signature && $scope.formData.changeOfStatus.date && $scope.formData.agree && $scope.formData.requestDriverRecord.agree && $scope.formData.requestDriverRecord.authorize && $scope.formData.requestCriminalRecord.agree && $scope.formData.requestCriminalRecord.authorize && formData.vehicleDescription.authorize ) {
+      console.log('incomplete fields');
+      return true;
+    } else {
+      console.log('complete fields');
+      return false;
+    }
+  }
+};
+
   //for contact and newsletter forms
   $scope.submitForm = function(formType){
     var objLength = Object.keys($scope.formData).length;
@@ -579,23 +663,14 @@ var originalFormData = $scope.formData;
     });
   };
   
-  $scope.checkRequiredFields = function(formType){
-    if (formType === 'volunteer'){
-      if ($scope.formData.memberFor && $scope.formData.riderName && $scope.formData.riderGender && $scope.formData.streetAddress && $scope.formData.city && $scope.formData.state && $scope.formData.zip && $scope.formData.preferredPhone && $scope.formData.firstEmergencyContact.name && $scope.formData.firstEmergencyContact.relationship && $scope.formData.firstEmergencyContact.street && $scope.formData.firstEmergencyContact.city && $scope.formData.firstEmergencyContact.state && $scope.formData.firstEmergencyContact.zip && $scope.formData.drivingExperience.adequateVision && $scope.formData.drivingExperience.currentEmployment && $scope.formData.criminalConviction && $scope.formData.movingViolation && $scope.formData.firstReference.name && $scope.formData.firstReference.phoneOrMailing && $scope.formData.firstReference.acquainted && $scope.formData.secondReference.name && $scope.formData.secondReference.phoneOrMailing && $scope.formData.secondReference.acquainted && $scope.formData.thirdReference.name && $scope.formData.thirdReference.phoneOrMailing && $scope.formData.thirdReference.acquainted && $scope.formData.references.signature && $scope.formData.references.date && $scope.formData.memberOfProfessionalOrgOrUnion && $scope.formData.servedInMilitary && $scope.requestDriverRecord.name && $scope.requestDriverRecord.dob && $scope.requestDriverRecord.licenseNumber && $scope.requestDriverRecord.authorize && $scope.requestDriverRecord.signature && $scope.requestDriverRecord.date  && $scope.requestCriminalRecord.name && $scope.requestCriminalRecord.dob && $scope.requestCriminalRecord.licenseNumber && $scope.requestCriminalRecord.authorize && $scope.requestCriminalRecord.signature && $scope.requestCriminalRecord.date && $scope.formData.vehicleDescription.vehicleOWner && $scope.formData.vehicleDescription.make && $scope.formData.vehicleDescription.model && $scope.formData.vehicleDescription.year && $scope.formData.vehicleDescription.registrationPlate && $scope.formData.vehicleDescription.numberOfDoors && $scope.formData.vehicleDescription.registrationExpiration && $scope.formData.vehicleDescription.insuranceCompany && $scope.formData.vehicleDescription.agent && $scope.formData.vehicleDescription.agentEmailAddress && $scope.formData.vehicleDescription.canTransportWalker && $scope.formData.vehicleDescription.canTransportWheelChair && $scope.formData.vehicleDescription.generalCondition && $scope.formData.vehicleDescription.passengerCapacity && $scope.formData.vehicleDescription.canTransportPets && $scope.formData.vehicleDescription.hasLargeTrunk && $scope.formData.vehicleDescription.hasCoveredTruckBed && $scope.formData.vehicleDescription.onlyVehicle && $scope.formData.vehicleDescription.signature && $scope.formData.vehicleDescription.date && $scope.formData.changeOfStatus.signature && $scope.formData.changeOfStatus.date && $scope.formData.agree && $scope.formData.requestDriverRecord.agree && $scope.formData.requestDriverRecord.authorize && $scope.formData.requestCriminalRecord.agree && $scope.formData.requestCriminalRecord.authorize && formData.vehicleDescription.authorize ) {
-        console.log('incomplete fields');
-        return true;
-      } else {
-        console.log('complete fields');
-        return false;
-      }
-    }
-  }
+
   
   //for membership, volunteer and non-rider forms
   $scope.submitFormWithPDF = function(formType){
     console.log('submitForm PDF, formData is ', $scope.formData);
     $scope.formType = formType;
     var volunteerRequiredComplete = $scope.checkRequiredFields('volunteer');
+    console.log('volunteerRequiredComplete is ', volunteerRequiredComplete);
     if (!(Object.keys($scope.formData).length === 0 && $scope.formData.constructor === Object)) {
       $scope.loading = true;
       //check for validations

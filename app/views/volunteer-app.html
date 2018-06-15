@@ -651,9 +651,9 @@
                 
                 <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.memberOfProfessionalOrgOrUnion.$invalid && !itnForm.memberOfProfessionalOrgOrUnion.$pristine }">
                   <label for="professional organization or labor union">Are you part of any professional organizations or labor unions?: <span style="color:red">*</span> </label><br>
-                  <label class="radio-inline"><input ng-model="formData.memberOfProfessionalOrgOrUnion" type="radio" name="memberOfProfessionalOrgOrUnion" value="yes" ng-click="specifyUnions = !specifyUnions">Yes</label>
-                  <label class="radio-inline"><input type="radio" name="memberOfProfessionalOrgOrUnion" value="no" required>No</label>
-                    <input ng-model="formData.memberOfProfessionalOrgOrUnions" type="text" class="form-control" id="unions" name="unions" placeholder="Please list:" ng-if="specifyUnions">
+                  <label class="radio-inline"><input ng-model="formData.memberOfProfessionalOrgOrUnion" type="radio" name="memberOfProfessionalOrgOrUnion" value="yes" ng-click="specifyUnions = true">Yes</label>
+                  <label class="radio-inline"><input type="radio" name="memberOfProfessionalOrgOrUnion" value="no" ng-click="specifyUnions = true" required>No</label>
+                    <input ng-model="formData.memberOfProfessionalOrgOrUnions" type="text" class="form-control" id="unions" name="unions" placeholder="Please list:" ng-show="specifyUnions">
                     <span ng-if="itnForm.memberOfProfessionalOrgOrUnion.$error.required && !itnForm.memberOfProfessionalOrgOrUnion.$pristine" class="help-block">{{errorMessages.required}}</span>
                 </div>
                 
@@ -1270,7 +1270,6 @@
                           </div>
                           
                           <!-- <button type="button" ng-click="nextTabMemberApp()" ng-disabled="itnForm.signature5.$invalid || itnForm.date5.$invalid" class="next-tab btn btn-lg  btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button> -->
-                          <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Next</button>
                           <button type="button" ng-click="nextTabMemberApp('prev')" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin-left:2%;margin-top:-50px">Previous</button>  
                           
                           

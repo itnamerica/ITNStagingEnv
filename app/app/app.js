@@ -326,6 +326,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     secondEmergencyContact: {}
   };    
 var originalFormData = $scope.formData;
+$scope.showForm = false;
 
   
 
@@ -635,7 +636,7 @@ $scope.checkRequiredFields = function(formType){
       'First Emergency Contact state': $scope.formData.firstEmergencyContact.state , 
       'First Emergency Contact zip': $scope.formData.firstEmergencyContact.zip , 
       'Has adequate vision': $scope.formData.drivingExperience.adequateVision , 
-      'Is currently employed': $scope.formData.drivingExperience.currentEmployment , 
+      'Current employment status': $scope.formData.currentEmployment , 
       'Has past criminal conviction': $scope.formData.criminalConviction , 
       'Has been convicted of moving violation in past 3 years': $scope.formData.movingViolation , 
       'First reference name': $scope.formData.firstReference.name , 
@@ -755,6 +756,7 @@ $scope.checkRequiredFields = function(formType){
     console.log('field is ', field);
     if (requiredFieldsArray.hasOwnProperty(field) && !requiredFieldsArray[field]){
           console.log('You must fill this required field: ', field);
+          $scope.serverMessage = 'Please complete all required fields. Field missing is ' + field;
           return false;
     }
   }
@@ -818,7 +820,8 @@ $scope.checkRequiredFields = function(formType){
       //check for validations
       if (!volunteerRequiredComplete){
         $scope.loading = false;
-        return $scope.serverMessage = 'Please complete all required fields.';
+        return $scope.serverMessage;
+        // return $scope.serverMessage = 'Please complete all required fields.';
       }
       
       if (formType === 'membership' || formType === 'volunteer') {
@@ -888,6 +891,7 @@ $scope.checkRequiredFields = function(formType){
           formType: $scope.formType
         }).then(function(res){
             $scope.loading = false;
+            $scope.showForm = false;
             $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
         }).catch(function(err){
           $scope.loading = false;

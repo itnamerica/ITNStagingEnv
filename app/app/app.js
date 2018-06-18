@@ -752,8 +752,9 @@ $scope.checkRequiredFields = function(formType){
   }
   
   for (var field in requiredFieldsArray){
+    console.log('field is ', field);
     if (requiredFieldsArray.hasOwnProperty(field) && !requiredFieldsArray[field]){
-          alert('You must fill this required field: ', field);
+          console.log('You must fill this required field: ', field);
           return false;
     }
   }

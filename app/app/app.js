@@ -811,6 +811,7 @@ $scope.checkRequiredFields = function(formType){
   //for membership, volunteer and non-rider forms
   $scope.submitFormWithPDF = function(formType){
     console.log('submitForm PDF, formData is ', $scope.formData);
+    $scope.serverMessage = '';
     $scope.formType = formType;
     var volunteerRequiredComplete = $scope.checkRequiredFields(formType);
     console.log('volunteerRequiredComplete is ', volunteerRequiredComplete);

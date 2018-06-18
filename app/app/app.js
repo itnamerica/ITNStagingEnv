@@ -163,7 +163,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     $scope.viewsPath = "../app/views";
   };
   
-  $scope.affiliate = "Lanier";
+  $scope.affiliate = "StagingEnv";
   $scope.zoomLevel = 1;
   $scope.tab = 1;
   $scope.loading = false;
@@ -236,97 +236,20 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
       newsletter: 0
     };
     $scope.pdfUrl = '';
-    // $scope.formData = {
-    //   requestDriverRecord: {
-    //     signature: null,
-    //     date: null,
-    //     name: null,
-    //     dob: null,
-    //     agree: null,
-    //     authorize: null,
-    //     licenseNumber: null
-    //   },
-    //   requestCriminalRecord: {
-    //     signature: null,
-    //     date: null,
-    //     name: null,
-    //     dob: null,
-    //     agree: null,
-    //     authorize: null,
-    //     licenseNumber: null
-    //   },
-    //   vehicleDescription: {
-    //     signature: null,
-    //     date: null,
-    //     agent: null,
-    //     agentEmailAddress: null,
-    //     authorize: null,
-    //     canTransportPets: null,
-    //     canTransportWalker: null,
-    //     canTransportWheelChair: null,
-    //     generalCondition: null,
-    //     hasCoveredTruckBed: null,
-    //     hasLargeTrunk: null,
-    //     insuranceCompany: null,
-    //     make: null,
-    //     model: null,
-    //     numberOfDoors: null,
-    //     onlyVehicle: null,
-    //     passengerCapacity: null,
-    //     registrationExpiration: null,
-    //     registrationPlate: null
-    //   },
-    //   changeOfStatus: {
-    //     signature: null,
-    //     date: null
-    //   },
-    //   drivingExperience: {
-    //     adequateVision: null
-    //   },
-    //   firstEmergencyContact: {
-    //     city: null,
-    //     email: null,
-    //     name: null,
-    //     preferredPhone: null,
-    //     relationship: null,
-    //     state: null,
-    //     street: null,
-    //     zip: null
-    //   },
-    //   firstReference: {
-    //     acquainted: null,
-    //     phoneOrMailing: null,
-    //     name: null
-    //   },
-    //   references: {
-    //     signature: null,
-    //     date: null
-    //   },
-    //   secondReference: {
-    //     acquainted: null,
-    //     phoneOrMailing: null,
-    //     name: null
-    //   },
-    //   thirdReference: {
-    //     acquainted: null,
-    //     phoneOrMailing: null,
-    //     name: null
-    //   },
-    // };
-  $scope.formData = {
-    requestDriverRecord: {},
-    requestCriminalRecord: {},
-    vehicleDescription: {},
-    changeOfStatus: {},
-    drivingExperience: {},
-    firstReference: {},
-    secondReference: {},
-    thirdReference: {},
-    firstEmergencyContact: {},
-    secondEmergencyContact: {}
-  };    
-var originalFormData = $scope.formData;
-$scope.showForm = false;
+    $scope.formData = {
+      requestDriverRecord: {},
+      requestCriminalRecord: {},
+      vehicleDescription: {},
+      changeOfStatus: {},
+      drivingExperience: {},
+      firstReference: {},
+      secondReference: {},
+      thirdReference: {},
+      firstEmergencyContact: {},
+      secondEmergencyContact: {}
+    };    
+    var originalFormData = $scope.formData;
+    $scope.showForm = false;
 
   
 
@@ -619,16 +542,6 @@ $scope.checkRequiredFields = function(formType){
       'State': $scope.formData.state , 
       'Zip': $scope.formData.zip , 
       'Preferred phone': $scope.formData.preferredPhone , 
-      // 'First emergency contact (full)': $scope.formData.firstEmergencyContact, 
-      // 'Change of Status (full)': $scope.formData.changeOfStatus, 
-      // 'Driving Experience (full)': $scope.formData.drivingExperience, 
-      // 'First Reference (full)': $scope.formData.firstReference, 
-      // 'Second Reference (full)': $scope.formData.secondReference,
-      // 'Third Reference (full)': $scope.formData.thirdReference, 
-      // 'Reference obj (full)': $scope.formData.references, 
-      // 'Request Driver Records (full)': $scope.formData.requestDriverRecord, 
-      // 'Request Criminal Records (full)': $scope.formData.requestCriminalRecord, 
-      // 'Third Reference (full)': $scope.formData.vehicleDescription, 
       'First Emergency Contact name': $scope.formData.firstEmergencyContact.name , 
       'First Emergency Contact relationship': $scope.formData.firstEmergencyContact.relationship , 
       'First Emergency Contact street': $scope.formData.firstEmergencyContact.street , 
@@ -854,7 +767,7 @@ $scope.checkRequiredFields = function(formType){
         console.log('data is ', data);
         $scope.dataPDF = data;
         $http.post('/sendmail', {
-          from: '"ITNLanier Web User" <donotreply@itnamerica.com>',
+          from: '"ITNStagingEnv Web User" <donotreply@itnamerica.com>',
           to: 'itnamerica2018@gmail.com',
           subject: $scope.formSubject,
           text: $scope.formData,
@@ -883,7 +796,7 @@ $scope.checkRequiredFields = function(formType){
         console.log('data is ', data);
         $scope.dataPDF = data;
         $http.post('/sendmail', {
-          from: '"ITNLanier Web User" <donotreply@itnamerica.com>',
+          from: '"ITNStagingEnv Web User" <donotreply@itnamerica.com>',
           to: 'itnamerica2018@gmail.com',
           subject: $scope.formSubject,
           text: $scope.formData,

@@ -661,7 +661,6 @@ $scope.checkRequiredFields = function(formType){
       'Authorization to Request Driver Record - checkbox authorization': $scope.formData.requestDriverRecord.agree , 
       'Authorization to Request Criminal Record - name': $scope.formData.requestCriminalRecord.name , 
       'Authorization to Request Criminal Record - date of birth': $scope.formData.requestCriminalRecord.dob , 
-      'Authorization to Request Criminal Record - license number': $scope.formData.requestCriminalRecord.licenseNumber , 
       'Authorization to Request Criminal Record - from state': $scope.formData.requestCriminalRecord.authorize , 
       'Authorization to Request Criminal Record - signature': $scope.formData.requestCriminalRecord.signature , 
       'Authorization to Request Criminal Record - date': $scope.formData.requestCriminalRecord.date , 
@@ -756,7 +755,7 @@ $scope.checkRequiredFields = function(formType){
     console.log('field is ', field);
     if (requiredFieldsArray.hasOwnProperty(field) && !requiredFieldsArray[field]){
           console.log('You must fill this required field: ', field);
-          $scope.serverMessage = 'Please complete all required fields. Field missing is ' + field;
+          $scope.serverMessage = 'Please complete all required fields. Field missing is:  " ' + field + '"';
           return false;
     }
   }

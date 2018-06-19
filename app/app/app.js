@@ -710,10 +710,10 @@ $scope.checkRequiredFields = function(formType){
     }
     $http.post('/sendmail', formObj)
       .then(function(res){
-        $scope.loading = false;
+        $scope.loading = '';
         $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
     }).catch(function(err){
-        $scope.loading = false;
+        $scope.loading = '';
         $scope.serverMessage = 'There was an error submitting your form. Please contact us by phone instead.';
     });
   };

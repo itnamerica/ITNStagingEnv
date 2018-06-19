@@ -164,10 +164,10 @@
           <div class="footer-title">ITN<em>{{affiliate | uppercase}}</em></div>
           <hr>
           <ul>
+            <li><a ui-sref="contact" target="_blank">Contact Us</a></li>
             <li ng-hide="session"><a ui-sref="login">Login</a></li>
             <li ng-show="session"><a ng-click="logout()">Logout</a></li>
             <li ng-show="session"><a ui-sref="dashboard">Admin Portal</a></li>
-            <li><a ui-sref="contact" target="_blank">Contact Us</a></li>
           </ul>
         </div>
         

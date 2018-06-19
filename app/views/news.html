@@ -52,7 +52,7 @@
                 <span ng-if="itnForm.email.$error.pattern" class="help-block">{{errorMessages.email}}</span>
               </div> 
 
-              <button type="submit" class="btn btn-lg center-block">Sign me up</button>
+              <button type="submit" class="btn btn-lg center-block" ng-disabled="loading" >Sign me up</button>
             </form>
             
           </div>

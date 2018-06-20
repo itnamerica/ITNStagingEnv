@@ -1059,7 +1059,7 @@
                               <span ng-if="itnForm.signature2.$error.required && !itnForm.signature2.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.signature2.$error.minlength" class="help-block">{{errorMessages.minlength}}</span>
                               <span ng-if="itnForm.signature2.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
-                              <span ng-if="itnForm.signature2.$error.mismatch" class="help-block">{{errorMessages.mismatchSignature}}</span>
+                              <span ng-if="itnForm.signature2.$error.mismatch && !itnForm.signature2.$pristine" class="help-block">{{errorMessages.mismatchSignature}}</span>
                             </div>
                             
                             <div class="form-group col-sm-4" ng-class="{ 'has-error' : itnForm.date2.$invalid && !itnForm.date2.$pristine }">
@@ -1067,7 +1067,7 @@
                               <input ng-model="formData.agreement.date2" type="text" class="form-control" id="date" name="date2" ng-pattern="datePattern" placeholder="Example: mm/dd/yyyy" match="formData.agreement.date1" required>
                               <span ng-if="itnForm.date2.$error.required && !itnForm.date2.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.date2.$error.pattern" class="help-block">{{errorMessages.date}}</span>
-                              <span ng-if="itnForm.date2.$error.mismatch" class="help-block">{{errorMessages.mismatchDate}}</span>
+                              <span ng-if="itnForm.date2.$error.mismatch  && !itnForm.date2.$pristine" class="help-block">{{errorMessages.mismatchDate}}</span>
                             </div>
                           </div><!--row-->
                             

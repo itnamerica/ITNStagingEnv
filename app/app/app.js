@@ -151,7 +151,7 @@ myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
     }
   ]);
 
-myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorScroll', '$location', '$stateParams', '$timeout', '$state', '$rootScope', '$window', 'FormService', function ($scope, $transitions, $http, $anchorScroll, $location, $stateParams, $timeout, $state, $rootScope, $window, FormService)  {
+myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorScroll', '$location', '$stateParams', '$timeout', '$state', '$rootScope', '$window', 'FormService', '$sce', function ($scope, $transitions, $http, $anchorScroll, $location, $stateParams, $timeout, $state, $rootScope, $window, FormService, $sce)  {
   console.log('inside main controller');
 
   $scope.assetsPath = "assets";
@@ -872,6 +872,12 @@ myApp.filter('filterLongObj', function($filter){
     }
   }
 });
+
+myApp.filter('newlines', function ($sce) {
+    return function(text) {
+        return $sce.trustAsHtml(text.replace(/,/g,'<br>'));
+    }
+})
 
 
 myApp.filter('timestamp', function(){

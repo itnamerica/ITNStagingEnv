@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ui.router', 'ngAnimate','angularUtils.directives.dirPagination']);
+var myApp = angular.module('myApp', ['ui.router', 'ngAnimate','angularUtils.directives.dirPagination','angular-toArrayFilter']);
 
 myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
   console.log('inside of config block');
@@ -679,6 +679,12 @@ $scope.checkRequiredFields = function(formType){
   $scope.validateContactInputs = function(){
     return ($scope.formData.name && $scope.formData.email && $scope.formData.phone && $scope.formData.subject && $scope.formData.messageBody ) ? true : false;
   };
+  
+  $scope.emptyOrNull = function(formField){
+    if (Object.keys(formField).length > 1){
+      return formField
+    }
+  };
 
   //for contact and newsletter forms
   $scope.submitForm = function(formType){
@@ -874,10 +880,17 @@ myApp.filter('filterLongObj', function($filter){
 });
 
 myApp.filter('newlines', function ($sce) {
-    return function(text) {
-        return $sce.trustAsHtml(text.replace(/,/g,'<br>'));
+    return function(formObj) {
+        return $sce.trustAsHtml(formObj.replace(/,/g,'<br>'));
     }
-})
+});
+
+myApp.filter('removeHashEtc', function () {
+    return function(formObj) {
+      delete formObj.$$hashKey
+        return formObj;
+    }
+});
 
 
 myApp.filter('timestamp', function(){

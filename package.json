@@ -34,6 +34,7 @@
     "@uirouter/angularjs": "^1.0.15",
     "angular-animate": "~1.5.*",
     "angular-search": "^0.2.1",
+    "angular-toarrayfilter": "^1.0.3",
     "body-parser": "^1.14.2",
     "bootstrap": "^4.0.0",
     "bower": "^1.8.2",

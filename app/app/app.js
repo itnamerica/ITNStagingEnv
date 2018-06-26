@@ -680,9 +680,18 @@ $scope.checkRequiredFields = function(formType){
     return ($scope.formData.name && $scope.formData.email && $scope.formData.phone && $scope.formData.subject && $scope.formData.messageBody ) ? true : false;
   };
   
-  $scope.emptyOrNull = function(formField){
-    if (Object.keys(formField).length > 1){
-      return formField
+  
+  $scope.removeIfEmpty = function(formField){
+    console.log('form field is ', formField, 'type is ', typeof(formField), 'length is ', formField.length)
+    if ((formField.constructor === Object) && (Object.keys(formField).length < 1)){
+      console.log('false1');
+      return false;
+    } else if ((formField.constructor === String) && (formField.length < 1)){
+      console.log('false2');
+      return false;
+    } else {
+      console.log('true');
+      return true;
     }
   };
 
@@ -881,17 +890,11 @@ myApp.filter('filterLongObj', function($filter){
 
 myApp.filter('newlines', function ($sce) {
     return function(formObj) {
+      if (formObj){
         return $sce.trustAsHtml(formObj.replace(/,/g,'<br>'));
+      }
     }
 });
-
-myApp.filter('removeHashEtc', function () {
-    return function(formObj) {
-      delete formObj.$$hashKey
-        return formObj;
-    }
-});
-
 
 myApp.filter('timestamp', function(){
   return function(formObj){

@@ -8,7 +8,7 @@
       
       <div class="container">
         <p class="ta-center"><em>Once you have completed the application we will send you a confirmation email. <br>
-          You can book your first ride by calling us at (314) 724-2117 (St Louis) or (636) 329-0888 (St Charles).</em></p>
+          You can book your first ride by calling us at (831) 233-3447.</em></p>
           <p><strong>All fields with an asterisk (<span style="color:red">*</span>) are required</strong></p>
         <hr align="center">
         <div class="col-sm-12">
@@ -54,13 +54,6 @@
                       
                       <button type="button" ng-click="nextTabMemberApp()" class="next-tab btn btn-lg btn-primary pull-right itn-green-bg"  style="margin:-50px 0 30px 2%">Next</button>
                       
-                      
-                        <div class="form-group ta-center" ng-class="{ 'has-error' : itnForm.memberFor.$invalid }">
-                          <label for="Membership for which ITN">Membership for: <span style="color:red">*</span></label><br>
-                          <label class="radio-inline"><input type="radio" value="stcharles" name="memberFor" ng-model="formData.memberFor">St. Charles</label>
-                          <label class="radio-inline"><input type="radio" name="memberFor" value="stlouis" ng-model="formData.memberFor" required>St. Louis</label>
-                          <span ng-if="itnForm.memberFor.$error.required && !itnForm.memberFor.$pristine" class="help-block">{{errorMessages.required}}</span>
-                        </div>
 
                   
                       
@@ -1067,7 +1060,7 @@
                               <input ng-model="formData.agreement.date2" type="text" class="form-control" id="date" name="date2" ng-pattern="datePattern" placeholder="Example: mm/dd/yyyy" match="formData.agreement.date1" required>
                               <span ng-if="itnForm.date2.$error.required && !itnForm.date2.$pristine" class="help-block">{{errorMessages.required}}</span>
                               <span ng-if="itnForm.date2.$error.pattern" class="help-block">{{errorMessages.date}}</span>
-                              <span ng-if="itnForm.date2.$error.mismatch  && !itnForm.date2.$pristine" class="help-block">{{errorMessages.mismatchDate}}</span>
+                              <span ng-if="itnForm.date2.$error.mismatch && !itnForm.date2.$pristine" class="help-block">{{errorMessages.mismatchDate}}</span>
                             </div>
                           </div><!--row-->
                             

@@ -51,6 +51,9 @@
                 <input type="text" class="form-control center-block" id="email" name="email" placeholder="Example: test@example.com" ng-model="formData.email" ng-pattern="emailPattern" style="width:70%">
                 <span ng-if="itnForm.email.$error.pattern" class="help-block">{{errorMessages.email}}</span>
               </div> 
+              
+              <p ng-if="loading"><em>Loading. Please wait</em></p>
+              <p style="color:red; margin-top:50px"><strong>{{serverMessage}}</strong></p>
 
               <button type="submit" class="btn btn-lg center-block" ng-disabled="loading" >Sign me up</button>
             </form>

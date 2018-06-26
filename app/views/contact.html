@@ -1,4 +1,4 @@
-<div class="contact non-rider">
+<div class="contact non-rider" ng-init="resetFormData()">
       
     <div class="jumbotron section first-hero" id="first-hero-contact">
       <h1>Contact Us</h1>
@@ -7,7 +7,8 @@
     <div class="jumbotron section" style="background: #c7dfe4">
       
       <div class="container">
-        <h3>Want to learn more about ITN<em>{{affiliate}}</em>? Have questions or comments? Use the form below, or call us at (678) 696-0360. Or visit us at 999 Chestnut St. SE, Gainesville, GA 30501.</h3>
+        <h3>Want to learn more about ITN<em>MontereyCounty</em>? Have questions or comments? Use the form below, call us at (831) 233-3447 or fax us 831-998-8393. <br>
+          Or even visit us at 947D Blanco Circle, Salinas, CA 93901</h3>
         <hr align="center">
         <div class="col-sm-12">
             <div class="form-area" style="background: #c7dfe4;border:none"> 
@@ -48,15 +49,17 @@
                   <span ng-if="itnForm.message.$error.maxlength" class="help-block">{{errorMessages.maxlength}}</span>
                     <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>                    
                 </div>
+                
+                <p ng-if="loading"><em>Loading. Please wait</em></p>
+                <p style="color:red; margin-top:50px"><strong>{{serverMessage}}</strong></p>
                   
-                <input type="submit" id="submit" ng-hide="loading" class="btn btn-lg btn-primary pull-right itn-green-bg" value="Send" style="margin-left:2%">
+                <input type="submit" id="submit" class="btn btn-lg btn-primary pull-right itn-green-bg" value="Send" style="margin-left:2%">
                 <input type="button" ng-click="formData = {}" value="Reset Form" class="btn btn-lg pull-right itn-green-bg"  style="margin-left:2%">
               
               </form>
             </div>
+            
           </div>
-          <p ng-if="loading"><em>Loading. Please wait</em></p>
-          <p style="color:red; margin-top:50px"><strong>{{serverMessage}}</strong></p>
         </div>
       
     </div><!--jumbo-->
@@ -65,7 +68,7 @@
 
 
   
-<script>
+  <script>
   $(document).ready(function(){ 
     $('#characterLeft').text('2000 characters left');
     $('#message').keydown(function () {
@@ -84,4 +87,5 @@
         }
     });    
 });
-</script>
+
+  </script>

@@ -188,9 +188,9 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     dob: "The date of birth should have the format: MM/DD/YYYY",
     phone: "The phone number should have the format: 111-111-1111",
     ssn: "The driver license number should have the format: 123-45-6789",
-    mismatchName: "This value does not match the name you entered above",
-    mismatchSignature: "This value does not match the name the signature you entered above",
-    mismatchDate: "This value does not match the date you entered above"
+    mismatchName: "Please match the name you entered above",
+    mismatchSignature: "Please match the signature you entered above",
+    mismatchDate: "Please match the date you entered above"
   };
   $scope.dataPDF = null;
   $scope.formSubject = 'New application received';
@@ -537,7 +537,6 @@ $scope.checkRequiredFields = function(formType){
   var requiredFieldsArray;
   if (formType === 'volunteer'){
     requiredFieldsArray = {
-      'Membership for': $scope.formData.memberFor ,
       'Volunteer Name': $scope.formData.riderName , 
       'Gender': $scope.formData.riderGender , 
       'Street': $scope.formData.streetAddress,
@@ -608,7 +607,6 @@ $scope.checkRequiredFields = function(formType){
     }
   } else if (formType === 'membership'){
     requiredFieldsArray = {
-      'Membership for': $scope.formData.memberFor ,
       'Rider Name': $scope.formData.riderName , 
       'Membership Type': $scope.formData.membership , 
       'Street': $scope.formData.streetAddress,
@@ -672,10 +670,10 @@ $scope.checkRequiredFields = function(formType){
           console.log('You must fill this required field: ', field);
           $scope.serverMessage = 'Please complete all required fields. Field missing is:  " ' + field + '"';
           return false;
+      }
     }
-  }
-  return true;
-};
+    return true;
+  };
 
 
   $scope.validateContactInputs = function(){
@@ -714,14 +712,14 @@ $scope.checkRequiredFields = function(formType){
           formType: $scope.formType
         }
     } else {
-      return $scope.serverMessage = "Please reload the page and fill in all required fields before submitting."
+      return $scope.serverMessage = "Please fill in all required fields before submitting."
     }
     $http.post('/sendmail', formObj)
       .then(function(res){
-        $scope.loading = '';
+        $scope.loading = false;
         $scope.serverMessage = 'Your form was submitted successfully. You should hear back from us soon.';
     }).catch(function(err){
-        $scope.loading = '';
+        $scope.loading = false;
         $scope.serverMessage = 'There was an error submitting your form. Please contact us by phone instead.';
     });
   };

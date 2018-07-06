@@ -42,6 +42,9 @@
              <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Download PDF" ng-click="base64ToPDF('memberapp', rider)">
                <span class="glyphicon glyphicon-download"></span>
              </button>
+             <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Generate new PDF" ng-click="regenerateMultiPagePDF(rider, 'memberapp')">
+               <span class="glyphicon glyphicon-repeat"></span>
+             </button>
             </td>
           </tr>
         </tbody>
@@ -87,6 +90,9 @@
              </a>
              <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Download PDF" ng-click="base64ToPDF('volunteerapp', driver)">
                <span class="glyphicon glyphicon-download"></span>
+             </button>
+             <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title="Generate new PDF" ng-click="regenerateMultiPagePDF(driver, 'volunteerapp')">
+               <span class="glyphicon glyphicon-repeat"></span>
              </button>
             </td>
           </tr>

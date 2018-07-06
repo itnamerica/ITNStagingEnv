@@ -120,6 +120,10 @@ myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
           formType: null
         }
       })
+      .state('backup-pdf', {
+        url: '/backup-pdf',
+        templateUrl: viewsPath + 'backup-pdf.html'
+      })
       .state('wildcard', {
         url: '/*',
         templateUrl: viewsPath + 'home.html'
@@ -831,7 +835,30 @@ $scope.checkRequiredFields = function(formType){
           $scope.serverMessage = 'There was an error submitting your form. Please contact us, or consider submitting your form by paper instead.';
         });
       });
-  }
+  };
+  
+  $scope.regenerateMultiPagePDF = function(formObj, formType) {
+    console.log('inside renegerate pdf');
+    $scope.formData = formObj;
+    $scope.formType = formType;
+    $state.go('backup-pdf');
+    console.log('begin kendo drawing');
+    kendo.drawing.drawDOM($("#backup-pdf"), {
+          paperSize: "A4",
+          margin: { left: "3cm", top: "1cm", right: "1cm", bottom: "1cm" },
+          template: $("#page-template").html()
+      }).then(function (group) {
+        console.log('kendo complete, exporting pdf ', group);
+          return kendo.drawing.exportPDF(group);
+      }).catch(function(err){
+        console.log('could not generate kendo, error is ', err);
+      })
+      .done(function (data) {
+        console.log('data is ', data);
+        // $scope.dataPDF = data;
+        $scope.base64ToPDF($scope.formType, $scope.formData);
+      });
+}
   
 }]);
 

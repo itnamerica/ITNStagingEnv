@@ -490,7 +490,21 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     console.log('formobj is ', $scope.formObj);
   };
   
+  $scope.askBeforeDelete = function(formType, formObj){
+    $scope.formData = formObj;
+    $scope.formType = formType;
+    $(document).ready(function(){
+      $('#deleteAppModal').modal('show');
+    })
+  }
+  
   $scope.deleteForm = function(formType, formObj){
+    console.log('inside deleteform, form type', formType, 'form obj', formObj);
+    if (formType === 'memberapp' || formType === 'volunteerapp'){
+      $(document).ready(function(){
+        $('#deleteAppModal').modal('hide');
+      })
+    }
     FormService.deleteForm(formType, formObj).then(function(data){
       console.log('record successfully deleted ', data);
       $scope.getApps();
@@ -863,7 +877,6 @@ $scope.checkRequiredFields = function(formType){
             $scope.base64ToPDF($scope.formType, $scope.formData);
           });
       })
-
 }
   
 }]);

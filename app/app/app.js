@@ -261,18 +261,19 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
   
 
   $transitions.onSuccess({}, function(transition){
+    if (transition.from().name !== 'dashboard'){
       $scope.resetFormData();
-      if (transition.from().name === 'keyword-pages'){
-        angular.element(document).ready(function () {
-          $scope.searchKeyword();
-          $scope.scrollToTop();
-          $scope.urlsWithKeyword = [];
-          // $scope.keyword = '';
-        });
-      }
-      if (!$stateParams.anchor) {
+    }
+    if (transition.from().name === 'keyword-pages'){
+      angular.element(document).ready(function () {
+        $scope.searchKeyword();
         $scope.scrollToTop();
-      }
+        $scope.urlsWithKeyword = [];
+      });
+    }
+    if (!$stateParams.anchor) {
+      $scope.scrollToTop();
+    }
   });
   
   //use this function instead of ng-href as ng-href is not compatible with html5mode
@@ -445,6 +446,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
       $scope.pdfUrl = URL.createObjectURL(currentBlob);
       // $("#output").append($("<a/>").attr({href: $scope.pdfUrl}).append("Download"));
       // $scope.redirectToURL($scope.pdfUrl);
+      console.log('redirecting to pdf', formType, formObj);
       window.location.href = $scope.pdfUrl;
     }
     else {
@@ -841,6 +843,7 @@ $scope.checkRequiredFields = function(formType){
     console.log('inside renegerate pdf');
     $scope.formData = formObj;
     $scope.formType = formType;
+    console.log("formdata is ", $scope.formData);
     $state.go('backup-pdf')
       .then(function(){
         console.log('begin kendo drawing');

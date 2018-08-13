@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ui.router', 'ngAnimate','angularUtils.directives.dirPagination','angular-toArrayFilter']);
+var myApp = angular.module('myApp', ['ui.router', 'ngAnimate','angularUtils.directives.dirPagination']);
 
 myApp.config(function($stateProvider, $urlRouterProvider, $locationProvider){
   console.log('inside of config block');
@@ -246,6 +246,7 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
       vehicleDescription: {},
       changeOfStatus: {},
       drivingExperience: {},
+      references: {},
       firstReference: {},
       secondReference: {},
       thirdReference: {},
@@ -445,8 +446,6 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
       var currentBlob = new Blob([uintArray], {type: 'application/pdf'});
       $scope.pdfUrl = URL.createObjectURL(currentBlob);
       // $("#output").append($("<a/>").attr({href: $scope.pdfUrl}).append("Download"));
-      // $scope.redirectToURL($scope.pdfUrl);
-      console.log('redirecting to pdf', formType, formObj);
       window.location.href = $scope.pdfUrl;
     }
     else {
@@ -496,11 +495,11 @@ myApp.controller('MainController', ['$scope', '$transitions','$http', '$anchorSc
     $(document).ready(function(){
       $('#deleteAppModal').modal('show');
     })
-  }
+  };
   
   $scope.deleteForm = function(formType, formObj){
     console.log('inside deleteform, form type', formType, 'form obj', formObj);
-    if (formType === 'memberapp' || formType === 'volunteerapp'){
+    if (formType !== 'other'){
       $(document).ready(function(){
         $('#deleteAppModal').modal('hide');
       })
@@ -665,7 +664,7 @@ $scope.checkRequiredFields = function(formType){
       'Languages Spoken': $scope.formData.customerInfo.languages , 
       'Current transportation means': $scope.formData.customerInfo.currentTransportationMeans, 
       'Member of Organization or Union': $scope.formData.memberOfProfessionalOrgOrUnion , 
-      'Served in Military': $scope.formData.customerInfo.servedInMilitary, 
+      'Served in Military': $scope.formData.customerInfo.servedInMilitary,
       'Special Needs': $scope.formData.customerInfo.specialNeeds, 
       // 'Driving Info (full)': $scope.formData.drivingInfo, 
       'Has license': $scope.formData.drivingInfo.hasLicense, 
@@ -877,7 +876,7 @@ $scope.checkRequiredFields = function(formType){
             $scope.base64ToPDF($scope.formType, $scope.formData);
           });
       })
-}
+};
   
 }]);
 
@@ -960,6 +959,11 @@ myApp.filter('tableToFormName', function(){
   }
 });
 
+myApp.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});
 
 myApp.service('FormService', function($http){
   this.getMemberForms = function(){
